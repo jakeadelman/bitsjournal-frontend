@@ -202,8 +202,8 @@ function create(initialState) {
     ssrMode: !false,
     // Disables forceFetch on the server (so queries are only run once)
     link: new apollo_boost__WEBPACK_IMPORTED_MODULE_0__["HttpLink"]({
-      uri: "http://localhost:4000/graphql",
-      // Server URL (must be absolute)
+      // uri: "http://localhost:4000/graphql", // Server URL (must be absolute)
+      uri: "http://138.197.167.123:4000/graphql",
       credentials: "include" // Additional fetch() options like `credentials` or `headers`
 
     }),
