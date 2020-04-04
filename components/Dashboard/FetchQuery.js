@@ -13,6 +13,7 @@ import {
 } from "../Charts/ReChart";
 import { getStateDate } from "../Helpers/Functions";
 import { equal } from "fast-deep-equal";
+import ApiKeyForm from "./AddApiForm";
 // import { useState, useEffect } from "react";
 
 // import { storesContext } from "../../stores/UserStore";
@@ -80,27 +81,33 @@ class Comp extends React.Component {
     return (
       <Query query={this.props.query} variables={this.props.vars}>
         {({ loading, error, data }) => {
-          // console.log(data);
           if (error) return <div>no data loaded</div>;
           if (loading) return <div>Loading</div>;
-
-          return (
-            <Wrapper>
-              <ChartWrapper>
-                <ContainDivHeader>
-                  <NextToDivHeader>Start</NextToDivHeader>
-                  <NextToDivHeader>End</NextToDivHeader>
-                  <NextToDivHeader>Direction</NextToDivHeader>
-                  <NextToDivHeader>Avg Entry</NextToDivHeader>
-                  <NextToDivHeader>Avg Exit</NextToDivHeader>
-                  <NextToDivHeader>Qty</NextToDivHeader>
-                  <NextToDivHeader>Realized Pnl</NextToDivHeader>
-                </ContainDivHeader>
-                <ReChart data={data} />
-              </ChartWrapper>
-              <Sidebar />
-            </Wrapper>
-          );
+          console.log(data);
+          console.log("<<DATA ABOVE>>");
+          if (data.checkApiKey == false) {
+            console.log("is false");
+            return <ApiKeyForm />;
+          } else {
+            // console.log("is true");
+            return (
+              <Wrapper>
+                <ChartWrapper>
+                  <ContainDivHeader>
+                    <NextToDivHeader>Start</NextToDivHeader>
+                    <NextToDivHeader>End</NextToDivHeader>
+                    <NextToDivHeader>Direction</NextToDivHeader>
+                    <NextToDivHeader>Avg Entry</NextToDivHeader>
+                    <NextToDivHeader>Avg Exit</NextToDivHeader>
+                    <NextToDivHeader>Qty</NextToDivHeader>
+                    <NextToDivHeader>Realized Pnl</NextToDivHeader>
+                  </ContainDivHeader>
+                  <ReChart data={data} />
+                </ChartWrapper>
+                <Sidebar />
+              </Wrapper>
+            );
+          }
         }}
       </Query>
     );
@@ -111,6 +118,8 @@ export default FetchQuery;
 
 const fetchTradeHistoryQuery = gql`
   query fetchTradeHistory($start: String!, $end: String!) {
+    checkApiKey
+
     fetchTradeHistory(start: $start, end: $end) {
       id
       timestamp
@@ -124,6 +133,7 @@ const fetchTradeHistoryQuery = gql`
       realizedPnl
       commission
       execType
+      orderType
       trdStart
       trdEnd
       notes

@@ -14,7 +14,7 @@ export class Store {
   @persist @observable startDate = "2020-02-24T12:43:56.702Z";
   @persist @observable endDate = "2020-02-28T12:43:56.702Z";
   @persist @observable date = 1;
-  @persist @observable pnl = 0;
+  @observable pnl = 0;
 
   @action changeDate = newDate => {
     let dates = getStateDate(newDate);

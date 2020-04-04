@@ -27,7 +27,7 @@ export default class DashInitialTerms extends React.Component {
 
   render() {
     return (
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={theme(false)}>
         <FetchQuery />
       </ThemeProvider>
     );

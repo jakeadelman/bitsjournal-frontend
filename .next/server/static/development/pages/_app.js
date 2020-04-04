@@ -202,8 +202,9 @@ function create(initialState) {
     ssrMode: !false,
     // Disables forceFetch on the server (so queries are only run once)
     link: new apollo_boost__WEBPACK_IMPORTED_MODULE_0__["HttpLink"]({
-      // uri: "http://localhost:4000/graphql", // Server URL (must be absolute)
-      uri: "http://138.197.167.123:4000/graphql",
+      uri: "http://localhost:4000/graphql",
+      // Server URL (must be absolute)
+      // uri: "https://bitsjournal-backend.com",
       credentials: "include" // Additional fetch() options like `credentials` or `headers`
 
     }),
@@ -643,7 +644,7 @@ var Store = (_class = (_temp = function Store() {
   initializer: function initializer() {
     return 1;
   }
-}), _descriptor7 = _applyDecoratedDescriptor(_class.prototype, "pnl", [mobx_persist__WEBPACK_IMPORTED_MODULE_2__["persist"], mobx__WEBPACK_IMPORTED_MODULE_0__["observable"]], {
+}), _descriptor7 = _applyDecoratedDescriptor(_class.prototype, "pnl", [mobx__WEBPACK_IMPORTED_MODULE_0__["observable"]], {
   configurable: true,
   enumerable: true,
   writable: true,

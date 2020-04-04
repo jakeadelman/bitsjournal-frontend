@@ -17,6 +17,8 @@ import { formatDateMonthOnly } from "../Helpers/Functions.js";
 import { inject, observer } from "mobx-react";
 import MainChart from "../Charts2/index";
 import Notes from "./Notes";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons";
 
 export default class Example extends PureComponent {
   constructor(props) {
@@ -148,6 +150,7 @@ class MakeCol extends Component {
       let totBuyContractsMult = 0;
       let totSellContractsMult = 0;
       let realQty = 0;
+      let totCommission = 0;
       for (let i = 0; i < this.state.data.length; i++) {
         realQty = this.state.data[i].orderQty - this.state.data[i].leavesQty;
         if (this.state.data[i].side == "Buy") {
@@ -161,6 +164,19 @@ class MakeCol extends Component {
           totSellContracts += realQty;
           totSellContractsMult +=
             realQty * parseFloat(this.state.data[i].price);
+        }
+        // console.log("REAL QTY", realQty);
+        if (
+          this.state.data[i].orderType == "Limit" &&
+          this.state.data[i].execType !== "Funding"
+        ) {
+          totCommission += (realQty * 0.0025) / this.state.data[i].price;
+        }
+        if (this.state.data[i].orderType == "Market") {
+          totCommission -= (realQty * 0.0075) / this.state.data[i].price;
+        }
+        if (this.state.data[i].orderType.includes("Stop")) {
+          totCommission -= (realQty * 0.0075) / this.state.data[i].price;
         }
         if (i == this.state.data.length - 1) {
           avgBuyPrice = totBuyContractsMult / totBuyContracts;
@@ -179,7 +195,8 @@ class MakeCol extends Component {
 
           let thePnl = (1 / avgBuyPrice - 1 / avgSellPrice) * totSellContracts;
           if (thePnl != null) {
-            this.state.pnl = thePnl;
+            console.log("TOT COMMISS", totCommission);
+            this.state.pnl = thePnl + totCommission;
             this.props.store.addPnl(this.state.pnl);
           } else {
             this.state.pnl = 0;
@@ -200,6 +217,7 @@ class MakeCol extends Component {
       let totBuyContractsMult = 0;
       let totSellContractsMult = 0;
       let realQty = 0;
+      let totCommission = 0;
       for (let i = 0; i < this.state.data.length; i++) {
         realQty = this.state.data[i].orderQty - this.state.data[i].leavesQty;
         if (this.state.data[i].side == "Buy") {
@@ -213,6 +231,19 @@ class MakeCol extends Component {
           totSellContracts += realQty;
           totSellContractsMult +=
             realQty * parseFloat(this.state.data[i].price);
+        }
+        console.log("REAL QTY", realQty);
+        if (
+          this.state.data[i].orderType == "Limit" &&
+          this.state.data[i].execType !== "Funding"
+        ) {
+          totCommission += (realQty * 0.0025) / this.state.data[i].price;
+        }
+        if (this.state.data[i].orderType == "Market") {
+          totCommission -= (realQty * 0.0075) / this.state.data[i].price;
+        }
+        if (this.state.data[i].orderType.includes("Stop")) {
+          totCommission -= (realQty * 0.0075) / this.state.data[i].price;
         }
         if (i == this.state.data.length - 1) {
           // console.log(totBuyContracts, totBuyContractsMult);
@@ -234,7 +265,8 @@ class MakeCol extends Component {
 
           this.state.cumQty = totSellContracts;
           if (pnl != null) {
-            this.state.pnl = pnl;
+            console.log("TOT COMMISS", totCommission);
+            this.state.pnl = pnl + totCommission;
             this.props.store.addPnl(pnl);
           } else {
             this.state.pnl = 0;
@@ -325,7 +357,10 @@ class MakeCol extends Component {
               })}
               <ReadMoreTall>
                 <ReadMoreInner onClick={this.readMoreClicked}>
-                  Show Less
+                  <FontAwesomeIcon
+                    icon={faCaretUp}
+                    style={{ transition: "none" }}
+                  />
                 </ReadMoreInner>
               </ReadMoreTall>
             </MoreBoxTall>
@@ -371,7 +406,10 @@ class MakeCol extends Component {
               })}
               <ReadMore>
                 <ReadMoreInner onClick={this.readMoreClicked}>
-                  Show All
+                  <FontAwesomeIcon
+                    icon={faCaretDown}
+                    style={{ transition: "none" }}
+                  />
                 </ReadMoreInner>
               </ReadMore>
             </MoreBoxShort>
@@ -471,7 +509,7 @@ const ReadMore = styled.div`
   width: 100%;
   text-align: center;
   margin: 0;
-  padding: 30px 0;
+  padding: 10px 0;
 
   /* "transparent" only works here because == rgba(0,0,0,0) */
 
@@ -490,7 +528,7 @@ const ReadMoreTall = styled.div`
   width: 100%;
   text-align: center;
   margin: 0;
-  padding: 30px 0;
+  padding: 10px 0;
 `;
 // background-image: linear-gradient(to bottom, transparent, black);
 const MoreBoxShort = styled.div`
@@ -505,18 +543,44 @@ const MoreBoxTall = styled.div`
 `;
 
 const TotalDetails = styled.div``;
+// border: 1px solid rgba(33, 37, 40, 0.7);
 const ReadMoreInner = styled.div`
-  background-color: #fff;
   color: rgba(33, 37, 40, 1);
+
   padding: 0;
   margin: auto;
-  width: 100px;
-  border: 1px solid rgba(33, 37, 40, 0.7);
+  width: 30px;
   border-radius: 2px;
+  -webkit-transition-property: none;
+  -moz-transition-property: none;
+  -o-transition-property: none;
+  transition-property: none;
+
   :hover {
     cursor: pointer;
+    background-color: rgba(33, 37, 40, 1);
+    color: #fff;
+    -webkit-transition-property: none;
+    -moz-transition-property: none;
+    -o-transition-property: none;
+    transition-property: none;
   }
+  font-size: 20px;
 `;
+// background-color: #4cabf7;
+// const ReadMoreInner = styled.div`
+//   background-color: #fff;
+//   color: rgba(33, 37, 40, 1);
+//   padding: 0;
+//   margin: auto;
+//   width: 20px;
+//   border: 1px solid rgba(33, 37, 40, 0.7);
+//   border-radius: 2px;
+//   :hover {
+//     cursor: pointer;
+//   }
+//   font-size: 20px;
+// `;
 
 // const renderLegend = props => {
 //   const { payload } = props;
