@@ -422,9 +422,12 @@ function (_Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      this.setState({
-        value: this.props.firstTrade.notes
-      });
+      if (this.props.firstTrade.notes != "undefined") {
+        this.setState({
+          value: this.props.firstTrade.notes
+        });
+      }
+
       var splitTags = this.props.firstTrade.hashtags.split(",");
       splitTags.map(function (tag) {
         _this2.state.initHashtags.push(tag);
@@ -450,14 +453,7 @@ function (_Component) {
       return function (event) {
         if (event != undefined && event.preventDefault != undefined) {
           event.preventDefault();
-        } // alert("A name was submitted: " + this.state.value);
-        // let splitted = this.state.value.split(" ");
-        // for (let i = 0; i < splitted.length; i++) {
-        //   if (splitted[i].includes("#")) {
-        //     this.state.hashtags.push(splitted[i]);
-        //   }
-        //   if (i == splitted.length - 1) {
-
+        }
 
         console.log("HASHTAGS", _this4.state.hashtags);
         Object(_helpers__WEBPACK_IMPORTED_MODULE_4__["getNotes"])(_this4.state.value).then(
@@ -514,7 +510,9 @@ function (_Component) {
           firstTrade: _this5.props.firstTrade,
           client: client
         })), _this5.state.initHashtags.map(function (tag) {
-          return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(SingleHashtagDiv, null, "#", tag);
+          if (tag != "undefined") {
+            return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(SingleHashtagDiv, null, "#", tag);
+          }
         }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(NotesInput, {
           type: "text",
           value: _this5.state.value,
@@ -653,52 +651,23 @@ function (_Component2) {
   }, {
     key: "render",
     value: function render() {
-      return (// <ApolloConsumer>
-        //   {client => (
-        // <div>
-        //   <Dropdown
-        //     direction="right"
-        //     style={{ backgroudColor: "#fff", color: "#fff" }}
-        //     isOpen={this.state.btnDropright}
-        //     toggle={() => {
-        //       this.setState({ btnDropright: !this.state.btnDropright });
-        //     }}
-        //   >
-        //     <DropdownToggle style={{ backgroudColor: "#000000", color: "#fff" }}>
-        //       +
-        //     </DropdownToggle>
-        //     <DropdownMenu style={{ backgroudColor: "#000000", color: "#fff" }}>
-        //       <form onSubmit={this.handleSubmit}>
-        //         <input
-        //           type="text"
-        //           value={this.state.value}
-        //           onChange={this.handleChange}
-        //         />
-        //         <input type="submit" value="Submit" />
-        //       </form>
-        //     </DropdownMenu>
-        //   </Dropdown>
-        // </div>
-        react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Popup, {
-          onClick: this.clicked
-        }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_7__["FontAwesomeIcon"], {
-          icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__["faPlus"],
-          style: {
-            transition: "none"
-          }
-        })), this.state.clicked ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(PopupTop, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", {
-          onSubmit: this.handleSubmit
-        }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
-          type: "text",
-          value: this.state.value,
-          onChange: this.handleChange
-        }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(AddHashSubmit, {
-          type: "submit",
-          value: "Add"
-        }))) : null) // )} //{" "}
-        // </ApolloConsumer>
-
-      );
+      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Popup, {
+        onClick: this.clicked
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_7__["FontAwesomeIcon"], {
+        icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__["faPlus"],
+        style: {
+          transition: "none"
+        }
+      })), this.state.clicked ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(PopupTop, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", {
+        onSubmit: this.handleSubmit
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+        type: "text",
+        value: this.state.value,
+        onChange: this.handleChange
+      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(AddHashSubmit, {
+        type: "submit",
+        value: "Add"
+      }))) : null);
     }
   }]);
 
@@ -712,10 +681,7 @@ var AddHashSubmit = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.inp
 var Popup = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.div.withConfig({
   displayName: "Notes__Popup",
   componentId: "nwljd5-1"
-})(["position:relative;display:inline-block;cursor:pointer;background:#000;padding:8px;border-radius:2px;"]); // const Popup = styled.div``;
-// top: 100%;
-// left: 50%;
-
+})(["position:relative;display:inline-block;cursor:pointer;background:#000;padding:8px;border-radius:2px;"]);
 var PopupTop = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.div.withConfig({
   displayName: "Notes__PopupTop",
   componentId: "nwljd5-2"
@@ -2571,7 +2537,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var fast_deep_equal__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! fast-deep-equal */ "fast-deep-equal");
 /* harmony import */ var fast_deep_equal__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(fast_deep_equal__WEBPACK_IMPORTED_MODULE_8__);
 /* harmony import */ var _AddApiForm__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./AddApiForm */ "./components/Dashboard/AddApiForm.js");
-var _dec, _class, _temp;
+var _dec, _class, _temp, _dec2, _class3;
 
 
 
@@ -2614,7 +2580,8 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
- // import { useState, useEffect } from "react";
+ // import { pushGlobalHash } from "../../stores/store";
+// import { useState, useEffect } from "react";
 // import { storesContext } from "../../stores/UserStore";
 
 var FetchQuery = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_6__["inject"])(["store"]), _dec(_class = Object(mobx_react__WEBPACK_IMPORTED_MODULE_6__["observer"])(_class = (_temp =
@@ -2687,21 +2654,87 @@ function (_React$Component) {
 
   return FetchQuery;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component), _temp)) || _class) || _class);
-
-var Comp =
+var Comp = (_dec2 = Object(mobx_react__WEBPACK_IMPORTED_MODULE_6__["inject"])(["store"]), _dec2(_class3 = Object(mobx_react__WEBPACK_IMPORTED_MODULE_6__["observer"])(_class3 =
 /*#__PURE__*/
 function (_React$Component2) {
   _inherits(Comp, _React$Component2);
 
-  function Comp() {
+  function Comp(props) {
+    var _this2;
+
     _classCallCheck(this, Comp);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(Comp).apply(this, arguments));
+    _this2 = _possibleConstructorReturn(this, _getPrototypeOf(Comp).call(this, props));
+    _this2.state = {
+      globalHash: [],
+      globalHashActive: ["all"]
+    };
+    _this2.getGlobalHashtags = _this2.getGlobalHashtags.bind(_assertThisInitialized(_this2));
+    _this2.hashtagClicked = _this2.hashtagClicked.bind(_assertThisInitialized(_this2));
+    return _this2;
   }
 
   _createClass(Comp, [{
+    key: "getGlobalHashtags",
+    value: function getGlobalHashtags(data) {
+      for (var i = 0; i < data.fetchTradeHistory.length; i++) {
+        var thisTradeHash = data.fetchTradeHistory[i].hashtags.split(",");
+
+        if (thisTradeHash != "undefined") {
+          for (var j = 0; j < thisTradeHash.length; j++) {
+            if (thisTradeHash[j] != "undefined") {
+              this.state.globalHash.push(thisTradeHash[j]);
+            }
+          }
+        }
+      }
+    }
+  }, {
+    key: "hashtagClicked",
+    value: function hashtagClicked(value) {
+      console.log(this.state.globalHashActive);
+      console.log(this.state.globalHash);
+
+      if (this.state.globalHashActive[0] == undefined) {
+        this.state.globalHashActive.push(value);
+        var index = this.state.globalHash.indexOf(value);
+
+        if (index > -1) {
+          this.state.globalHash.splice(index, 1); // this.state.globalHash.push(value)
+        }
+
+        return;
+      }
+
+      for (var i = 0; i < this.state.globalHashActive.length; i++) {
+        if (this.state.globalHashActive[i] == "all") {
+          this.state.globalHashActive = [];
+        }
+
+        if (value == this.state.globalHashActive[i]) {
+          return;
+        }
+
+        if (i == this.state.globalHashActive.length - 1) {
+          console.log("ENDING");
+
+          var _index = this.state.globalHash.indexOf(value);
+
+          if (_index > -1) {
+            this.state.globalHash.splice(_index, 1);
+          }
+
+          console.log(_index, "INDEX");
+          this.state.globalHashActive.push(value);
+          return;
+        }
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
+      var _this3 = this;
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_apollo__WEBPACK_IMPORTED_MODULE_1__["Query"], {
         query: this.props.query,
         variables: this.props.vars
@@ -2719,7 +2752,17 @@ function (_React$Component2) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AddApiForm__WEBPACK_IMPORTED_MODULE_9__["default"], null);
         } else {
           // console.log("is true");
-          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Wrapper, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ChartWrapper, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Charts_ReChart__WEBPACK_IMPORTED_MODULE_2__["ContainDivHeader"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Charts_ReChart__WEBPACK_IMPORTED_MODULE_2__["NextToDivHeader"], null, "Start"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Charts_ReChart__WEBPACK_IMPORTED_MODULE_2__["NextToDivHeader"], null, "End"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Charts_ReChart__WEBPACK_IMPORTED_MODULE_2__["NextToDivHeader"], null, "Direction"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Charts_ReChart__WEBPACK_IMPORTED_MODULE_2__["NextToDivHeader"], null, "Avg Entry"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Charts_ReChart__WEBPACK_IMPORTED_MODULE_2__["NextToDivHeader"], null, "Avg Exit"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Charts_ReChart__WEBPACK_IMPORTED_MODULE_2__["NextToDivHeader"], null, "Qty"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Charts_ReChart__WEBPACK_IMPORTED_MODULE_2__["NextToDivHeader"], null, "Realized Pnl")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Charts_ReChart__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          _this3.getGlobalHashtags(data);
+
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Wrapper, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ChartWrapper, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TopHashtagDiv, null, _this3.state.globalHashActive.map(function (hash) {
+            return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TopHashtagIndividualActive, null, "#", hash);
+          }), _this3.state.globalHash.map(function (hash) {
+            return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TopHashtagIndividual, {
+              onClick: function onClick() {
+                return _this3.hashtagClicked(hash);
+              }
+            }, "#", hash);
+          })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Charts_ReChart__WEBPACK_IMPORTED_MODULE_2__["ContainDivHeader"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Charts_ReChart__WEBPACK_IMPORTED_MODULE_2__["NextToDivHeader"], null, "Start"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Charts_ReChart__WEBPACK_IMPORTED_MODULE_2__["NextToDivHeader"], null, "End"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Charts_ReChart__WEBPACK_IMPORTED_MODULE_2__["NextToDivHeader"], null, "Direction"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Charts_ReChart__WEBPACK_IMPORTED_MODULE_2__["NextToDivHeader"], null, "Avg Entry"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Charts_ReChart__WEBPACK_IMPORTED_MODULE_2__["NextToDivHeader"], null, "Avg Exit"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Charts_ReChart__WEBPACK_IMPORTED_MODULE_2__["NextToDivHeader"], null, "Qty"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Charts_ReChart__WEBPACK_IMPORTED_MODULE_2__["NextToDivHeader"], null, "Realized Pnl")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Charts_ReChart__WEBPACK_IMPORTED_MODULE_2__["default"], {
             data: data
           })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Categories_Menu__WEBPACK_IMPORTED_MODULE_3__["default"], null));
         }
@@ -2728,17 +2771,28 @@ function (_React$Component2) {
   }]);
 
   return Comp;
-}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
-
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component)) || _class3) || _class3);
 /* harmony default export */ __webpack_exports__["default"] = (FetchQuery);
 var fetchTradeHistoryQuery = graphql_tag__WEBPACK_IMPORTED_MODULE_4___default()(_templateObject());
+var TopHashtagDiv = styled_components__WEBPACK_IMPORTED_MODULE_5___default.a.div.withConfig({
+  displayName: "FetchQuery__TopHashtagDiv",
+  componentId: "sc-1g6l220-0"
+})(["display:flex;flex-direction:row;margin-bottom:8px;"]);
+var TopHashtagIndividual = styled_components__WEBPACK_IMPORTED_MODULE_5___default.a.div.withConfig({
+  displayName: "FetchQuery__TopHashtagIndividual",
+  componentId: "sc-1g6l220-1"
+})(["background:#f8f8ff;color:#000;padding:8px;margin:0 10px;border-radius:2px;:hover{cursor:pointer;}"]);
+var TopHashtagIndividualActive = styled_components__WEBPACK_IMPORTED_MODULE_5___default.a.div.withConfig({
+  displayName: "FetchQuery__TopHashtagIndividualActive",
+  componentId: "sc-1g6l220-2"
+})(["background:#212528;color:#fff;padding:8px;margin:0 10px;border-radius:2px;:hover{cursor:pointer;}"]);
 var ChartWrapper = styled_components__WEBPACK_IMPORTED_MODULE_5___default.a.div.withConfig({
   displayName: "FetchQuery__ChartWrapper",
-  componentId: "sc-1g6l220-0"
+  componentId: "sc-1g6l220-3"
 })(["background:white;padding:5px;width:100%;@media (max-width:768px){margin:0 5vw;}"]);
 var Wrapper = styled_components__WEBPACK_IMPORTED_MODULE_5___default.a.div.withConfig({
   displayName: "FetchQuery__Wrapper",
-  componentId: "sc-1g6l220-1"
+  componentId: "sc-1g6l220-4"
 })(["display:flex;align-items:flex-align;"]);
 
 /***/ }),
@@ -2890,13 +2944,29 @@ var StyledLink = styled_components__WEBPACK_IMPORTED_MODULE_3___default.a.div.wi
 var Wrapper = styled_components__WEBPACK_IMPORTED_MODULE_3___default.a.header.withConfig({
   displayName: "Header__Wrapper",
   componentId: "sc-19c2vr5-1"
-})(["position:sticky;z-index:10;top:0;display:flex;align-items:stretch;margin-bottom:24px;box-shadow:0 4px 12px ", ";border-bottom:1px solid ", ";height:48px;padding:0 10vw;background-color:", ";user-select:none;@media (max-width:425px){margin-bottom:16px;height:40px;}@media (max-width:768px){padding:0;}"], function (props) {
-  return props.theme.shadow;
-}, function (props) {
-  return props.theme.border;
-}, function (props) {
+})(["position:sticky;z-index:10;top:0;display:flex;align-items:stretch;margin-bottom:24px;border-bottom:2px solid #eee;height:68px;padding:0 10vw;background-color:", ";user-select:none;@media (max-width:425px){margin-bottom:16px;height:40px;}@media (max-width:768px){padding:0;}"], function (props) {
   return props.theme.foreground;
-});
+}); // const Wrapper = styled.header`
+//   position: sticky;
+//   z-index: 10;
+//   top: 0;
+//   display: flex;
+//   align-items: stretch;
+//   margin-bottom: 24px;
+//   box-shadow: 0 4px 12px ${props => props.theme.shadow};
+//   border-bottom: 1px solid ${props => props.theme.border};
+//   height: 48px;
+//   padding: 0 10vw;
+//   background-color: ${props => props.theme.foreground};
+//   user-select: none;
+//   @media (max-width: 425px) {
+//     margin-bottom: 16px;
+//     height: 40px;
+//   }
+//   @media (max-width: 768px) {
+//     padding: 0;
+//   }
+// `;
 
 /***/ }),
 
@@ -2960,7 +3030,7 @@ var HeaderLogo = function HeaderLogo() {
     src: "/static/bitcoin-logo.svg",
     style: {
       margin: "auto",
-      maxWidth: "30px"
+      maxWidth: "28px"
     }
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
     prefetch: true,
@@ -2976,7 +3046,7 @@ var HeaderLogo = function HeaderLogo() {
 var Logo = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.div.withConfig({
   displayName: "Logo",
   componentId: "sc-195qc4m-0"
-})(["", " margin-right:auto;font-size:24px;font-weight:500;color:", ";text-decoration:none;@media (max-width:425px){padding:0 8px 0 16px;font-size:19px;}"], _shared_helpers__WEBPACK_IMPORTED_MODULE_3__["headerItem"], function (props) {
+})(["", " margin-right:auto;font-size:21px;font-weight:500;color:", ";text-decoration:none;@media (max-width:425px){padding:0 8px 0 16px;font-size:19px;}"], _shared_helpers__WEBPACK_IMPORTED_MODULE_3__["headerItem"], function (props) {
   return props.theme.normalText;
 }); // display: flex;
 // align-items: center;
@@ -3296,7 +3366,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _components_Helpers_Functions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/Helpers/Functions */ "./components/Helpers/Functions.js");
-var _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _temp;
+var _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _temp;
 
 function _initializerDefineProperty(target, property, descriptor, context) { if (!descriptor) return; Object.defineProperty(target, property, { enumerable: descriptor.enumerable, configurable: descriptor.configurable, writable: descriptor.writable, value: descriptor.initializer ? descriptor.initializer.call(context) : void 0 }); }
 
@@ -3330,11 +3400,15 @@ var Store = (_class = (_temp = function Store() {
 
   _initializerDefineProperty(this, "pnl", _descriptor7, this);
 
-  _initializerDefineProperty(this, "changeDate", _descriptor8, this);
+  _initializerDefineProperty(this, "globalHash", _descriptor8, this);
 
-  _initializerDefineProperty(this, "addPnl", _descriptor9, this);
+  _initializerDefineProperty(this, "changeDate", _descriptor9, this);
 
-  _initializerDefineProperty(this, "resetPnl", _descriptor10, this);
+  _initializerDefineProperty(this, "addPnl", _descriptor10, this);
+
+  _initializerDefineProperty(this, "resetPnl", _descriptor11, this);
+
+  _initializerDefineProperty(this, "pushGlobalHash", _descriptor12, this);
 } //   constructor(isServer, initialData = {}) {
 //     this.lastUpdate =
 //       initialData.lastUpdate != null ? initialData.lastUpdate : Date.now();
@@ -3396,7 +3470,14 @@ var Store = (_class = (_temp = function Store() {
   initializer: function initializer() {
     return 0;
   }
-}), _descriptor8 = _applyDecoratedDescriptor(_class.prototype, "changeDate", [mobx__WEBPACK_IMPORTED_MODULE_0__["action"]], {
+}), _descriptor8 = _applyDecoratedDescriptor(_class.prototype, "globalHash", [mobx__WEBPACK_IMPORTED_MODULE_0__["observable"]], {
+  configurable: true,
+  enumerable: true,
+  writable: true,
+  initializer: function initializer() {
+    return [];
+  }
+}), _descriptor9 = _applyDecoratedDescriptor(_class.prototype, "changeDate", [mobx__WEBPACK_IMPORTED_MODULE_0__["action"]], {
   configurable: true,
   enumerable: true,
   writable: true,
@@ -3410,7 +3491,7 @@ var Store = (_class = (_temp = function Store() {
       _this.endDate = dates.end;
     };
   }
-}), _descriptor9 = _applyDecoratedDescriptor(_class.prototype, "addPnl", [mobx__WEBPACK_IMPORTED_MODULE_0__["action"]], {
+}), _descriptor10 = _applyDecoratedDescriptor(_class.prototype, "addPnl", [mobx__WEBPACK_IMPORTED_MODULE_0__["action"]], {
   configurable: true,
   enumerable: true,
   writable: true,
@@ -3421,7 +3502,7 @@ var Store = (_class = (_temp = function Store() {
       _this2.pnl += pnl;
     };
   }
-}), _descriptor10 = _applyDecoratedDescriptor(_class.prototype, "resetPnl", [mobx__WEBPACK_IMPORTED_MODULE_0__["action"]], {
+}), _descriptor11 = _applyDecoratedDescriptor(_class.prototype, "resetPnl", [mobx__WEBPACK_IMPORTED_MODULE_0__["action"]], {
   configurable: true,
   enumerable: true,
   writable: true,
@@ -3430,6 +3511,17 @@ var Store = (_class = (_temp = function Store() {
 
     return function () {
       _this3.pnl = 0;
+    };
+  }
+}), _descriptor12 = _applyDecoratedDescriptor(_class.prototype, "pushGlobalHash", [mobx__WEBPACK_IMPORTED_MODULE_0__["action"]], {
+  configurable: true,
+  enumerable: true,
+  writable: true,
+  initializer: function initializer() {
+    var _this4 = this;
+
+    return function (hash) {
+      _this4.globalHash.push(hash);
     };
   }
 })), _class);

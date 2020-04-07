@@ -22,9 +22,11 @@ export default class extends Component {
   }
 
   componentDidMount() {
-    this.setState({
-      value: this.props.firstTrade.notes
-    });
+    if (this.props.firstTrade.notes != "undefined") {
+      this.setState({
+        value: this.props.firstTrade.notes
+      });
+    }
     let splitTags = this.props.firstTrade.hashtags.split(",");
     splitTags.map(tag => {
       this.state.initHashtags.push(tag);
@@ -43,13 +45,6 @@ export default class extends Component {
       if (event != undefined && event.preventDefault != undefined) {
         event.preventDefault();
       }
-      // alert("A name was submitted: " + this.state.value);
-      // let splitted = this.state.value.split(" ");
-      // for (let i = 0; i < splitted.length; i++) {
-      //   if (splitted[i].includes("#")) {
-      //     this.state.hashtags.push(splitted[i]);
-      //   }
-      //   if (i == splitted.length - 1) {
       console.log("HASHTAGS", this.state.hashtags);
       getNotes(this.state.value).then(async res => {
         let notes = res[0];
@@ -83,7 +78,9 @@ export default class extends Component {
                 />
               </HashtagDiv>
               {this.state.initHashtags.map(tag => {
-                return <SingleHashtagDiv>#{tag}</SingleHashtagDiv>;
+                if (tag != "undefined") {
+                  return <SingleHashtagDiv>#{tag}</SingleHashtagDiv>;
+                }
               })}
               <NotesInput
                 type="text"
@@ -154,32 +151,6 @@ class AddHashtag extends Component {
 
   render() {
     return (
-      // <ApolloConsumer>
-      //   {client => (
-      // <div>
-      //   <Dropdown
-      //     direction="right"
-      //     style={{ backgroudColor: "#fff", color: "#fff" }}
-      //     isOpen={this.state.btnDropright}
-      //     toggle={() => {
-      //       this.setState({ btnDropright: !this.state.btnDropright });
-      //     }}
-      //   >
-      //     <DropdownToggle style={{ backgroudColor: "#000000", color: "#fff" }}>
-      //       +
-      //     </DropdownToggle>
-      //     <DropdownMenu style={{ backgroudColor: "#000000", color: "#fff" }}>
-      //       <form onSubmit={this.handleSubmit}>
-      //         <input
-      //           type="text"
-      //           value={this.state.value}
-      //           onChange={this.handleChange}
-      //         />
-      //         <input type="submit" value="Submit" />
-      //       </form>
-      //     </DropdownMenu>
-      //   </Dropdown>
-      // </div>
       <div>
         <Popup onClick={this.clicked}>
           <FontAwesomeIcon icon={faPlus} style={{ transition: "none" }} />
@@ -197,8 +168,6 @@ class AddHashtag extends Component {
           </PopupTop>
         ) : null}
       </div>
-      // )} //{" "}
-      // </ApolloConsumer>
     );
   }
 }
@@ -217,10 +186,7 @@ const Popup = styled.div`
   padding: 8px;
   border-radius: 2px;
 `;
-// const Popup = styled.div``;
 
-// top: 100%;
-// left: 50%;
 const PopupTop = styled.div`
   position: absolute;
   background: #000;

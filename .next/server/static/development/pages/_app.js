@@ -551,7 +551,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _components_Helpers_Functions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/Helpers/Functions */ "./components/Helpers/Functions.js");
-var _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _temp;
+var _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _temp;
 
 function _initializerDefineProperty(target, property, descriptor, context) { if (!descriptor) return; Object.defineProperty(target, property, { enumerable: descriptor.enumerable, configurable: descriptor.configurable, writable: descriptor.writable, value: descriptor.initializer ? descriptor.initializer.call(context) : void 0 }); }
 
@@ -585,11 +585,15 @@ var Store = (_class = (_temp = function Store() {
 
   _initializerDefineProperty(this, "pnl", _descriptor7, this);
 
-  _initializerDefineProperty(this, "changeDate", _descriptor8, this);
+  _initializerDefineProperty(this, "globalHash", _descriptor8, this);
 
-  _initializerDefineProperty(this, "addPnl", _descriptor9, this);
+  _initializerDefineProperty(this, "changeDate", _descriptor9, this);
 
-  _initializerDefineProperty(this, "resetPnl", _descriptor10, this);
+  _initializerDefineProperty(this, "addPnl", _descriptor10, this);
+
+  _initializerDefineProperty(this, "resetPnl", _descriptor11, this);
+
+  _initializerDefineProperty(this, "pushGlobalHash", _descriptor12, this);
 } //   constructor(isServer, initialData = {}) {
 //     this.lastUpdate =
 //       initialData.lastUpdate != null ? initialData.lastUpdate : Date.now();
@@ -651,7 +655,14 @@ var Store = (_class = (_temp = function Store() {
   initializer: function initializer() {
     return 0;
   }
-}), _descriptor8 = _applyDecoratedDescriptor(_class.prototype, "changeDate", [mobx__WEBPACK_IMPORTED_MODULE_0__["action"]], {
+}), _descriptor8 = _applyDecoratedDescriptor(_class.prototype, "globalHash", [mobx__WEBPACK_IMPORTED_MODULE_0__["observable"]], {
+  configurable: true,
+  enumerable: true,
+  writable: true,
+  initializer: function initializer() {
+    return [];
+  }
+}), _descriptor9 = _applyDecoratedDescriptor(_class.prototype, "changeDate", [mobx__WEBPACK_IMPORTED_MODULE_0__["action"]], {
   configurable: true,
   enumerable: true,
   writable: true,
@@ -665,7 +676,7 @@ var Store = (_class = (_temp = function Store() {
       _this.endDate = dates.end;
     };
   }
-}), _descriptor9 = _applyDecoratedDescriptor(_class.prototype, "addPnl", [mobx__WEBPACK_IMPORTED_MODULE_0__["action"]], {
+}), _descriptor10 = _applyDecoratedDescriptor(_class.prototype, "addPnl", [mobx__WEBPACK_IMPORTED_MODULE_0__["action"]], {
   configurable: true,
   enumerable: true,
   writable: true,
@@ -676,7 +687,7 @@ var Store = (_class = (_temp = function Store() {
       _this2.pnl += pnl;
     };
   }
-}), _descriptor10 = _applyDecoratedDescriptor(_class.prototype, "resetPnl", [mobx__WEBPACK_IMPORTED_MODULE_0__["action"]], {
+}), _descriptor11 = _applyDecoratedDescriptor(_class.prototype, "resetPnl", [mobx__WEBPACK_IMPORTED_MODULE_0__["action"]], {
   configurable: true,
   enumerable: true,
   writable: true,
@@ -685,6 +696,17 @@ var Store = (_class = (_temp = function Store() {
 
     return function () {
       _this3.pnl = 0;
+    };
+  }
+}), _descriptor12 = _applyDecoratedDescriptor(_class.prototype, "pushGlobalHash", [mobx__WEBPACK_IMPORTED_MODULE_0__["action"]], {
+  configurable: true,
+  enumerable: true,
+  writable: true,
+  initializer: function initializer() {
+    var _this4 = this;
+
+    return function (hash) {
+      _this4.globalHash.push(hash);
     };
   }
 })), _class);

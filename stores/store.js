@@ -15,6 +15,7 @@ export class Store {
   @persist @observable endDate = "2020-02-28T12:43:56.702Z";
   @persist @observable date = 1;
   @observable pnl = 0;
+  @observable globalHash = [];
 
   @action changeDate = newDate => {
     let dates = getStateDate(newDate);
@@ -29,6 +30,10 @@ export class Store {
 
   @action resetPnl = () => {
     this.pnl = 0;
+  };
+
+  @action pushGlobalHash = hash => {
+    this.globalHash.push(hash);
   };
 
   //   constructor(isServer, initialData = {}) {

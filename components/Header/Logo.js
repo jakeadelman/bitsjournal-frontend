@@ -9,7 +9,7 @@ const HeaderLogo = () => (
     <Link prefetch href="/">
       <img
         src="/static/bitcoin-logo.svg"
-        style={{ margin: "auto", maxWidth: "30px" }}
+        style={{ margin: "auto", maxWidth: "28px" }}
       />
     </Link>
     <Link prefetch href="/">
@@ -24,7 +24,7 @@ const Logo = styled.div`
   ${headerItem}
 
   margin-right: auto;
-  font-size: 24px;
+  font-size: 21px;
   font-weight: 500;
   color: ${props => props.theme.normalText};
   text-decoration: none;

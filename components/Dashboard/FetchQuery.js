@@ -14,6 +14,7 @@ import {
 import { getStateDate } from "../Helpers/Functions";
 import { equal } from "fast-deep-equal";
 import ApiKeyForm from "./AddApiForm";
+// import { pushGlobalHash } from "../../stores/store";
 // import { useState, useEffect } from "react";
 
 // import { storesContext } from "../../stores/UserStore";
@@ -76,7 +77,61 @@ class FetchQuery extends React.Component {
   }
 }
 
+@inject(["store"])
+@observer
 class Comp extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { globalHash: [], globalHashActive: ["all"] };
+    this.getGlobalHashtags = this.getGlobalHashtags.bind(this);
+    this.hashtagClicked = this.hashtagClicked.bind(this);
+  }
+
+  getGlobalHashtags(data) {
+    for (let i = 0; i < data.fetchTradeHistory.length; i++) {
+      let thisTradeHash = data.fetchTradeHistory[i].hashtags.split(",");
+      if (thisTradeHash != "undefined") {
+        for (let j = 0; j < thisTradeHash.length; j++) {
+          if (thisTradeHash[j] != "undefined") {
+            this.state.globalHash.push(thisTradeHash[j]);
+          }
+        }
+      }
+    }
+  }
+
+  hashtagClicked(value) {
+    console.log(this.state.globalHashActive);
+    console.log(this.state.globalHash);
+    if (this.state.globalHashActive[0] == undefined) {
+      this.state.globalHashActive.push(value);
+      const index = this.state.globalHash.indexOf(value);
+      if (index > -1) {
+        this.state.globalHash.splice(index, 1);
+        // this.state.globalHash.push(value)
+      }
+      return;
+    }
+    for (let i = 0; i < this.state.globalHashActive.length; i++) {
+      if (this.state.globalHashActive[i] == "all") {
+        this.state.globalHashActive = [];
+      }
+      if (value == this.state.globalHashActive[i]) {
+        return;
+      }
+      if (i == this.state.globalHashActive.length - 1) {
+        console.log("ENDING");
+        const index = this.state.globalHash.indexOf(value);
+        if (index > -1) {
+          this.state.globalHash.splice(index, 1);
+        }
+        console.log(index, "INDEX");
+        this.state.globalHashActive.push(value);
+        return;
+      }
+    }
+  }
+
   render() {
     return (
       <Query query={this.props.query} variables={this.props.vars}>
@@ -90,9 +145,28 @@ class Comp extends React.Component {
             return <ApiKeyForm />;
           } else {
             // console.log("is true");
+            this.getGlobalHashtags(data);
             return (
               <Wrapper>
                 <ChartWrapper>
+                  <TopHashtagDiv>
+                    {this.state.globalHashActive.map(hash => {
+                      return (
+                        <TopHashtagIndividualActive>
+                          #{hash}
+                        </TopHashtagIndividualActive>
+                      );
+                    })}
+                    {this.state.globalHash.map(hash => {
+                      return (
+                        <TopHashtagIndividual
+                          onClick={() => this.hashtagClicked(hash)}
+                        >
+                          #{hash}
+                        </TopHashtagIndividual>
+                      );
+                    })}
+                  </TopHashtagDiv>
                   <ContainDivHeader>
                     <NextToDivHeader>Start</NextToDivHeader>
                     <NextToDivHeader>End</NextToDivHeader>
@@ -207,6 +281,32 @@ const fetchTradeHistoryQuery = gql`
       homeNotional
       foreignNotional
     }
+  }
+`;
+
+const TopHashtagDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 8px;
+`;
+const TopHashtagIndividual = styled.div`
+  background: #f8f8ff;
+  color: #000;
+  padding: 8px;
+  margin: 0 10px;
+  border-radius: 2px;
+  :hover {
+    cursor: pointer;
+  }
+`;
+const TopHashtagIndividualActive = styled.div`
+  background: #212528;
+  color: #fff;
+  padding: 8px;
+  margin: 0 10px;
+  border-radius: 2px;
+  :hover {
+    cursor: pointer;
   }
 `;
 
