@@ -33,7 +33,15 @@ export default class Example extends PureComponent {
   }
 
   componentDidMount() {
+    console.log("IN RE CHART", this.props.data);
     console.log(this.props.data);
+    // let fullRay = [];
+    // for (let i = 0; i < this.props.data.fetchTradeHistory.length; i++) {
+    //   fullRay.unshift(this.props.data.fetchTradeHistory[i]);
+    //   if (i == this.props.data.fetchTradeHistory.length - 1) {
+    //     this.setState({ data: fullRay });
+    //   }
+    // }
     this.props.data.fetchTradeHistory.map(dat => {
       this.state.data.unshift(dat);
     });
@@ -65,6 +73,7 @@ export default class Example extends PureComponent {
   }
 
   componentWillUnmount() {
+    console.log("IN RE CHART");
     window.removeEventListener("resize", this.updateWindowDimensions);
   }
 
@@ -195,7 +204,7 @@ class MakeCol extends Component {
 
           let thePnl = (1 / avgBuyPrice - 1 / avgSellPrice) * totSellContracts;
           if (thePnl != null) {
-            console.log("TOT COMMISS", totCommission);
+            // console.log("TOT COMMISS", totCommission);
             this.state.pnl = thePnl + totCommission;
             this.props.store.addPnl(this.state.pnl);
           } else {
@@ -232,7 +241,7 @@ class MakeCol extends Component {
           totSellContractsMult +=
             realQty * parseFloat(this.state.data[i].price);
         }
-        console.log("REAL QTY", realQty);
+        // console.log("REAL QTY", realQty);
         if (
           this.state.data[i].orderType == "Limit" &&
           this.state.data[i].execType !== "Funding"
@@ -265,7 +274,7 @@ class MakeCol extends Component {
 
           this.state.cumQty = totSellContracts;
           if (pnl != null) {
-            console.log("TOT COMMISS", totCommission);
+            // console.log("TOT COMMISS", totCommission);
             this.state.pnl = pnl + totCommission;
             this.props.store.addPnl(pnl);
           } else {
