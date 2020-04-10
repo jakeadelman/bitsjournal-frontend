@@ -13,15 +13,34 @@ export const getNewDat = async (oldDat, hashtags) => {
         for (let m = 0; m < hashtags.length; m++) {
           if (hashtags[m] == tradeHashtags[j]) {
             // console.log("EQUALS");
-            newTrades.push(oldTrade);
+            if (newTrades[0] == undefined) {
+              newTrades.push(oldTrade);
+            } else {
+              // let isIn = false;
+              // for (let k = 0; k < newTrades.length; k++) {
+              //   if (newTrades[k].id == oldTrade.id) {
+              //     let isIn = true;
+              //   }
+              //   if (k == newTrades.length - 1) {
+              //     if (isIn == false) {
+              //       newTrades.push(oldTrade);
+              //     } else {
+              //       console.log(newTrades);
+              //     }
+              //   }
+              // }
+            }
           }
         }
       }
     }
     if (i == oldTrades.length - 1) {
-      oldDat.fetchTradeHistory = newTrades;
-      //   console.log(oldDat, "NEW Dat");
-      return oldDat;
+      console.log();
+      return newTrades;
+      // let newDat = oldDat;
+      // newDat.fetchTradeHistory = newTrades;
+      // //   console.log(oldDat, "NEW Dat");
+      // return newDat;
     }
   }
 };

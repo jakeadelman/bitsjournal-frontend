@@ -4,7 +4,7 @@ import {
   NextToDiv,
   NextToDivHeader,
   RowContainer,
-  ContainDivHeader
+  ContainDivHeader,
 } from "../Charts/ReChart";
 import ReChart from "../Charts/ReChart";
 import Sidebar from "../Categories/Menu";
@@ -16,19 +16,19 @@ export default class extends React.Component {
     this.state = {
       globalHash: [],
       globalHashActive: ["all"],
-      data: null
+      data: null,
+      filteredData: null,
     };
     this.getGlobalHashtags = this.getGlobalHashtags.bind(this);
     this.hashtagClicked = this.hashtagClicked.bind(this);
+    this.hashtagClickedBack = this.hashtagClickedBack.bind(this);
   }
 
   componentWillMount() {
     this.setState({ data: this.props.data });
     this.getGlobalHashtags(this.props.data);
   }
-  componentDidMount() {
-    console.log(this.state.data, "THIS DAT");
-  }
+  componentDidMount() {}
 
   async getGlobalHashtags(data) {
     for (let i = 0; i < data.fetchTradeHistory.length; i++) {
@@ -39,8 +39,55 @@ export default class extends React.Component {
             let newGlobalHash = this.state.globalHash;
             newGlobalHash.push(thisTradeHash[j]);
             this.setState({ globalHash: newGlobalHash });
-            // let newDat = await getNewDat(data, this.state.globalHashActive);
-            // this.setState({ globalHash: newGlobalHash, data: newDat });
+          }
+        }
+      }
+    }
+  }
+
+  async hashtagClickedBack(value) {
+    if (value == "all") {
+      console.log("DO NOTHING");
+    } else {
+      let newHashActive = [];
+      let newHash = this.state.globalHash;
+      for (let i = 0; i < this.state.globalHashActive.length; i++) {
+        if (value !== this.state.globalHashActive[i]) {
+          newHashActive.push(this.state.globalHashActive[i]);
+        } else {
+          newHash.push(this.state.globalHashActive[i]);
+        }
+        if (i == this.state.globalHashActive.length - 1) {
+          if (newHashActive[0] == undefined) {
+            let newHash2 = [];
+            for (let j = 0; j < newHash.length; j++) {
+              if (newHash[j] != "all") {
+                newHash2.push(newHash[j]);
+              }
+              if (j == newHash.length - 1) {
+                this.setState({
+                  globalHash: newHash2,
+                  globalHashActive: ["all"],
+                  filteredData: null,
+                });
+              }
+            }
+          } else {
+            let newHash2 = [];
+            for (let j = 0; j < newHash.length; j++) {
+              if (newHash[j] != "all") {
+                newHash2.push(newHash[j]);
+              }
+              if (j == newHash.length - 1) {
+                getNewDat(this.state.data, newHashActive).then((res) => {
+                  this.setState({
+                    globalHash: newHash2,
+                    globalHashActive: newHashActive,
+                    filteredData: res,
+                  });
+                });
+              }
+            }
           }
         }
       }
@@ -48,10 +95,29 @@ export default class extends React.Component {
   }
 
   async hashtagClicked(value) {
-    console.log("CLICKED");
-    console.log(this.state.data, "THIS DAT");
+    if (value == "all") {
+      let newGlobalHash = this.state.globalHash;
+      let newGlobalHash2 = [];
+      for (let i = 0; i < this.state.globalHashActive.length; i++) {
+        newGlobalHash.push(this.state.globalHashActive[i]);
+        if (i == this.state.globalHashActive.length - 1) {
+          for (let j = 0; j < newGlobalHash.length; j++) {
+            if (newGlobalHash[j] != "all") {
+              newGlobalHash2.push(newGlobalHash[j]);
+            }
+            if (j == newGlobalHash.length - 1) {
+              this.setState({
+                globalHash: newGlobalHash2,
+                globalHashActive: ["all"],
+                filteredData: null,
+              });
+              return;
+            }
+          }
+        }
+      }
+    }
     if (this.state.globalHashActive[0] == undefined) {
-      console.log("WAS UNDEFINED");
       let newArray = [];
       newArray.push(value);
       this.setState({ globalHashActive: newArray });
@@ -61,8 +127,6 @@ export default class extends React.Component {
         newGlobalHash.splice(index, 1);
         this.setState({ globalHash: newGlobalHash });
       }
-      console.log(this.state.globalHashActive);
-      console.log(this.state.globalHash);
       return;
     }
     for (let i = 0; i < this.state.globalHashActive.length; i++) {
@@ -72,17 +136,23 @@ export default class extends React.Component {
         if (index > -1) {
           let newGlobalHash = this.state.globalHash;
           newGlobalHash.splice(index, 1);
-          newGlobalHash.push("all");
+          let torf = false;
+          for (let j = 0; j < newGlobalHash.length; j++) {
+            if ("all" == newGlobalHash[j]) {
+              torf = true;
+            }
+            if (j == newGlobalHash.length - 1 && torf == false) {
+              newGlobalHash.push("all");
+            }
+          }
           let newGlobalHashActive = this.state.globalHashActive;
           newGlobalHashActive.push(value);
-          getNewDat(this.state.data, newGlobalHashActive).then(newDat => {
-            console.log("GOT NEW DAT", newDat);
+          getNewDat(this.state.data, newGlobalHashActive).then((newDat) => {
             this.setState({
               globalHashActive: newGlobalHashActive,
               globalHash: newGlobalHash,
-              data: newDat
+              filteredData: newDat,
             });
-            console.log(this.state);
             return;
           });
         }
@@ -91,24 +161,28 @@ export default class extends React.Component {
         return;
       }
       if (i == this.state.globalHashActive.length - 1) {
-        console.log("ENDING");
         const index = this.state.globalHash.indexOf(value);
         if (index > -1) {
           let newGlobalHash = this.state.globalHash;
           newGlobalHash.splice(index, 1);
-          newGlobalHash.push("all");
+          // newGlobalHash.push("all");
+          let torf = false;
+          for (let j = 0; j < newGlobalHash.length; j++) {
+            if ("all" == newGlobalHash[j]) {
+              torf = true;
+            }
+            if (j == newGlobalHash.length - 1 && torf == false) {
+              newGlobalHash.push("all");
+            }
+          }
           let newGlobalHashActive = this.state.globalHashActive;
           newGlobalHashActive.push(value);
-          getNewDat(this.state.data, newGlobalHashActive).then(newDat => {
-            console.log("GOT NEW DAT", newDat);
+          getNewDat(this.state.data, newGlobalHashActive).then((newDat) => {
             this.setState({
               globalHashActive: newGlobalHashActive,
               globalHash: newGlobalHash,
-              data: newDat
+              filteredData: newDat,
             });
-            console.log(this.state.globalHashActive);
-            console.log(this.state.globalHash);
-            console.log(this.state);
             return;
           });
         }
@@ -116,24 +190,21 @@ export default class extends React.Component {
     }
   }
   render() {
-    // this.getGlobalHashtags(this.props.data);
-    console.log("RERENDERED");
     if (this.state.data != null) {
-      console.log("RETURNING");
-      console.log(this.state.data);
       return (
         <Wrapper>
           <ChartWrapper>
             <TopHashtagDiv>
-              {this.state.globalHashActive.map(hash => {
-                console.log("ADDING NEW HAS");
+              {this.state.globalHashActive.map((hash) => {
                 return (
-                  <TopHashtagIndividualActive>
+                  <TopHashtagIndividualActive
+                    onClick={() => this.hashtagClickedBack(hash)}
+                  >
                     #{hash}
                   </TopHashtagIndividualActive>
                 );
               })}
-              {this.state.globalHash.map(hash => {
+              {this.state.globalHash.map((hash) => {
                 return (
                   <TopHashtagIndividual
                     onClick={() => this.hashtagClicked(hash)}
@@ -152,7 +223,11 @@ export default class extends React.Component {
               <NextToDivHeader>Qty</NextToDivHeader>
               <NextToDivHeader>Realized Pnl</NextToDivHeader>
             </ContainDivHeader>
-            <ReChart data={this.state.data} />
+            <ReChart
+              data={this.state.data}
+              filteredData={this.state.filteredData}
+              initData={this.props.data}
+            />
           </ChartWrapper>
           <Sidebar />
         </Wrapper>

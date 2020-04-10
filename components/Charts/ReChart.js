@@ -8,7 +8,7 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend
+  Legend,
 } from "recharts";
 import styled, { ThemeProvider } from "styled-components";
 import { wideFont } from "../shared/helpers";
@@ -19,6 +19,7 @@ import MainChart from "../Charts2/index";
 import Notes from "./Notes";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons";
+import equal from "fast-deep-equal";
 
 export default class Example extends PureComponent {
   constructor(props) {
@@ -27,53 +28,97 @@ export default class Example extends PureComponent {
       width: 0,
       height: 0,
       data: [],
-      fullTrades: []
+      fullTrades: [],
     };
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+    this.createFullTrades = this.createFullTrades.bind(this);
   }
 
-  componentDidMount() {
-    console.log("IN RE CHART", this.props.data);
-    console.log(this.props.data);
-    // let fullRay = [];
-    // for (let i = 0; i < this.props.data.fetchTradeHistory.length; i++) {
-    //   fullRay.unshift(this.props.data.fetchTradeHistory[i]);
-    //   if (i == this.props.data.fetchTradeHistory.length - 1) {
-    //     this.setState({ data: fullRay });
-    //   }
-    // }
-    this.props.data.fetchTradeHistory.map(dat => {
-      this.state.data.unshift(dat);
-    });
-    // this.setState({ candleData: this.props.data.fetchCandleHistory });
-    // console.log(this.state);
-
-    this.updateWindowDimensions();
-    window.addEventListener("resize", this.updateWindowDimensions);
-
-    this.state.data.map((dat, i) => {
-      if (dat.trdStart == true) {
-        let sliced = this.state.data.slice(i, this.state.data.length);
-        // console.log(sliced, "THIS SLICED");
-        // console.log(this.state.fullTrades);
-        for (let i = 0; i < sliced.length; i++) {
-          if (sliced[i].trdEnd == true && i > 0) {
-            let newsliced = sliced.slice(0, i + 1);
-            if (newsliced[0].hashtags != null) {
-              // this.state.hashtags.push(newsliced.)
+  createFullTrades(data) {
+    let fullRay = [];
+    let fullTrades = [];
+    for (let i = 0; i < data.fetchTradeHistory.length; i++) {
+      fullRay.unshift(data.fetchTradeHistory[i]);
+      if (i == data.fetchTradeHistory.length - 1) {
+        for (let j = 0; j < fullRay.length; j++) {
+          let dat = fullRay[j];
+          if (dat.trdStart == true) {
+            let sliced = fullRay.slice(j, fullRay.length);
+            for (let k = 0; k < sliced.length; k++) {
+              if (sliced[k].trdEnd == true && k > 0) {
+                let newsliced = sliced.slice(0, k + 1);
+                fullTrades.unshift(newsliced);
+                break;
+              }
             }
-            this.state.fullTrades.unshift(newsliced);
-            // console.log(this.state.fullTrades);
-
-            break;
+          }
+          if (j == fullRay.length - 1) {
+            let returnVal = {};
+            returnVal["initData"] = this.props.initData;
+            returnVal["data"] = fullRay;
+            returnVal["fullTrades"] = fullTrades;
+            return returnVal;
           }
         }
       }
-    });
+    }
+  }
+
+  filter() {}
+
+  componentDidUpdate(prevProps) {
+    if (!equal(this.props.filteredData, prevProps.filteredData)) {
+      console.log("WAS NOT EQUAL");
+      // this.updateTrades(this.props.data);
+      let newFullTrades = [];
+      let firstFullTrades = this.createFullTrades(this.props.data);
+      firstFullTrades = firstFullTrades.fullTrades;
+      console.log(this.props.data);
+      if (this.props.filteredData == null) {
+        console.log("was null", firstFullTrades);
+        this.setState({ fullTrades: firstFullTrades });
+      } else {
+        for (let i = 0; i < firstFullTrades.length; i++) {
+          for (let j = 0; j < this.props.filteredData.length; j++) {
+            if (firstFullTrades[i][0].id == this.props.filteredData[j].id) {
+              for (let k = 0; k < this.state.fullTrades.length; k++) {
+                if (
+                  this.props.filteredData[j].id ==
+                  this.state.fullTrades[k][0].id
+                ) {
+                  newFullTrades.unshift(firstFullTrades[i]);
+                }
+              }
+            }
+          }
+          if (i == this.state.fullTrades.length - 1) {
+            this.setState({ fullTrades: newFullTrades });
+          }
+        }
+      }
+    }
+  }
+
+  componentDidMount() {
+    console.log("MOUNTING");
+    let returned = this.createFullTrades(this.props.data);
+    if(returned!=undefined){
+      this.setState({
+        data: returned.fullRay,
+        fullTrades: returned.fullTrades,
+        initData: returned.initData,
+      });
+    }else{
+      this.setState({
+        data:this.props.initData,
+        initData:this.props.initData
+      })
+    }
+    this.updateWindowDimensions();
+    window.addEventListener("resize", this.updateWindowDimensions);
   }
 
   componentWillUnmount() {
-    console.log("IN RE CHART");
     window.removeEventListener("resize", this.updateWindowDimensions);
   }
 
@@ -82,19 +127,19 @@ export default class Example extends PureComponent {
       this.setState({
         width: window.innerWidth,
         height: window.innerHeight,
-        chartWidth: window.innerWidth * 0.9
+        chartWidth: window.innerWidth * 0.9,
       });
     } else if (window.innerWidth < 1024) {
       this.setState({
         width: window.innerWidth,
         height: window.innerHeight,
-        chartWidth: window.innerWidth * 0.9 - 179
+        chartWidth: window.innerWidth * 0.9 - 179,
       });
     } else if (window.innerWidth >= 1024) {
       this.setState({
         width: window.innerWidth,
         height: window.innerHeight,
-        chartWidth: window.innerWidth * 0.8 - 179
+        chartWidth: window.innerWidth * 0.8 - 179,
       });
     }
   }
@@ -133,7 +178,7 @@ class MakeCol extends Component {
       avgExitPrice: 0,
       clicked: false,
       cumQty: 0,
-      readMoreClicked: false
+      readMoreClicked: false,
     };
     this.readMoreClicked = this.readMoreClicked.bind(this);
     this.clicked = this.clicked.bind(this);
@@ -349,7 +394,7 @@ class MakeCol extends Component {
                 <NextToDivBlack>Commission</NextToDivBlack>
               </ContainDivBlack>
 
-              {this.state.data.map(dat => {
+              {this.state.data.map((dat) => {
                 return (
                   <ContainDivBlack onClick={this.clicked.bind(this)}>
                     <NextToDivBlack>{dat.timestamp}</NextToDivBlack>
@@ -398,7 +443,7 @@ class MakeCol extends Component {
                 <NextToDivBlack>Commission</NextToDivBlack>
               </ContainDivBlack>
 
-              {this.state.data.map(dat => {
+              {this.state.data.map((dat) => {
                 return (
                   <ContainDivBlack onClick={this.clicked.bind(this)}>
                     <NextToDivBlack>{dat.timestamp}</NextToDivBlack>

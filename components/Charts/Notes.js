@@ -7,10 +7,10 @@ import {
   Dropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem
+  DropdownItem,
 } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 export default class extends Component {
   constructor(props) {
@@ -24,29 +24,29 @@ export default class extends Component {
   componentDidMount() {
     if (this.props.firstTrade.notes != "undefined") {
       this.setState({
-        value: this.props.firstTrade.notes
+        value: this.props.firstTrade.notes,
       });
     }
     let splitTags = this.props.firstTrade.hashtags.split(",");
-    splitTags.map(tag => {
+    splitTags.map((tag) => {
       this.state.initHashtags.push(tag);
     });
   }
 
   handleChange(client) {
-    return event => {
+    return (event) => {
       // event.preventDefault();
       this.setState({ value: event.target.value }, this.handleSubmit(client));
     };
   }
 
   handleSubmit(client) {
-    return event => {
+    return (event) => {
       if (event != undefined && event.preventDefault != undefined) {
         event.preventDefault();
       }
       console.log("HASHTAGS", this.state.hashtags);
-      getNotes(this.state.value).then(async res => {
+      getNotes(this.state.value).then(async (res) => {
         let notes = res[0];
         // let hashtags = res[1];
         let time = this.props.firstTrade.timestamp;
@@ -56,7 +56,7 @@ export default class extends Component {
               addNotes(time: $time, notes: $notes)
             }
           `,
-          variables: { time, notes }
+          variables: { time, notes },
         });
 
         let r = await reso;
@@ -67,7 +67,7 @@ export default class extends Component {
   render() {
     return (
       <ApolloConsumer>
-        {client => (
+        {(client) => (
           <div>
             {/* <FullRow> */}
             <FullRow onSubmit={this.handleSubmit(client)}>
@@ -77,9 +77,22 @@ export default class extends Component {
                   client={client}
                 />
               </HashtagDiv>
-              {this.state.initHashtags.map(tag => {
+              {this.state.initHashtags.map((tag) => {
                 if (tag != "undefined") {
-                  return <SingleHashtagDiv>#{tag}</SingleHashtagDiv>;
+                  return (
+                    <SingleHashtagDiv>
+                      <SingleHashtagText>#{tag}</SingleHashtagText>
+                      <SingleHashtagDelete>
+                        <FontAwesomeIcon
+                          icon={faTimes}
+                          size="xs"
+                          style={{
+                            transition: "none",
+                          }}
+                        />
+                      </SingleHashtagDelete>
+                    </SingleHashtagDiv>
+                  );
                 }
               })}
               <NotesInput
@@ -119,7 +132,7 @@ class AddHashtag extends Component {
     event.preventDefault();
     console.log(this.state.value);
     getHashtags(this.state.value)
-      .then(async res => {
+      .then(async (res) => {
         console.log("CLICKED");
         let client = this.state.client;
         // if(typeof)
@@ -132,13 +145,14 @@ class AddHashtag extends Component {
               addHashtag(time: $time, hashtag: $hashtag)
             }
           `,
-          variables: { time, hashtag }
+          variables: { time, hashtag },
         });
 
         return await reso;
       })
       .then(() => {
         this.setState({ value: "" });
+        location.reload();
       });
     // };
   }
@@ -200,12 +214,26 @@ const PopupTop = styled.div`
 const SingleHashtagDiv = styled.div`
   background: #f8f8ff;
   margin: 20px 8px;
-  text-align: center;
-  vertical-align: middle;
+
   color: black;
   padding: 10px;
   padding-top: 8px;
+  white-space: nowrap;
+  display: flex;
+  flex-direction: row;
 `;
+
+const SingleHashtagText = styled.div`
+  text-align: center;
+  vertical-align: middle;
+`;
+const SingleHashtagDelete = styled.div`
+  margin-left: 6px;
+  :hover {
+    cursor: pointer;
+  }
+`;
+
 const HashtagDiv = styled.div`
   margin: auto;
   text-align: center;

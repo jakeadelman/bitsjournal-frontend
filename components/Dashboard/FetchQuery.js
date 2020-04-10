@@ -28,7 +28,9 @@ class FetchQuery extends React.Component {
     this.state = { startDate: "", endDate: "", date: "" };
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    console.log("loaded fetch query component");
+  }
 
   clicked = () => {
     store.isAuth = !store.isAuth;
@@ -69,7 +71,7 @@ class Comp extends React.Component {
           if (loading) return <div>Loading</div>;
           if (data.checkApiKey == false) {
             return <ApiKeyForm />;
-          } else {
+          } else if (data.checkApiKey == true) {
             return <TotalDat data={data} />;
           }
         }}
