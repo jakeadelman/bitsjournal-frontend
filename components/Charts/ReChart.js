@@ -430,6 +430,7 @@ class MakeCol extends Component {
               <ContainDivBlack>
                 <NextToDivBlack>Timestamp</NextToDivBlack>
                 <NextToDivBlack>Side</NextToDivBlack>
+                <NextToDivBlack>Order Type</NextToDivBlack>
                 <NextToDivBlack>Price</NextToDivBlack>
                 <NextToDivBlack>Order Qty</NextToDivBlack>
                 <NextToDivBlack>Leaves Qty</NextToDivBlack>
@@ -447,12 +448,11 @@ class MakeCol extends Component {
                     ) : (
                       <NextToDivBlack>{dat.execType}</NextToDivBlack>
                     )}
+                    <NextToDivBlack>{dat.orderType}</NextToDivBlack>
                     <NextToDivBlack>${dat.price.toString()}</NextToDivBlack>
-                    <NextToDivBlack>{dat.orderQty.toString()}</NextToDivBlack>
+                    <NextToDivBlack>{dat.orderQty}</NextToDivBlack>
                     <NextToDivBlack>
-                      {dat.leavesQty.toString() == 0
-                        ? ""
-                        : dat.leavesQty.toString()}
+                      {dat.leavesQty == "0" ? "" : dat.leavesQty}
                     </NextToDivBlack>
                     <NextToDivBlack>
                       {dat.execType == "Funding"
@@ -497,6 +497,7 @@ class MakeCol extends Component {
               <ContainDivBlack>
                 <NextToDivBlack>Timestamp</NextToDivBlack>
                 <NextToDivBlack>Side</NextToDivBlack>
+                <NextToDivBlack>Order Type</NextToDivBlack>
                 <NextToDivBlack>Price</NextToDivBlack>
                 <NextToDivBlack>Order Qty</NextToDivBlack>
                 <NextToDivBlack>Leaves Qty</NextToDivBlack>
@@ -514,12 +515,11 @@ class MakeCol extends Component {
                     ) : (
                       <NextToDivBlack>{dat.execType}</NextToDivBlack>
                     )}
+                    <NextToDivBlack>{dat.orderType}</NextToDivBlack>
                     <NextToDivBlack>${dat.price.toString()}</NextToDivBlack>
-                    <NextToDivBlack>{dat.orderQty.toString()}</NextToDivBlack>
+                    <NextToDivBlack>{dat.orderQty}</NextToDivBlack>
                     <NextToDivBlack>
-                      {dat.leavesQty.toString() == 0
-                        ? ""
-                        : dat.leavesQty.toString()}
+                      {dat.leavesQty == "0" ? "" : dat.leavesQty}
                     </NextToDivBlack>
                     <NextToDivBlack>
                       {dat.execType == "Funding"
