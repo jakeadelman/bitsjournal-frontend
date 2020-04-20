@@ -11,18 +11,22 @@ export function formatDateMonthOnly(date) {
     "Sept",
     "Oct",
     "Nov",
-    "Dec"
+    "Dec",
   ];
-
-  let theDate = new Date(date);
+  let utcDate = date;
+  let theDate = new Date(utcDate);
 
   var day = theDate.getDate();
-  var hours = theDate.getHours();
-  var mins = theDate.getMinutes();
+  var hours = addZeroBefore(theDate.getHours());
+  var mins = addZeroBefore(theDate.getMinutes());
   var monthIndex = theDate.getMonth();
   var year = theDate.getFullYear();
 
   return day + " " + monthNames[monthIndex] + ", " + hours + ":" + mins;
+}
+
+function addZeroBefore(n) {
+  return (n < 10 ? "0" : "") + n;
 }
 
 export function getStateDate(input) {
@@ -73,4 +77,21 @@ function makeDateDays(num) {
   dt = dt.toISOString();
   console.log("getting days back");
   return dt;
+}
+
+export function calcCommission(price, side, qty, leavesQty, orderType) {
+  let realQty = qty - leavesQty;
+  let commission;
+  if (orderType == "Market") {
+    commission = (realQty * 0.0075) / price;
+    commission = commission * -1;
+  }
+  if (orderType.includes("Stop")) {
+    commission = (realQty * 0.0075) / price;
+    commission = commission * -1;
+  }
+  if (orderType == "Limit") {
+    commission = (realQty * 0.0025) / price;
+  }
+  return commission.toFixed(5);
 }

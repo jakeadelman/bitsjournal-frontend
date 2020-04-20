@@ -9,12 +9,13 @@ import {
   NextToDiv,
   NextToDivHeader,
   RowContainer,
-  ContainDivHeader
+  ContainDivHeader,
 } from "../Charts/ReChart";
 import { getStateDate } from "../Helpers/Functions";
 import { equal } from "fast-deep-equal";
 import ApiKeyForm from "./AddApiForm";
 import TotalDat from "./Hashtags";
+import { when, reaction } from "mobx";
 // import { pushGlobalHash } from "../../stores/store";
 // import { useState, useEffect } from "react";
 
@@ -40,7 +41,8 @@ class FetchQuery extends React.Component {
   render() {
     let fetchTradeHistoryVariables = {
       start: this.props.store.startDate,
-      end: this.props.store.endDate
+      end: this.props.store.endDate,
+      symbol: this.props.store.symbol,
     };
     return (
       <div>
@@ -58,9 +60,19 @@ class FetchQuery extends React.Component {
 class Comp extends React.Component {
   constructor(props) {
     super(props);
-    // this.state = { globalHash: [], globalHashActive: ["all"] };
-    // this.getGlobalHashtags = this.getGlobalHashtags.bind(this);
-    // this.hashtagClicked = this.hashtagClicked.bind(this);
+  }
+
+  componentDidMount() {
+    this.tempTagsReaction = reaction(
+      () => this.props.store.hasTempTags,
+      (notifications, reaction) => {
+        this.forceUpdate(console.log("FORCE UPDATE WAS CALLED"));
+      }
+    );
+  }
+
+  componentWillUnmount() {
+    this.tempTagsReaction();
   }
 
   render() {
@@ -72,6 +84,9 @@ class Comp extends React.Component {
           if (data.checkApiKey == false) {
             return <ApiKeyForm />;
           } else if (data.checkApiKey == true) {
+            this.props.store.resetHasTempTags();
+            this.props.store.clearTempNotes();
+            this.props.store.clearTempTags();
             return <TotalDat data={data} />;
           }
         }}
@@ -83,10 +98,10 @@ class Comp extends React.Component {
 export default FetchQuery;
 
 const fetchTradeHistoryQuery = gql`
-  query fetchTradeHistory($start: String!, $end: String!) {
+  query fetchTradeHistory($start: String!, $end: String!, $symbol: String!) {
     checkApiKey
 
-    fetchTradeHistory(start: $start, end: $end) {
+    fetchTradeHistory(start: $start, end: $end, symbol: $symbol) {
       id
       timestamp
       side

@@ -10,8 +10,13 @@ import {
   DropdownItem,
 } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faTimes, faEquals } from "@fortawesome/free-solid-svg-icons";
+import { inject, observer } from "mobx-react";
+import { when } from "mobx";
+import equal from "fast-deep-equal";
 
+@inject(["store"])
+@observer
 export default class extends Component {
   constructor(props) {
     super(props);
@@ -22,10 +27,27 @@ export default class extends Component {
   }
 
   componentDidMount() {
-    if (this.props.firstTrade.notes != "undefined") {
-      this.setState({
-        value: this.props.firstTrade.notes,
-      });
+    if (this.props.store.tempNotes[0] != undefined) {
+      let isTemp = false;
+      for (let i = 0; i < this.props.store.tempNotes.length; i++) {
+        if (
+          this.props.store.tempNotes[i].time == this.props.firstTrade.timestamp
+        ) {
+          this.setState({ value: this.props.store.tempNotes[i].note });
+          isTemp = true;
+        }
+        if (i == this.props.store.tempNotes.length - 1 && isTemp == false) {
+          this.setState({
+            value: this.props.firstTrade.notes,
+          });
+        }
+      }
+    } else {
+      if (this.props.firstTrade.notes != "undefined") {
+        this.setState({
+          value: this.props.firstTrade.notes,
+        });
+      }
     }
     let splitTags = this.props.firstTrade.hashtags.split(",");
     splitTags.map((tag) => {
@@ -37,6 +59,32 @@ export default class extends Component {
     return (event) => {
       // event.preventDefault();
       this.setState({ value: event.target.value }, this.handleSubmit(client));
+      this.props.store.addTempNote(
+        this.props.firstTrade.timestamp,
+        event.target.value
+      );
+    };
+  }
+
+  removeHashtag(client, hashtag) {
+    return async (event) => {
+      if (event != undefined && event.preventDefault != undefined) {
+        event.preventDefault();
+      }
+      let time = this.props.firstTrade.timestamp;
+      client
+        .mutate({
+          mutation: gql`
+            mutation removeHashtag($time: String!, $hashtag: String!) {
+              removeHashtag(time: $time, hashtag: $hashtag)
+            }
+          `,
+          variables: { time, hashtag },
+          refetchQueries: [`fetchTradeHistory`],
+        })
+        .then(() => {
+          this.props.store.changeHasTempTags();
+        });
     };
   }
 
@@ -59,8 +107,7 @@ export default class extends Component {
           variables: { time, notes },
         });
 
-        let r = await reso;
-        console.log(r);
+        return await reso;
       });
     };
   }
@@ -82,7 +129,9 @@ export default class extends Component {
                   return (
                     <SingleHashtagDiv>
                       <SingleHashtagText>#{tag}</SingleHashtagText>
-                      <SingleHashtagDelete>
+                      <SingleHashtagDelete
+                        onClick={this.removeHashtag(client, tag)}
+                      >
                         <FontAwesomeIcon
                           icon={faTimes}
                           size="xs"
@@ -108,6 +157,8 @@ export default class extends Component {
   }
 }
 
+@inject(["store"])
+@observer
 class AddHashtag extends Component {
   constructor(props) {
     super(props);
@@ -146,13 +197,14 @@ class AddHashtag extends Component {
             }
           `,
           variables: { time, hashtag },
+          refetchQueries: [`fetchTradeHistory`],
         });
 
         return await reso;
       })
-      .then(() => {
+      .then((reso) => {
         this.setState({ value: "" });
-        location.reload();
+        this.props.store.changeHasTempTags();
       });
     // };
   }

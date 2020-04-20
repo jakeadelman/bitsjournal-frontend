@@ -10,6 +10,11 @@ import ReChart from "../Charts/ReChart";
 import Sidebar from "../Categories/Menu";
 import { getNewDat } from "./helpers";
 
+import { inject, observer } from "mobx-react";
+import { when } from "mobx";
+
+@inject("store")
+@observer
 export default class extends React.Component {
   constructor(props) {
     super(props);
@@ -190,6 +195,7 @@ export default class extends React.Component {
     }
   }
   render() {
+    console.log("THIS IS GLOBAL HAS", this.state.globalHash);
     if (this.state.data != null) {
       return (
         <Wrapper>

@@ -8,7 +8,8 @@ export const getNewDat = async (oldDat, hashtags) => {
     // console.log("trade " + i.toString() + " hashtags ", tradeHashtags);
     let oldTrade = oldTrades[i];
     // console.log(tradeHashtags, "THIS TRADE HASHTAGS");
-    if (tradeHashtags != "undefined") {
+    console.log(tradeHashtags);
+    if (tradeHashtags[0] != "undefined") {
       for (let j = 0; j < tradeHashtags.length; j++) {
         for (let m = 0; m < hashtags.length; m++) {
           if (hashtags[m] == tradeHashtags[j]) {
@@ -16,6 +17,7 @@ export const getNewDat = async (oldDat, hashtags) => {
             if (newTrades[0] == undefined) {
               newTrades.push(oldTrade);
             } else {
+              newTrades.push(oldTrade);
               // let isIn = false;
               // for (let k = 0; k < newTrades.length; k++) {
               //   if (newTrades[k].id == oldTrade.id) {
@@ -35,7 +37,7 @@ export const getNewDat = async (oldDat, hashtags) => {
       }
     }
     if (i == oldTrades.length - 1) {
-      console.log();
+      console.log(newTrades, "FILTERED TRADES");
       return newTrades;
       // let newDat = oldDat;
       // newDat.fetchTradeHistory = newTrades;

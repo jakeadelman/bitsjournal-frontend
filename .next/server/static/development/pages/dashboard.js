@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -261,6 +261,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Header__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Header */ "./components/Categories/Header.js");
 /* harmony import */ var mobx_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! mobx-react */ "mobx-react");
 /* harmony import */ var mobx_react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(mobx_react__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! mobx-react-lite */ "mobx-react-lite");
+/* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(mobx_react_lite__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _Charts_ReChart__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../Charts/ReChart */ "./components/Charts/ReChart.js");
+/* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "@fortawesome/react-fontawesome");
+/* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "@fortawesome/free-solid-svg-icons");
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
 
 
 
@@ -268,21 +288,62 @@ __webpack_require__.r(__webpack_exports__);
 
  // border: 1px solid ${props => props.theme.border};
 
-var Sidebar = Object(mobx_react__WEBPACK_IMPORTED_MODULE_5__["inject"])("store")(Object(mobx_react__WEBPACK_IMPORTED_MODULE_5__["observer"])(function (_ref) {
+var Sidebar = Object(mobx_react__WEBPACK_IMPORTED_MODULE_5__["inject"])("store")(Object(mobx_react_lite__WEBPACK_IMPORTED_MODULE_6__["observer"])(function (_ref) {
   var store = _ref.store;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      dropdown = _useState2[0],
+      setDropdown = _useState2[1];
+
+  var clicked = function clicked(value) {
+    store.setSymbol(value);
+    store.changeHasTempTags();
+    setDropdown(false);
+  };
+
+  var showDropdown = function showDropdown() {
+    if (dropdown == false) {
+      setDropdown(true);
+    } else {
+      setDropdown(false);
+    }
+  };
+
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(styled_components__WEBPACK_IMPORTED_MODULE_1__["ThemeProvider"], {
     theme: Object(_theme__WEBPACK_IMPORTED_MODULE_2__["default"])(false)
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(LapperContainer, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Lapper, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CategoryList__WEBPACK_IMPORTED_MODULE_3__["default"], null)), store.pnl >= 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Lapper2, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(InnerLapper, null, store.pnl.toFixed(4) + "xbt")) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Lapper3, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(InnerLapper, null, store.pnl.toFixed(4) + "xbt"))));
-})); // {store.pnl >= 0 ? (
-//   <Lapper2>
-//     <InnerLapper>{store.pnl.toFixed(4) + "xbt"}</InnerLapper>
-//   </Lapper2>
-// ) : (
-//   <Lapper3>
-//     <InnerLapper>{store.pnl.toFixed(4) + "xbt"}</InnerLapper>
-//   </Lapper3>
-// )}
-
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(LapperContainer, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Lapper4, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(SetSymbol, {
+    onClick: function onClick() {
+      showDropdown();
+    }
+  }, dropdown == true ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_8__["FontAwesomeIcon"], {
+    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__["faCaretUp"],
+    style: {
+      transition: "none",
+      marginRight: "4px",
+      marginLeft: "3px"
+    }
+  }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_8__["FontAwesomeIcon"], {
+    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__["faCaretDown"],
+    style: {
+      transition: "none",
+      marginRight: "4px",
+      marginLeft: "3px"
+    }
+  }), store.symbol), dropdown == true ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(DropdownListContainer, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(DropdownListItem, {
+    onClick: function onClick() {
+      return clicked("XBTUSD");
+    }
+  }, "XBTUSD"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(DropdownListItem, {
+    onClick: function onClick() {
+      return clicked("XBTU20");
+    }
+  }, "XBTU20"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(DropdownListItem, {
+    onClick: function onClick() {
+      return clicked("XBTM20");
+    }
+  }, "XBTM20")) : null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Lapper, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CategoryList__WEBPACK_IMPORTED_MODULE_3__["default"], null)), store.pnl >= 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Lapper2, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(InnerLapper, null, store.pnl.toFixed(4) + "xbt")) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Lapper3, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(InnerLapper, null, store.pnl.toFixed(4) + "xbt"))));
+}));
 /* harmony default export */ __webpack_exports__["default"] = (Sidebar);
 var LapperContainer = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.div.withConfig({
   displayName: "Menu__LapperContainer",
@@ -310,6 +371,28 @@ var Lapper3 = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.aside.wit
 })(["border-radius:2px;background-color:", ";background-color:red;max-height:30px;@media (max-width:768px){display:none;}"], function (props) {
   return props.theme.foreground;
 });
+var Lapper4 = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.aside.withConfig({
+  displayName: "Menu__Lapper4",
+  componentId: "sc-1uueytc-5"
+})(["display:flex;flex-direction:column;border-radius:2px;background-color:", ";background-color:#212529;margin-bottom:10px;@media (max-width:768px){display:none;}"], function (props) {
+  return props.theme.foreground;
+});
+var SetSymbol = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.div.withConfig({
+  displayName: "Menu__SetSymbol",
+  componentId: "sc-1uueytc-6"
+})(["font-size:15px;color:#fff;:hover{cursor:pointer;}"]);
+var DropdownContainer = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.div.withConfig({
+  displayName: "Menu__DropdownContainer",
+  componentId: "sc-1uueytc-7"
+})(["height:100px;"]);
+var DropdownListContainer = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.ul.withConfig({
+  displayName: "Menu__DropdownListContainer",
+  componentId: "sc-1uueytc-8"
+})([""]);
+var DropdownListItem = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.li.withConfig({
+  displayName: "Menu__DropdownListItem",
+  componentId: "sc-1uueytc-9"
+})(["text-align:center;font-size:15px;color:#fff;:hover{cursor:pointer;color:#000;background-color:#fff;}"]);
 
 /***/ }),
 
@@ -322,7 +405,7 @@ var Lapper3 = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.aside.wit
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _default; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _class; });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "@babel/runtime/regenerator");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
@@ -340,11 +423,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "@fortawesome/free-solid-svg-icons");
 /* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var mobx_react__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! mobx-react */ "mobx-react");
+/* harmony import */ var mobx_react__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(mobx_react__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var mobx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! mobx */ "mobx");
+/* harmony import */ var mobx__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(mobx__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var fast_deep_equal__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! fast-deep-equal */ "fast-deep-equal");
+/* harmony import */ var fast_deep_equal__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(fast_deep_equal__WEBPACK_IMPORTED_MODULE_11__);
 
 
+var _dec, _class2, _dec2, _class3;
+
+
+
+function _templateObject3() {
+  var data = _taggedTemplateLiteral(["\n            mutation addNotes($time: String!, $notes: String!) {\n              addNotes(time: $time, notes: $notes)\n            }\n          "]);
+
+  _templateObject3 = function _templateObject3() {
+    return data;
+  };
+
+  return data;
+}
 
 function _templateObject2() {
-  var data = _taggedTemplateLiteral(["\n            mutation addHashtag($time: String!, $hashtag: String!) {\n              addHashtag(time: $time, hashtag: $hashtag)\n            }\n          "]);
+  var data = _taggedTemplateLiteral(["\n            mutation removeHashtag($time: String!, $hashtag: String!) {\n              removeHashtag(time: $time, hashtag: $hashtag)\n            }\n          "]);
 
   _templateObject2 = function _templateObject2() {
     return data;
@@ -356,7 +458,7 @@ function _templateObject2() {
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n            mutation addNotes($time: String!, $notes: String!) {\n              addNotes(time: $time, notes: $notes)\n            }\n          "]);
+  var data = _taggedTemplateLiteral(["\n            mutation addHashtag($time: String!, $hashtag: String!) {\n              addHashtag(time: $time, hashtag: $hashtag)\n            }\n          "]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -396,104 +498,173 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-var _default =
+
+
+
+var _class = (_dec2 = Object(mobx_react__WEBPACK_IMPORTED_MODULE_9__["inject"])(["store"]), _dec2(_class3 = Object(mobx_react__WEBPACK_IMPORTED_MODULE_9__["observer"])(_class3 =
 /*#__PURE__*/
-function (_Component) {
-  _inherits(_default, _Component);
+function (_Component2) {
+  _inherits(_class3, _Component2);
 
-  function _default(props) {
-    var _this;
+  function _class3(props) {
+    var _this3;
 
-    _classCallCheck(this, _default);
+    _classCallCheck(this, _class3);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(_default).call(this, props));
-    _this.state = {
+    _this3 = _possibleConstructorReturn(this, _getPrototypeOf(_class3).call(this, props));
+    _this3.state = {
       value: "",
       hashtags: [],
       initHashtags: []
     };
-    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
-    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
-    return _this;
+    _this3.handleChange = _this3.handleChange.bind(_assertThisInitialized(_this3));
+    _this3.handleSubmit = _this3.handleSubmit.bind(_assertThisInitialized(_this3));
+    return _this3;
   }
 
-  _createClass(_default, [{
+  _createClass(_class3, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var _this2 = this;
+      var _this4 = this;
 
-      if (this.props.firstTrade.notes != "undefined") {
-        this.setState({
-          value: this.props.firstTrade.notes
-        });
+      if (this.props.store.tempNotes[0] != undefined) {
+        var isTemp = false;
+
+        for (var i = 0; i < this.props.store.tempNotes.length; i++) {
+          if (this.props.store.tempNotes[i].time == this.props.firstTrade.timestamp) {
+            this.setState({
+              value: this.props.store.tempNotes[i].note
+            });
+            isTemp = true;
+          }
+
+          if (i == this.props.store.tempNotes.length - 1 && isTemp == false) {
+            this.setState({
+              value: this.props.firstTrade.notes
+            });
+          }
+        }
+      } else {
+        if (this.props.firstTrade.notes != "undefined") {
+          this.setState({
+            value: this.props.firstTrade.notes
+          });
+        }
       }
 
       var splitTags = this.props.firstTrade.hashtags.split(",");
       splitTags.map(function (tag) {
-        _this2.state.initHashtags.push(tag);
+        _this4.state.initHashtags.push(tag);
       });
     }
   }, {
     key: "handleChange",
     value: function handleChange(client) {
-      var _this3 = this;
+      var _this5 = this;
 
       return function (event) {
         // event.preventDefault();
-        _this3.setState({
+        _this5.setState({
           value: event.target.value
-        }, _this3.handleSubmit(client));
+        }, _this5.handleSubmit(client));
+
+        _this5.props.store.addTempNote(_this5.props.firstTrade.timestamp, event.target.value);
       };
+    }
+  }, {
+    key: "removeHashtag",
+    value: function removeHashtag(client, hashtag) {
+      var _this6 = this;
+
+      return (
+        /*#__PURE__*/
+        function () {
+          var _ref2 = _asyncToGenerator(
+          /*#__PURE__*/
+          _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(event) {
+            var time;
+            return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+              while (1) {
+                switch (_context3.prev = _context3.next) {
+                  case 0:
+                    if (event != undefined && event.preventDefault != undefined) {
+                      event.preventDefault();
+                    }
+
+                    time = _this6.props.firstTrade.timestamp;
+                    client.mutate({
+                      mutation: graphql_tag__WEBPACK_IMPORTED_MODULE_5___default()(_templateObject2()),
+                      variables: {
+                        time: time,
+                        hashtag: hashtag
+                      },
+                      refetchQueries: ["fetchTradeHistory"]
+                    }).then(function () {
+                      _this6.props.store.changeHasTempTags();
+                    });
+
+                  case 3:
+                  case "end":
+                    return _context3.stop();
+                }
+              }
+            }, _callee3);
+          }));
+
+          return function (_x3) {
+            return _ref2.apply(this, arguments);
+          };
+        }()
+      );
     }
   }, {
     key: "handleSubmit",
     value: function handleSubmit(client) {
-      var _this4 = this;
+      var _this7 = this;
 
       return function (event) {
         if (event != undefined && event.preventDefault != undefined) {
           event.preventDefault();
         }
 
-        console.log("HASHTAGS", _this4.state.hashtags);
-        Object(_helpers__WEBPACK_IMPORTED_MODULE_4__["getNotes"])(_this4.state.value).then(
+        console.log("HASHTAGS", _this7.state.hashtags);
+        Object(_helpers__WEBPACK_IMPORTED_MODULE_4__["getNotes"])(_this7.state.value).then(
         /*#__PURE__*/
         function () {
-          var _ref = _asyncToGenerator(
+          var _ref3 = _asyncToGenerator(
           /*#__PURE__*/
-          _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(res) {
-            var notes, time, reso, r;
-            return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(res) {
+            var notes, time, reso;
+            return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
               while (1) {
-                switch (_context.prev = _context.next) {
+                switch (_context4.prev = _context4.next) {
                   case 0:
                     notes = res[0]; // let hashtags = res[1];
 
-                    time = _this4.props.firstTrade.timestamp;
+                    time = _this7.props.firstTrade.timestamp;
                     reso = client.mutate({
-                      mutation: graphql_tag__WEBPACK_IMPORTED_MODULE_5___default()(_templateObject()),
+                      mutation: graphql_tag__WEBPACK_IMPORTED_MODULE_5___default()(_templateObject3()),
                       variables: {
                         time: time,
                         notes: notes
                       }
                     });
-                    _context.next = 5;
+                    _context4.next = 5;
                     return reso;
 
                   case 5:
-                    r = _context.sent;
-                    console.log(r);
+                    return _context4.abrupt("return", _context4.sent);
 
-                  case 7:
+                  case 6:
                   case "end":
-                    return _context.stop();
+                    return _context4.stop();
                 }
               }
-            }, _callee);
+            }, _callee4);
           }));
 
-          return function (_x) {
-            return _ref.apply(this, arguments);
+          return function (_x4) {
+            return _ref3.apply(this, arguments);
           };
         }());
       };
@@ -501,17 +672,19 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this5 = this;
+      var _this8 = this;
 
       return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_apollo__WEBPACK_IMPORTED_MODULE_3__["ApolloConsumer"], null, function (client) {
         return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(FullRow, {
-          onSubmit: _this5.handleSubmit(client)
+          onSubmit: _this8.handleSubmit(client)
         }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(HashtagDiv, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(AddHashtag, {
-          firstTrade: _this5.props.firstTrade,
+          firstTrade: _this8.props.firstTrade,
           client: client
-        })), _this5.state.initHashtags.map(function (tag) {
+        })), _this8.state.initHashtags.map(function (tag) {
           if (tag != "undefined") {
-            return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(SingleHashtagDiv, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(SingleHashtagText, null, "#", tag), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(SingleHashtagDelete, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_7__["FontAwesomeIcon"], {
+            return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(SingleHashtagDiv, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(SingleHashtagText, null, "#", tag), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(SingleHashtagDelete, {
+              onClick: _this8.removeHashtag(client, tag)
+            }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_7__["FontAwesomeIcon"], {
               icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__["faTimes"],
               size: "xs",
               style: {
@@ -521,36 +694,35 @@ function (_Component) {
           }
         }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(NotesInput, {
           type: "text",
-          value: _this5.state.value,
-          onChange: _this5.handleChange(client)
+          value: _this8.state.value,
+          onChange: _this8.handleChange(client)
         })));
       });
     }
   }]);
 
-  return _default;
-}(react__WEBPACK_IMPORTED_MODULE_1__["Component"]);
+  return _class3;
+}(react__WEBPACK_IMPORTED_MODULE_1__["Component"])) || _class3) || _class3);
 
 
-
-var AddHashtag =
+var AddHashtag = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_9__["inject"])(["store"]), _dec(_class2 = Object(mobx_react__WEBPACK_IMPORTED_MODULE_9__["observer"])(_class2 =
 /*#__PURE__*/
-function (_Component2) {
-  _inherits(AddHashtag, _Component2);
+function (_Component) {
+  _inherits(AddHashtag, _Component);
 
   function AddHashtag(props) {
-    var _this6;
+    var _this;
 
     _classCallCheck(this, AddHashtag);
 
-    _this6 = _possibleConstructorReturn(this, _getPrototypeOf(AddHashtag).call(this, props));
-    _this6.state = {
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(AddHashtag).call(this, props));
+    _this.state = {
       clicked: false
     };
-    _this6.handleChange = _this6.handleChange.bind(_assertThisInitialized(_this6));
-    _this6.handleSubmit = _this6.handleSubmit.bind(_assertThisInitialized(_this6));
-    _this6.clicked = _this6.clicked.bind(_assertThisInitialized(_this6));
-    return _this6;
+    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.clicked = _this.clicked.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(AddHashtag, [{
@@ -574,12 +746,12 @@ function (_Component2) {
     value: function () {
       var _handleSubmit = _asyncToGenerator(
       /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(event) {
-        var _this7 = this;
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(event) {
+        var _this2 = this;
 
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
-            switch (_context3.prev = _context3.next) {
+            switch (_context2.prev = _context2.next) {
               case 0:
                 // return event => {
                 event.preventDefault();
@@ -587,61 +759,62 @@ function (_Component2) {
                 Object(_helpers__WEBPACK_IMPORTED_MODULE_4__["getHashtags"])(this.state.value).then(
                 /*#__PURE__*/
                 function () {
-                  var _ref2 = _asyncToGenerator(
+                  var _ref = _asyncToGenerator(
                   /*#__PURE__*/
-                  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(res) {
+                  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(res) {
                     var client, hashtag, time, reso;
-                    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+                    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
                       while (1) {
-                        switch (_context2.prev = _context2.next) {
+                        switch (_context.prev = _context.next) {
                           case 0:
                             console.log("CLICKED");
-                            client = _this7.state.client; // if(typeof)
+                            client = _this2.state.client; // if(typeof)
 
                             hashtag = res;
                             console.log(hashtag, "HASHTAG");
-                            time = _this7.props.firstTrade.timestamp;
+                            time = _this2.props.firstTrade.timestamp;
                             reso = client.mutate({
-                              mutation: graphql_tag__WEBPACK_IMPORTED_MODULE_5___default()(_templateObject2()),
+                              mutation: graphql_tag__WEBPACK_IMPORTED_MODULE_5___default()(_templateObject()),
                               variables: {
                                 time: time,
                                 hashtag: hashtag
-                              }
+                              },
+                              refetchQueries: ["fetchTradeHistory"]
                             });
-                            _context2.next = 8;
+                            _context.next = 8;
                             return reso;
 
                           case 8:
-                            return _context2.abrupt("return", _context2.sent);
+                            return _context.abrupt("return", _context.sent);
 
                           case 9:
                           case "end":
-                            return _context2.stop();
+                            return _context.stop();
                         }
                       }
-                    }, _callee2);
+                    }, _callee);
                   }));
 
-                  return function (_x3) {
-                    return _ref2.apply(this, arguments);
+                  return function (_x2) {
+                    return _ref.apply(this, arguments);
                   };
-                }()).then(function () {
-                  _this7.setState({
+                }()).then(function (reso) {
+                  _this2.setState({
                     value: ""
                   });
 
-                  location.reload();
+                  _this2.props.store.changeHasTempTags();
                 }); // };
 
               case 3:
               case "end":
-                return _context3.stop();
+                return _context2.stop();
             }
           }
-        }, _callee3, this);
+        }, _callee2, this);
       }));
 
-      function handleSubmit(_x2) {
+      function handleSubmit(_x) {
         return _handleSubmit.apply(this, arguments);
       }
 
@@ -680,8 +853,7 @@ function (_Component2) {
   }]);
 
   return AddHashtag;
-}(react__WEBPACK_IMPORTED_MODULE_1__["Component"]);
-
+}(react__WEBPACK_IMPORTED_MODULE_1__["Component"])) || _class2) || _class2);
 var AddHashSubmit = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.input.withConfig({
   displayName: "Notes__AddHashSubmit",
   componentId: "nwljd5-0"
@@ -763,6 +935,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__);
 /* harmony import */ var fast_deep_equal__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! fast-deep-equal */ "fast-deep-equal");
 /* harmony import */ var fast_deep_equal__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(fast_deep_equal__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var mobx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! mobx */ "mobx");
+/* harmony import */ var mobx__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(mobx__WEBPACK_IMPORTED_MODULE_12__);
 var _dec, _class;
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -782,6 +956,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -829,7 +1004,8 @@ function (_PureComponent) {
 
         if (i == data.fetchTradeHistory.length - 1) {
           for (var j = 0; j < fullRay.length; j++) {
-            var dat = fullRay[j];
+            var dat = fullRay[j]; // dat.timestamp = formatDateForRow(dat.timestamp);
+            // fullRay[j] = dat;
 
             if (dat.trdStart == true) {
               var sliced = fullRay.slice(j, fullRay.length);
@@ -877,15 +1053,13 @@ function (_PureComponent) {
           for (var i = 0; i < firstFullTrades.length; i++) {
             for (var j = 0; j < this.props.filteredData.length; j++) {
               if (firstFullTrades[i][0].id == this.props.filteredData[j].id) {
-                for (var k = 0; k < this.state.fullTrades.length; k++) {
-                  if (this.props.filteredData[j].id == this.state.fullTrades[k][0].id) {
-                    newFullTrades.unshift(firstFullTrades[i]);
-                  }
-                }
+                console.log("ADDING", firstFullTrades[i]);
+                newFullTrades.unshift(firstFullTrades[i]);
               }
             }
 
-            if (i == this.state.fullTrades.length - 1) {
+            if (i == firstFullTrades.length - 1) {
+              console.log(newFullTrades, "NEW FULL");
               this.setState({
                 fullTrades: newFullTrades
               });
@@ -956,6 +1130,7 @@ function (_PureComponent) {
           minWidth: this.state.chartWidth
         }
       }, this.state.fullTrades.map(function (slic, i) {
+        console.log(slic);
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(MakeCol, {
           slic: slic,
           onemin: _this2.props.data.fetchOneMinuteCandleHistory,
@@ -994,17 +1169,32 @@ function (_Component) {
     };
     _this3.readMoreClicked = _this3.readMoreClicked.bind(_assertThisInitialized(_this3));
     _this3.clicked = _this3.clicked.bind(_assertThisInitialized(_this3));
+    _this3.getSlicData = _this3.getSlicData.bind(_assertThisInitialized(_this3));
     return _this3;
   }
 
   _createClass(MakeCol, [{
     key: "componentDidMount",
-    value: function componentDidMount() {// console.log(this.state);
+    value: function componentDidMount() {
+      console.log("MOUNTED", this.props.slic);
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      if (!fast_deep_equal__WEBPACK_IMPORTED_MODULE_11___default()(this.props.slic, prevProps.slic)) {
+        console.log("UPDATED");
+        this.getSlicData();
+      }
     }
   }, {
     key: "componentWillMount",
     value: function componentWillMount() {
-      this.state.data = this.props.slic; // console.log(this.state.data[0]);
+      this.getSlicData();
+    }
+  }, {
+    key: "getSlicData",
+    value: function getSlicData() {
+      this.state.data = this.props.slic;
 
       if (this.state.data[0].side == "Buy" && this.state.data[0].execType == "Trade") {
         var avgBuyPrice = 0;
@@ -1022,7 +1212,6 @@ function (_Component) {
           realQty = this.state.data[i].orderQty - this.state.data[i].leavesQty;
 
           if (this.state.data[i].side == "Buy") {
-            // totBuyPrice += parseFloat(this.state.data[i].price);
             buyNum += 1;
             totBuyContracts += realQty;
             totBuyContractsMult += realQty * parseFloat(this.state.data[i].price);
@@ -1050,36 +1239,52 @@ function (_Component) {
           if (i == this.state.data.length - 1) {
             avgBuyPrice = totBuyContractsMult / totBuyContracts;
             avgSellPrice = totSellContractsMult / totSellContracts;
+            var avgExit = void 0;
+            var avgEntry = void 0;
 
             if (avgBuyPrice != null) {
-              this.state.avgEntryPrice = avgBuyPrice;
+              // this.state.avgEntryPrice = avgBuyPrice;
+              avgEntry = avgBuyPrice;
             } else {
-              this.state.avgEntryPrice = 0;
+              avgEntry = 0; // this.state.avgEntryPrice = 0;
             }
 
             if (avgSellPrice != null) {
-              this.state.avgExitPrice = avgSellPrice;
+              // this.state.avgExitPrice = avgSellPrice;
+              avgExit = avgSellPrice;
             } else {
-              this.state.avgExitPrice = 0;
+              // this.state.avgExitPrice = 0;
+              avgExit = 0;
             }
 
             this.state.cumQty = totBuyContracts;
             var thePnl = (1 / avgBuyPrice - 1 / avgSellPrice) * totSellContracts;
 
             if (thePnl != null) {
-              // console.log("TOT COMMISS", totCommission);
-              this.state.pnl = thePnl + totCommission;
-              this.props.store.addPnl(this.state.pnl);
+              var myPnl = thePnl + totCommission;
+              this.setState({
+                pnl: myPnl,
+                avgEntryPrice: avgEntry,
+                avgExitPrice: avgExit
+              }, function () {
+                return console.log("STATE IS SET");
+              });
+              this.props.store.addPnl(myPnl);
             } else {
-              this.state.pnl = 0;
+              // this.state.pnl = 0;
+              this.setState({
+                pnl: 0,
+                avgEntryPrice: avgEntry,
+                avgExitPrice: avgExit
+              }, function () {
+                return console.log("STATE IS SET");
+              });
             }
           }
         }
       }
 
       if (this.state.data[0].side == "Sell" && this.state.data[0].execType == "Trade") {
-        // let avgBuyPrice = 0;
-        // let avgSellPrice = 0;
         var _totBuyContracts = 0;
         var _totSellContracts = 0;
         var _buyNum = 0;
@@ -1119,34 +1324,50 @@ function (_Component) {
           }
 
           if (_i == this.state.data.length - 1) {
-            // console.log(totBuyContracts, totBuyContractsMult);
-            // console.log(totSellContracts, totSellContractsMult);
             var _avgBuyPrice = _totBuyContractsMult / _totBuyContracts;
 
             var _avgSellPrice = _totSellContractsMult / _totSellContracts;
 
-            var pnl = (1 / _avgBuyPrice - 1 / _avgSellPrice) * _totBuyContracts; // console.log(pnl, totBuyContractsMult, totBuyContracts);
+            var pnl = (1 / _avgBuyPrice - 1 / _avgSellPrice) * _totBuyContracts;
+
+            var _avgEntry = void 0;
+
+            var _avgExit = void 0;
 
             if (_avgBuyPrice != null) {
-              this.state.avgExitPrice = _avgBuyPrice;
+              _avgExit = _avgBuyPrice;
             } else {
-              this.state.avgExitPrice = 0;
+              _avgExit = 0;
             }
 
             if (_avgSellPrice != null) {
-              this.state.avgEntryPrice = _avgSellPrice;
+              _avgEntry = _avgSellPrice;
             } else {
-              this.state.avgEntryPrice = 0;
+              _avgEntry = 0;
             }
 
             this.state.cumQty = _totSellContracts;
 
             if (pnl != null) {
-              // console.log("TOT COMMISS", totCommission);
-              this.state.pnl = pnl + _totCommission;
-              this.props.store.addPnl(pnl);
+              var _myPnl = pnl + _totCommission;
+
+              this.setState({
+                pnl: _myPnl,
+                avgEntryPrice: _avgEntry,
+                avgExitPrice: _avgExit
+              }, function () {
+                return console.log("STATE IS SET");
+              });
+              this.props.store.addPnl(_myPnl);
             } else {
-              this.state.pnl = 0;
+              // this.state.pnl = 0;
+              this.setState({
+                pnl: 0,
+                avgEntryPrice: _avgEntry,
+                avgExitPrice: _avgExit
+              }, function () {
+                return console.log("STATE IS SET");
+              });
             }
           }
         }
@@ -1185,6 +1406,8 @@ function (_Component) {
     value: function render() {
       var _this4 = this;
 
+      // console.log(this.state.data[0], "DAT ZERO");
+      // if (this.state.data[0] != undefined) {
       if (this.state.clicked == false) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ContainDiv, {
           onClick: this.clicked.bind(this)
@@ -1196,10 +1419,10 @@ function (_Component) {
           onClick: this.clicked.bind(this)
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, Object(_Helpers_Functions_js__WEBPACK_IMPORTED_MODULE_5__["formatDateMonthOnly"])(this.state.data[0].timestamp)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, Object(_Helpers_Functions_js__WEBPACK_IMPORTED_MODULE_5__["formatDateMonthOnly"])(this.state.data[this.state.data.length - 1].timestamp)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(IsShort, {
           side: this.state.data[0].side
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, "$", this.state.avgEntryPrice.toFixed(1)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, "$", this.state.avgExitPrice.toFixed(1)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, this.state.cumQty), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, this.state.pnl.toFixed(4) + "xbt")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ContainDivBlack, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "Timestamp"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "Side"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "Price"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "Order Qty"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "Commission")), this.state.data.map(function (dat) {
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, "$", this.state.avgEntryPrice.toFixed(1)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, "$", this.state.avgExitPrice.toFixed(1)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, this.state.cumQty), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, this.state.pnl.toFixed(4) + "xbt")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ContainDivBlack, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "Timestamp"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "Side"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "Price"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "Order Qty"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "Leaves Qty"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "Commission")), this.state.data.map(function (dat) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ContainDivBlack, {
             onClick: _this4.clicked.bind(_this4)
-          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.timestamp), dat.execType == "Trade" ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.side) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.execType), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "$", dat.price.toString()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.orderQty.toString()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.commission));
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, Object(_Helpers_Functions_js__WEBPACK_IMPORTED_MODULE_5__["formatDateMonthOnly"])(dat.timestamp)), dat.execType == "Trade" ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.side) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.execType), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "$", dat.price.toString()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.orderQty.toString()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.leavesQty.toString() == 0 ? "" : dat.leavesQty.toString()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.execType == "Funding" ? "" : Object(_Helpers_Functions_js__WEBPACK_IMPORTED_MODULE_5__["calcCommission"])(dat.price, dat.side, dat.orderQty, dat.leavesQty, dat.orderType)));
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ReadMoreTall, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ReadMoreInner, {
           onClick: this.readMoreClicked
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_9__["FontAwesomeIcon"], {
@@ -1211,10 +1434,10 @@ function (_Component) {
           onClick: this.clicked
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, Object(_Helpers_Functions_js__WEBPACK_IMPORTED_MODULE_5__["formatDateMonthOnly"])(this.state.data[0].timestamp)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, Object(_Helpers_Functions_js__WEBPACK_IMPORTED_MODULE_5__["formatDateMonthOnly"])(this.state.data[this.state.data.length - 1].timestamp)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(IsShort, {
           side: this.state.data[0].side
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, "$", this.state.avgEntryPrice.toFixed(1)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, "$", this.state.avgExitPrice.toFixed(1)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, this.state.cumQty), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, this.state.pnl.toFixed(4) + "xbt")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ContainDivBlack, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "Timestamp"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "Side"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "Price"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "Order Qty"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "Commission")), this.state.data.map(function (dat) {
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, "$", this.state.avgEntryPrice.toFixed(1)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, "$", this.state.avgExitPrice.toFixed(1)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, this.state.cumQty), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, this.state.pnl.toFixed(4) + "xbt")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ContainDivBlack, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "Timestamp"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "Side"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "Price"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "Order Qty"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "Leaves Qty"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "Commission")), this.state.data.map(function (dat) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ContainDivBlack, {
             onClick: _this4.clicked.bind(_this4)
-          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.timestamp), dat.execType == "Trade" ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.side) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.execType), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "$", dat.price.toString()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.orderQty.toString()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.commission));
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, Object(_Helpers_Functions_js__WEBPACK_IMPORTED_MODULE_5__["formatDateMonthOnly"])(dat.timestamp)), dat.execType == "Trade" ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.side) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.execType), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "$", dat.price.toString()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.orderQty.toString()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.leavesQty.toString() == 0 ? "" : dat.leavesQty.toString()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.execType == "Funding" ? "" : Object(_Helpers_Functions_js__WEBPACK_IMPORTED_MODULE_5__["calcCommission"])(dat.price, dat.side, dat.orderQty, dat.leavesQty, dat.orderType)));
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ReadMore, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ReadMoreInner, {
           onClick: this.readMoreClicked
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_9__["FontAwesomeIcon"], {
@@ -2620,12 +2843,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var fast_deep_equal__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(fast_deep_equal__WEBPACK_IMPORTED_MODULE_8__);
 /* harmony import */ var _AddApiForm__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./AddApiForm */ "./components/Dashboard/AddApiForm.js");
 /* harmony import */ var _Hashtags__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Hashtags */ "./components/Dashboard/Hashtags.js");
+/* harmony import */ var mobx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! mobx */ "mobx");
+/* harmony import */ var mobx__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(mobx__WEBPACK_IMPORTED_MODULE_11__);
 var _dec, _class, _temp, _dec2, _class3;
 
 
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  query fetchTradeHistory($start: String!, $end: String!) {\n    checkApiKey\n\n    fetchTradeHistory(start: $start, end: $end) {\n      id\n      timestamp\n      side\n      price\n      orderQty\n      leavesQty\n      currentQty\n      avgEntryPrice\n      execGrossPnl\n      realizedPnl\n      commission\n      execType\n      orderType\n      trdStart\n      trdEnd\n      notes\n      hashtags\n    }\n\n    fetchOneMinuteCandleHistory(start: $start, end: $end) {\n      id\n      timestamp\n      symbol\n      timeframe\n      open\n      high\n      low\n      close\n      trades\n      volume\n      vwap\n      lastSize\n      homeNotional\n      foreignNotional\n    }\n\n    fetchOneHourCandleHistory(start: $start, end: $end) {\n      id\n      timestamp\n      symbol\n      timeframe\n      open\n      high\n      low\n      close\n      trades\n      volume\n      vwap\n      lastSize\n      homeNotional\n      foreignNotional\n    }\n\n    fetchOneDayCandleHistory(start: $start, end: $end) {\n      id\n      timestamp\n      symbol\n      timeframe\n      open\n      high\n      low\n      close\n      trades\n      volume\n      vwap\n      lastSize\n      homeNotional\n      foreignNotional\n    }\n\n    fetchFiveMinuteCandleHistory(start: $start, end: $end) {\n      id\n      timestamp\n      symbol\n      timeframe\n      open\n      high\n      low\n      close\n      trades\n      volume\n      vwap\n      lastSize\n      homeNotional\n      foreignNotional\n    }\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n  query fetchTradeHistory($start: String!, $end: String!, $symbol: String!) {\n    checkApiKey\n\n    fetchTradeHistory(start: $start, end: $end, symbol: $symbol) {\n      id\n      timestamp\n      side\n      price\n      orderQty\n      leavesQty\n      currentQty\n      avgEntryPrice\n      execGrossPnl\n      realizedPnl\n      commission\n      execType\n      orderType\n      trdStart\n      trdEnd\n      notes\n      hashtags\n    }\n\n    fetchOneMinuteCandleHistory(start: $start, end: $end) {\n      id\n      timestamp\n      symbol\n      timeframe\n      open\n      high\n      low\n      close\n      trades\n      volume\n      vwap\n      lastSize\n      homeNotional\n      foreignNotional\n    }\n\n    fetchOneHourCandleHistory(start: $start, end: $end) {\n      id\n      timestamp\n      symbol\n      timeframe\n      open\n      high\n      low\n      close\n      trades\n      volume\n      vwap\n      lastSize\n      homeNotional\n      foreignNotional\n    }\n\n    fetchOneDayCandleHistory(start: $start, end: $end) {\n      id\n      timestamp\n      symbol\n      timeframe\n      open\n      high\n      low\n      close\n      trades\n      volume\n      vwap\n      lastSize\n      homeNotional\n      foreignNotional\n    }\n\n    fetchFiveMinuteCandleHistory(start: $start, end: $end) {\n      id\n      timestamp\n      symbol\n      timeframe\n      open\n      high\n      low\n      close\n      trades\n      volume\n      vwap\n      lastSize\n      homeNotional\n      foreignNotional\n    }\n  }\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -2653,6 +2878,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -2703,7 +2929,8 @@ function (_React$Component) {
     value: function render() {
       var fetchTradeHistoryVariables = {
         start: this.props.store.startDate,
-        end: this.props.store.endDate
+        end: this.props.store.endDate,
+        symbol: this.props.store.symbol
       };
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Comp, {
         query: fetchTradeHistoryQuery,
@@ -2722,14 +2949,30 @@ function (_React$Component2) {
   function Comp(props) {
     _classCallCheck(this, Comp);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(Comp).call(this, props)); // this.state = { globalHash: [], globalHashActive: ["all"] };
-    // this.getGlobalHashtags = this.getGlobalHashtags.bind(this);
-    // this.hashtagClicked = this.hashtagClicked.bind(this);
+    return _possibleConstructorReturn(this, _getPrototypeOf(Comp).call(this, props));
   }
 
   _createClass(Comp, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      this.tempTagsReaction = Object(mobx__WEBPACK_IMPORTED_MODULE_11__["reaction"])(function () {
+        return _this2.props.store.hasTempTags;
+      }, function (notifications, reaction) {
+        _this2.forceUpdate(console.log("FORCE UPDATE WAS CALLED"));
+      });
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      this.tempTagsReaction();
+    }
+  }, {
     key: "render",
     value: function render() {
+      var _this3 = this;
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_apollo__WEBPACK_IMPORTED_MODULE_1__["Query"], {
         query: this.props.query,
         variables: this.props.vars
@@ -2743,6 +2986,12 @@ function (_React$Component2) {
         if (data.checkApiKey == false) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AddApiForm__WEBPACK_IMPORTED_MODULE_9__["default"], null);
         } else if (data.checkApiKey == true) {
+          _this3.props.store.resetHasTempTags();
+
+          _this3.props.store.clearTempNotes();
+
+          _this3.props.store.clearTempTags();
+
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Hashtags__WEBPACK_IMPORTED_MODULE_10__["default"], {
             data: data
           });
@@ -2767,7 +3016,7 @@ var fetchTradeHistoryQuery = graphql_tag__WEBPACK_IMPORTED_MODULE_4___default()(
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _default; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _class; });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "@babel/runtime/regenerator");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
@@ -2777,6 +3026,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Charts_ReChart__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Charts/ReChart */ "./components/Charts/ReChart.js");
 /* harmony import */ var _Categories_Menu__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Categories/Menu */ "./components/Categories/Menu.js");
 /* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./helpers */ "./components/Dashboard/helpers.js");
+/* harmony import */ var mobx_react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! mobx-react */ "mobx-react");
+/* harmony import */ var mobx_react__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(mobx_react__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var mobx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! mobx */ "mobx");
+/* harmony import */ var mobx__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(mobx__WEBPACK_IMPORTED_MODULE_7__);
+
+
+var _dec, _class2;
 
 
 
@@ -2808,17 +3064,19 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-var _default =
+
+
+var _class = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_6__["inject"])("store"), _dec(_class2 = Object(mobx_react__WEBPACK_IMPORTED_MODULE_6__["observer"])(_class2 =
 /*#__PURE__*/
 function (_React$Component) {
-  _inherits(_default, _React$Component);
+  _inherits(_class2, _React$Component);
 
-  function _default(props) {
+  function _class2(props) {
     var _this;
 
-    _classCallCheck(this, _default);
+    _classCallCheck(this, _class2);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(_default).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(_class2).call(this, props));
     _this.state = {
       globalHash: [],
       globalHashActive: ["all"],
@@ -2831,7 +3089,7 @@ function (_React$Component) {
     return _this;
   }
 
-  _createClass(_default, [{
+  _createClass(_class2, [{
     key: "componentWillMount",
     value: function componentWillMount() {
       this.setState({
@@ -3172,6 +3430,8 @@ function (_React$Component) {
     value: function render() {
       var _this4 = this;
 
+      console.log("THIS IS GLOBAL HAS", this.state.globalHash);
+
       if (this.state.data != null) {
         return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Wrapper, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(ChartWrapper, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(TopHashtagDiv, null, this.state.globalHashActive.map(function (hash) {
           return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(TopHashtagIndividualActive, {
@@ -3194,8 +3454,8 @@ function (_React$Component) {
     }
   }]);
 
-  return _default;
-}(react__WEBPACK_IMPORTED_MODULE_1___default.a.Component);
+  return _class2;
+}(react__WEBPACK_IMPORTED_MODULE_1___default.a.Component)) || _class2) || _class2);
 
 
 var TopHashtagDiv = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.div.withConfig({
@@ -3258,7 +3518,7 @@ function () {
 
           case 3:
             if (!(i < oldTrades.length)) {
-              _context.next = 13;
+              _context.next = 14;
               break;
             }
 
@@ -3266,14 +3526,17 @@ function () {
 
             oldTrade = oldTrades[i]; // console.log(tradeHashtags, "THIS TRADE HASHTAGS");
 
-            if (tradeHashtags != "undefined") {
+            console.log(tradeHashtags);
+
+            if (tradeHashtags[0] != "undefined") {
               for (j = 0; j < tradeHashtags.length; j++) {
                 for (m = 0; m < hashtags.length; m++) {
                   if (hashtags[m] == tradeHashtags[j]) {
                     // console.log("EQUALS");
                     if (newTrades[0] == undefined) {
                       newTrades.push(oldTrade);
-                    } else {// let isIn = false;
+                    } else {
+                      newTrades.push(oldTrade); // let isIn = false;
                       // for (let k = 0; k < newTrades.length; k++) {
                       //   if (newTrades[k].id == oldTrade.id) {
                       //     let isIn = true;
@@ -3293,19 +3556,19 @@ function () {
             }
 
             if (!(i == oldTrades.length - 1)) {
-              _context.next = 10;
+              _context.next = 11;
               break;
             }
 
-            console.log();
+            console.log(newTrades, "FILTERED TRADES");
             return _context.abrupt("return", newTrades);
 
-          case 10:
+          case 11:
             i++;
             _context.next = 3;
             break;
 
-          case 13:
+          case 14:
           case "end":
             return _context.stop();
         }
@@ -3596,23 +3859,30 @@ var Logo = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.div.withConf
 /*!*****************************************!*\
   !*** ./components/Helpers/Functions.js ***!
   \*****************************************/
-/*! exports provided: formatDateMonthOnly, getStateDate */
+/*! exports provided: formatDateMonthOnly, getStateDate, calcCommission */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "formatDateMonthOnly", function() { return formatDateMonthOnly; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getStateDate", function() { return getStateDate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "calcCommission", function() { return calcCommission; });
 function formatDateMonthOnly(date) {
   var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
-  var theDate = new Date(date);
+  var utcDate = date;
+  var theDate = new Date(utcDate);
   var day = theDate.getDate();
-  var hours = theDate.getHours();
-  var mins = theDate.getMinutes();
+  var hours = addZeroBefore(theDate.getHours());
+  var mins = addZeroBefore(theDate.getMinutes());
   var monthIndex = theDate.getMonth();
   var year = theDate.getFullYear();
   return day + " " + monthNames[monthIndex] + ", " + hours + ":" + mins;
 }
+
+function addZeroBefore(n) {
+  return (n < 10 ? "0" : "") + n;
+}
+
 function getStateDate(input) {
   if (input == 1) {
     var dates = {};
@@ -3668,6 +3938,27 @@ function makeDateDays(num) {
   dt = dt.toISOString();
   console.log("getting days back");
   return dt;
+}
+
+function calcCommission(price, side, qty, leavesQty, orderType) {
+  var realQty = qty - leavesQty;
+  var commission;
+
+  if (orderType == "Market") {
+    commission = realQty * 0.0075 / price;
+    commission = commission * -1;
+  }
+
+  if (orderType.includes("Stop")) {
+    commission = realQty * 0.0075 / price;
+    commission = commission * -1;
+  }
+
+  if (orderType == "Limit") {
+    commission = realQty * 0.0025 / price;
+  }
+
+  return commission.toFixed(5);
 }
 
 /***/ }),
@@ -3889,7 +4180,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _components_Helpers_Functions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/Helpers/Functions */ "./components/Helpers/Functions.js");
-var _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _temp;
+var _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18, _descriptor19, _descriptor20, _descriptor21, _descriptor22, _descriptor23, _temp;
 
 function _initializerDefineProperty(target, property, descriptor, context) { if (!descriptor) return; Object.defineProperty(target, property, { enumerable: descriptor.enumerable, configurable: descriptor.configurable, writable: descriptor.writable, value: descriptor.initializer ? descriptor.initializer.call(context) : void 0 }); }
 
@@ -3919,32 +4210,42 @@ var Store = (_class = (_temp = function Store() {
 
   _initializerDefineProperty(this, "endDate", _descriptor5, this);
 
-  _initializerDefineProperty(this, "date", _descriptor6, this);
+  _initializerDefineProperty(this, "symbol", _descriptor6, this);
 
-  _initializerDefineProperty(this, "pnl", _descriptor7, this);
+  _initializerDefineProperty(this, "date", _descriptor7, this);
 
-  _initializerDefineProperty(this, "globalHash", _descriptor8, this);
+  _initializerDefineProperty(this, "pnl", _descriptor8, this);
 
-  _initializerDefineProperty(this, "changeDate", _descriptor9, this);
+  _initializerDefineProperty(this, "globalHash", _descriptor9, this);
 
-  _initializerDefineProperty(this, "addPnl", _descriptor10, this);
+  _initializerDefineProperty(this, "tempNotes", _descriptor10, this);
 
-  _initializerDefineProperty(this, "resetPnl", _descriptor11, this);
+  _initializerDefineProperty(this, "tempTags", _descriptor11, this);
 
-  _initializerDefineProperty(this, "pushGlobalHash", _descriptor12, this);
-} //   constructor(isServer, initialData = {}) {
-//     this.lastUpdate =
-//       initialData.lastUpdate != null ? initialData.lastUpdate : Date.now();
-//     this.light = !!initialData.light;
-//   }
-//   @action start = () => {
-//     this.timer = setInterval(() => {
-//       this.lastUpdate = Date.now();
-//       this.light = true;
-//     }, 1000);
-//   };
-//   stop = () => clearInterval(this.timer);
-, _temp), (_descriptor = _applyDecoratedDescriptor(_class.prototype, "lastUpdate", [mobx__WEBPACK_IMPORTED_MODULE_0__["observable"]], {
+  _initializerDefineProperty(this, "hasTempTags", _descriptor12, this);
+
+  _initializerDefineProperty(this, "changeDate", _descriptor13, this);
+
+  _initializerDefineProperty(this, "addPnl", _descriptor14, this);
+
+  _initializerDefineProperty(this, "resetPnl", _descriptor15, this);
+
+  _initializerDefineProperty(this, "pushGlobalHash", _descriptor16, this);
+
+  _initializerDefineProperty(this, "addTempNote", _descriptor17, this);
+
+  _initializerDefineProperty(this, "clearTempNotes", _descriptor18, this);
+
+  _initializerDefineProperty(this, "addTempTag", _descriptor19, this);
+
+  _initializerDefineProperty(this, "clearTempTags", _descriptor20, this);
+
+  _initializerDefineProperty(this, "changeHasTempTags", _descriptor21, this);
+
+  _initializerDefineProperty(this, "resetHasTempTags", _descriptor22, this);
+
+  _initializerDefineProperty(this, "setSymbol", _descriptor23, this);
+}, _temp), (_descriptor = _applyDecoratedDescriptor(_class.prototype, "lastUpdate", [mobx__WEBPACK_IMPORTED_MODULE_0__["observable"]], {
   configurable: true,
   enumerable: true,
   writable: true,
@@ -3979,28 +4280,56 @@ var Store = (_class = (_temp = function Store() {
   initializer: function initializer() {
     return "2020-02-28T12:43:56.702Z";
   }
-}), _descriptor6 = _applyDecoratedDescriptor(_class.prototype, "date", [mobx_persist__WEBPACK_IMPORTED_MODULE_2__["persist"], mobx__WEBPACK_IMPORTED_MODULE_0__["observable"]], {
+}), _descriptor6 = _applyDecoratedDescriptor(_class.prototype, "symbol", [mobx_persist__WEBPACK_IMPORTED_MODULE_2__["persist"], mobx__WEBPACK_IMPORTED_MODULE_0__["observable"]], {
+  configurable: true,
+  enumerable: true,
+  writable: true,
+  initializer: function initializer() {
+    return "XBTUSD";
+  }
+}), _descriptor7 = _applyDecoratedDescriptor(_class.prototype, "date", [mobx_persist__WEBPACK_IMPORTED_MODULE_2__["persist"], mobx__WEBPACK_IMPORTED_MODULE_0__["observable"]], {
   configurable: true,
   enumerable: true,
   writable: true,
   initializer: function initializer() {
     return 1;
   }
-}), _descriptor7 = _applyDecoratedDescriptor(_class.prototype, "pnl", [mobx__WEBPACK_IMPORTED_MODULE_0__["observable"]], {
+}), _descriptor8 = _applyDecoratedDescriptor(_class.prototype, "pnl", [mobx__WEBPACK_IMPORTED_MODULE_0__["observable"]], {
   configurable: true,
   enumerable: true,
   writable: true,
   initializer: function initializer() {
     return 0;
   }
-}), _descriptor8 = _applyDecoratedDescriptor(_class.prototype, "globalHash", [mobx__WEBPACK_IMPORTED_MODULE_0__["observable"]], {
+}), _descriptor9 = _applyDecoratedDescriptor(_class.prototype, "globalHash", [mobx__WEBPACK_IMPORTED_MODULE_0__["observable"]], {
   configurable: true,
   enumerable: true,
   writable: true,
   initializer: function initializer() {
     return [];
   }
-}), _descriptor9 = _applyDecoratedDescriptor(_class.prototype, "changeDate", [mobx__WEBPACK_IMPORTED_MODULE_0__["action"]], {
+}), _descriptor10 = _applyDecoratedDescriptor(_class.prototype, "tempNotes", [mobx_persist__WEBPACK_IMPORTED_MODULE_2__["persist"], mobx__WEBPACK_IMPORTED_MODULE_0__["observable"]], {
+  configurable: true,
+  enumerable: true,
+  writable: true,
+  initializer: function initializer() {
+    return [];
+  }
+}), _descriptor11 = _applyDecoratedDescriptor(_class.prototype, "tempTags", [mobx_persist__WEBPACK_IMPORTED_MODULE_2__["persist"], mobx__WEBPACK_IMPORTED_MODULE_0__["observable"]], {
+  configurable: true,
+  enumerable: true,
+  writable: true,
+  initializer: function initializer() {
+    return [];
+  }
+}), _descriptor12 = _applyDecoratedDescriptor(_class.prototype, "hasTempTags", [mobx_persist__WEBPACK_IMPORTED_MODULE_2__["persist"], mobx__WEBPACK_IMPORTED_MODULE_0__["observable"]], {
+  configurable: true,
+  enumerable: true,
+  writable: true,
+  initializer: function initializer() {
+    return false;
+  }
+}), _descriptor13 = _applyDecoratedDescriptor(_class.prototype, "changeDate", [mobx__WEBPACK_IMPORTED_MODULE_0__["action"]], {
   configurable: true,
   enumerable: true,
   writable: true,
@@ -4014,7 +4343,7 @@ var Store = (_class = (_temp = function Store() {
       _this.endDate = dates.end;
     };
   }
-}), _descriptor10 = _applyDecoratedDescriptor(_class.prototype, "addPnl", [mobx__WEBPACK_IMPORTED_MODULE_0__["action"]], {
+}), _descriptor14 = _applyDecoratedDescriptor(_class.prototype, "addPnl", [mobx__WEBPACK_IMPORTED_MODULE_0__["action"]], {
   configurable: true,
   enumerable: true,
   writable: true,
@@ -4025,7 +4354,7 @@ var Store = (_class = (_temp = function Store() {
       _this2.pnl += pnl;
     };
   }
-}), _descriptor11 = _applyDecoratedDescriptor(_class.prototype, "resetPnl", [mobx__WEBPACK_IMPORTED_MODULE_0__["action"]], {
+}), _descriptor15 = _applyDecoratedDescriptor(_class.prototype, "resetPnl", [mobx__WEBPACK_IMPORTED_MODULE_0__["action"]], {
   configurable: true,
   enumerable: true,
   writable: true,
@@ -4036,7 +4365,7 @@ var Store = (_class = (_temp = function Store() {
       _this3.pnl = 0;
     };
   }
-}), _descriptor12 = _applyDecoratedDescriptor(_class.prototype, "pushGlobalHash", [mobx__WEBPACK_IMPORTED_MODULE_0__["action"]], {
+}), _descriptor16 = _applyDecoratedDescriptor(_class.prototype, "pushGlobalHash", [mobx__WEBPACK_IMPORTED_MODULE_0__["action"]], {
   configurable: true,
   enumerable: true,
   writable: true,
@@ -4045,6 +4374,112 @@ var Store = (_class = (_temp = function Store() {
 
     return function (hash) {
       _this4.globalHash.push(hash);
+    };
+  }
+}), _descriptor17 = _applyDecoratedDescriptor(_class.prototype, "addTempNote", [mobx__WEBPACK_IMPORTED_MODULE_0__["action"]], {
+  configurable: true,
+  enumerable: true,
+  writable: true,
+  initializer: function initializer() {
+    var _this5 = this;
+
+    return function (time, note) {
+      if (_this5.tempNotes[0] == undefined) {
+        var newNote = {};
+        newNote["note"] = note;
+        newNote["time"] = time;
+
+        _this5.tempNotes.push(newNote);
+      } else {
+        var alreadyPresentNote = false;
+
+        for (var i = 0; i < _this5.tempNotes.length; i++) {
+          if (_this5.tempNotes[i].time == time) {
+            _this5.tempNotes[i].note = note;
+            alreadyPresentNote = true;
+          }
+
+          if (i == _this5.tempNotes.length - 1 && alreadyPresentNote == false) {
+            var _newNote = {};
+            _newNote["note"] = note;
+            _newNote["time"] = time;
+
+            _this5.tempNotes.push(_newNote);
+          }
+        }
+      }
+    };
+  }
+}), _descriptor18 = _applyDecoratedDescriptor(_class.prototype, "clearTempNotes", [mobx__WEBPACK_IMPORTED_MODULE_0__["action"]], {
+  configurable: true,
+  enumerable: true,
+  writable: true,
+  initializer: function initializer() {
+    var _this6 = this;
+
+    return function () {
+      _this6.tempNotes = [];
+    };
+  }
+}), _descriptor19 = _applyDecoratedDescriptor(_class.prototype, "addTempTag", [mobx__WEBPACK_IMPORTED_MODULE_0__["action"]], {
+  configurable: true,
+  enumerable: true,
+  writable: true,
+  initializer: function initializer() {
+    var _this7 = this;
+
+    return function (time, tag) {
+      var newTag = {};
+      newTag["tag"] = tag;
+      newTag["time"] = time;
+
+      _this7.tempTags.push(newTag);
+
+      _this7.changeHasTempTags();
+    };
+  }
+}), _descriptor20 = _applyDecoratedDescriptor(_class.prototype, "clearTempTags", [mobx__WEBPACK_IMPORTED_MODULE_0__["action"]], {
+  configurable: true,
+  enumerable: true,
+  writable: true,
+  initializer: function initializer() {
+    var _this8 = this;
+
+    return function () {
+      _this8.tempTags = [];
+    };
+  }
+}), _descriptor21 = _applyDecoratedDescriptor(_class.prototype, "changeHasTempTags", [mobx__WEBPACK_IMPORTED_MODULE_0__["action"]], {
+  configurable: true,
+  enumerable: true,
+  writable: true,
+  initializer: function initializer() {
+    var _this9 = this;
+
+    return function () {
+      _this9.hasTempTags = true;
+    };
+  }
+}), _descriptor22 = _applyDecoratedDescriptor(_class.prototype, "resetHasTempTags", [mobx__WEBPACK_IMPORTED_MODULE_0__["action"]], {
+  configurable: true,
+  enumerable: true,
+  writable: true,
+  initializer: function initializer() {
+    var _this10 = this;
+
+    return function () {
+      _this10.hasTempTags = false;
+    };
+  }
+}), _descriptor23 = _applyDecoratedDescriptor(_class.prototype, "setSymbol", [mobx__WEBPACK_IMPORTED_MODULE_0__["action"]], {
+  configurable: true,
+  enumerable: true,
+  writable: true,
+  initializer: function initializer() {
+    var _this11 = this;
+
+    return function (newSymbol) {
+      _this11.symbol = newSymbol;
     };
   }
 })), _class);
@@ -4080,7 +4515,7 @@ function initializeStore(initialData) {
 
 /***/ }),
 
-/***/ 3:
+/***/ 4:
 /*!**********************************!*\
   !*** multi ./pages/dashboard.js ***!
   \**********************************/
@@ -4221,6 +4656,17 @@ module.exports = require("mobx-persist");
 /***/ (function(module, exports) {
 
 module.exports = require("mobx-react");
+
+/***/ }),
+
+/***/ "mobx-react-lite":
+/*!**********************************!*\
+  !*** external "mobx-react-lite" ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("mobx-react-lite");
 
 /***/ }),
 

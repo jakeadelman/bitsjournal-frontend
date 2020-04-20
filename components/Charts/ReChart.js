@@ -13,13 +13,14 @@ import {
 import styled, { ThemeProvider } from "styled-components";
 import { wideFont } from "../shared/helpers";
 import theme from "../theme";
-import { formatDateMonthOnly } from "../Helpers/Functions.js";
+import { formatDateMonthOnly, calcCommission } from "../Helpers/Functions.js";
 import { inject, observer } from "mobx-react";
 import MainChart from "../Charts2/index";
 import Notes from "./Notes";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons";
 import equal from "fast-deep-equal";
+import { when } from "mobx";
 
 export default class Example extends PureComponent {
   constructor(props) {
@@ -42,6 +43,8 @@ export default class Example extends PureComponent {
       if (i == data.fetchTradeHistory.length - 1) {
         for (let j = 0; j < fullRay.length; j++) {
           let dat = fullRay[j];
+          // dat.timestamp = formatDateForRow(dat.timestamp);
+          // fullRay[j] = dat;
           if (dat.trdStart == true) {
             let sliced = fullRay.slice(j, fullRay.length);
             for (let k = 0; k < sliced.length; k++) {
@@ -81,17 +84,12 @@ export default class Example extends PureComponent {
         for (let i = 0; i < firstFullTrades.length; i++) {
           for (let j = 0; j < this.props.filteredData.length; j++) {
             if (firstFullTrades[i][0].id == this.props.filteredData[j].id) {
-              for (let k = 0; k < this.state.fullTrades.length; k++) {
-                if (
-                  this.props.filteredData[j].id ==
-                  this.state.fullTrades[k][0].id
-                ) {
-                  newFullTrades.unshift(firstFullTrades[i]);
-                }
-              }
+              console.log("ADDING", firstFullTrades[i]);
+              newFullTrades.unshift(firstFullTrades[i]);
             }
           }
-          if (i == this.state.fullTrades.length - 1) {
+          if (i == firstFullTrades.length - 1) {
+            console.log(newFullTrades, "NEW FULL");
             this.setState({ fullTrades: newFullTrades });
           }
         }
@@ -102,17 +100,17 @@ export default class Example extends PureComponent {
   componentDidMount() {
     console.log("MOUNTING");
     let returned = this.createFullTrades(this.props.data);
-    if(returned!=undefined){
+    if (returned != undefined) {
       this.setState({
         data: returned.fullRay,
         fullTrades: returned.fullTrades,
         initData: returned.initData,
       });
-    }else{
+    } else {
       this.setState({
-        data:this.props.initData,
-        initData:this.props.initData
-      })
+        data: this.props.initData,
+        initData: this.props.initData,
+      });
     }
     this.updateWindowDimensions();
     window.addEventListener("resize", this.updateWindowDimensions);
@@ -149,6 +147,7 @@ export default class Example extends PureComponent {
       <ThemeProvider theme={theme(false)}>
         <div style={{ minWidth: this.state.chartWidth }}>
           {this.state.fullTrades.map((slic, i) => {
+            console.log(slic);
             return (
               <MakeCol
                 slic={slic}
@@ -182,15 +181,25 @@ class MakeCol extends Component {
     };
     this.readMoreClicked = this.readMoreClicked.bind(this);
     this.clicked = this.clicked.bind(this);
+    this.getSlicData = this.getSlicData.bind(this);
   }
 
   componentDidMount() {
-    // console.log(this.state);
+    console.log("MOUNTED", this.props.slic);
+  }
+  componentDidUpdate(prevProps) {
+    if (!equal(this.props.slic, prevProps.slic)) {
+      console.log("UPDATED");
+      this.getSlicData();
+    }
   }
 
   componentWillMount() {
+    this.getSlicData();
+  }
+
+  getSlicData() {
     this.state.data = this.props.slic;
-    // console.log(this.state.data[0]);
     if (
       this.state.data[0].side == "Buy" &&
       this.state.data[0].execType == "Trade"
@@ -208,7 +217,6 @@ class MakeCol extends Component {
       for (let i = 0; i < this.state.data.length; i++) {
         realQty = this.state.data[i].orderQty - this.state.data[i].leavesQty;
         if (this.state.data[i].side == "Buy") {
-          // totBuyPrice += parseFloat(this.state.data[i].price);
           buyNum += 1;
           totBuyContracts += realQty;
           totBuyContractsMult += realQty * parseFloat(this.state.data[i].price);
@@ -235,25 +243,45 @@ class MakeCol extends Component {
         if (i == this.state.data.length - 1) {
           avgBuyPrice = totBuyContractsMult / totBuyContracts;
           avgSellPrice = totSellContractsMult / totSellContracts;
+          let avgExit;
+          let avgEntry;
           if (avgBuyPrice != null) {
-            this.state.avgEntryPrice = avgBuyPrice;
+            // this.state.avgEntryPrice = avgBuyPrice;
+            avgEntry = avgBuyPrice;
           } else {
-            this.state.avgEntryPrice = 0;
+            avgEntry = 0;
+            // this.state.avgEntryPrice = 0;
           }
           if (avgSellPrice != null) {
-            this.state.avgExitPrice = avgSellPrice;
+            // this.state.avgExitPrice = avgSellPrice;
+            avgExit = avgSellPrice;
           } else {
-            this.state.avgExitPrice = 0;
+            // this.state.avgExitPrice = 0;
+            avgExit = 0;
           }
           this.state.cumQty = totBuyContracts;
-
           let thePnl = (1 / avgBuyPrice - 1 / avgSellPrice) * totSellContracts;
           if (thePnl != null) {
-            // console.log("TOT COMMISS", totCommission);
-            this.state.pnl = thePnl + totCommission;
-            this.props.store.addPnl(this.state.pnl);
+            let myPnl = thePnl + totCommission;
+            this.setState(
+              {
+                pnl: myPnl,
+                avgEntryPrice: avgEntry,
+                avgExitPrice: avgExit,
+              },
+              () => console.log("STATE IS SET")
+            );
+            this.props.store.addPnl(myPnl);
           } else {
-            this.state.pnl = 0;
+            // this.state.pnl = 0;
+            this.setState(
+              {
+                pnl: 0,
+                avgEntryPrice: avgEntry,
+                avgExitPrice: avgExit,
+              },
+              () => console.log("STATE IS SET")
+            );
           }
         }
       }
@@ -262,8 +290,6 @@ class MakeCol extends Component {
       this.state.data[0].side == "Sell" &&
       this.state.data[0].execType == "Trade"
     ) {
-      // let avgBuyPrice = 0;
-      // let avgSellPrice = 0;
       let totBuyContracts = 0;
       let totSellContracts = 0;
       let buyNum = 0;
@@ -300,30 +326,43 @@ class MakeCol extends Component {
           totCommission -= (realQty * 0.0075) / this.state.data[i].price;
         }
         if (i == this.state.data.length - 1) {
-          // console.log(totBuyContracts, totBuyContractsMult);
-          // console.log(totSellContracts, totSellContractsMult);
           let avgBuyPrice = totBuyContractsMult / totBuyContracts;
           let avgSellPrice = totSellContractsMult / totSellContracts;
           let pnl = (1 / avgBuyPrice - 1 / avgSellPrice) * totBuyContracts;
-          // console.log(pnl, totBuyContractsMult, totBuyContracts);
+          let avgEntry;
+          let avgExit;
           if (avgBuyPrice != null) {
-            this.state.avgExitPrice = avgBuyPrice;
+            avgExit = avgBuyPrice;
           } else {
-            this.state.avgExitPrice = 0;
+            avgExit = 0;
           }
           if (avgSellPrice != null) {
-            this.state.avgEntryPrice = avgSellPrice;
+            avgEntry = avgSellPrice;
           } else {
-            this.state.avgEntryPrice = 0;
+            avgEntry = 0;
           }
-
           this.state.cumQty = totSellContracts;
           if (pnl != null) {
-            // console.log("TOT COMMISS", totCommission);
-            this.state.pnl = pnl + totCommission;
-            this.props.store.addPnl(pnl);
+            let myPnl = pnl + totCommission;
+            this.setState(
+              {
+                pnl: myPnl,
+                avgEntryPrice: avgEntry,
+                avgExitPrice: avgExit,
+              },
+              () => console.log("STATE IS SET")
+            );
+            this.props.store.addPnl(myPnl);
           } else {
-            this.state.pnl = 0;
+            // this.state.pnl = 0;
+            this.setState(
+              {
+                pnl: 0,
+                avgEntryPrice: avgEntry,
+                avgExitPrice: avgExit,
+              },
+              () => console.log("STATE IS SET")
+            );
           }
         }
       }
@@ -348,6 +387,8 @@ class MakeCol extends Component {
   }
 
   render() {
+    // console.log(this.state.data[0], "DAT ZERO");
+    // if (this.state.data[0] != undefined) {
     if (this.state.clicked == false) {
       return (
         <ContainDiv onClick={this.clicked.bind(this)}>
@@ -391,13 +432,16 @@ class MakeCol extends Component {
                 <NextToDivBlack>Side</NextToDivBlack>
                 <NextToDivBlack>Price</NextToDivBlack>
                 <NextToDivBlack>Order Qty</NextToDivBlack>
+                <NextToDivBlack>Leaves Qty</NextToDivBlack>
                 <NextToDivBlack>Commission</NextToDivBlack>
               </ContainDivBlack>
 
               {this.state.data.map((dat) => {
                 return (
                   <ContainDivBlack onClick={this.clicked.bind(this)}>
-                    <NextToDivBlack>{dat.timestamp}</NextToDivBlack>
+                    <NextToDivBlack>
+                      {formatDateMonthOnly(dat.timestamp)}
+                    </NextToDivBlack>
                     {dat.execType == "Trade" ? (
                       <NextToDivBlack>{dat.side}</NextToDivBlack>
                     ) : (
@@ -405,7 +449,22 @@ class MakeCol extends Component {
                     )}
                     <NextToDivBlack>${dat.price.toString()}</NextToDivBlack>
                     <NextToDivBlack>{dat.orderQty.toString()}</NextToDivBlack>
-                    <NextToDivBlack>{dat.commission}</NextToDivBlack>
+                    <NextToDivBlack>
+                      {dat.leavesQty.toString() == 0
+                        ? ""
+                        : dat.leavesQty.toString()}
+                    </NextToDivBlack>
+                    <NextToDivBlack>
+                      {dat.execType == "Funding"
+                        ? ""
+                        : calcCommission(
+                            dat.price,
+                            dat.side,
+                            dat.orderQty,
+                            dat.leavesQty,
+                            dat.orderType
+                          )}
+                    </NextToDivBlack>
                   </ContainDivBlack>
                 );
               })}
@@ -440,13 +499,16 @@ class MakeCol extends Component {
                 <NextToDivBlack>Side</NextToDivBlack>
                 <NextToDivBlack>Price</NextToDivBlack>
                 <NextToDivBlack>Order Qty</NextToDivBlack>
+                <NextToDivBlack>Leaves Qty</NextToDivBlack>
                 <NextToDivBlack>Commission</NextToDivBlack>
               </ContainDivBlack>
 
               {this.state.data.map((dat) => {
                 return (
                   <ContainDivBlack onClick={this.clicked.bind(this)}>
-                    <NextToDivBlack>{dat.timestamp}</NextToDivBlack>
+                    <NextToDivBlack>
+                      {formatDateMonthOnly(dat.timestamp)}
+                    </NextToDivBlack>
                     {dat.execType == "Trade" ? (
                       <NextToDivBlack>{dat.side}</NextToDivBlack>
                     ) : (
@@ -454,7 +516,22 @@ class MakeCol extends Component {
                     )}
                     <NextToDivBlack>${dat.price.toString()}</NextToDivBlack>
                     <NextToDivBlack>{dat.orderQty.toString()}</NextToDivBlack>
-                    <NextToDivBlack>{dat.commission}</NextToDivBlack>
+                    <NextToDivBlack>
+                      {dat.leavesQty.toString() == 0
+                        ? ""
+                        : dat.leavesQty.toString()}
+                    </NextToDivBlack>
+                    <NextToDivBlack>
+                      {dat.execType == "Funding"
+                        ? ""
+                        : calcCommission(
+                            dat.price,
+                            dat.side,
+                            dat.orderQty,
+                            dat.leavesQty,
+                            dat.orderType
+                          )}
+                    </NextToDivBlack>
                   </ContainDivBlack>
                 );
               })}

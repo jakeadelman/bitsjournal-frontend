@@ -1,5 +1,5 @@
 import { action, observable } from "mobx";
-import { useStaticRendering } from "mobx-react";
+import { useStaticRendering, observer } from "mobx-react";
 import { create, persist } from "mobx-persist";
 import { createContext } from "react";
 import { getStateDate } from "../components/Helpers/Functions";
@@ -13,18 +13,23 @@ export class Store {
   @persist @observable isAuth = false;
   @persist @observable startDate = "2020-02-24T12:43:56.702Z";
   @persist @observable endDate = "2020-02-28T12:43:56.702Z";
+  @persist @observable symbol = "XBTUSD";
+
   @persist @observable date = 1;
   @observable pnl = 0;
   @observable globalHash = [];
+  @persist @observable tempNotes = [];
+  @persist @observable tempTags = [];
+  @persist @observable hasTempTags = false;
 
-  @action changeDate = newDate => {
+  @action changeDate = (newDate) => {
     let dates = getStateDate(newDate);
     this.date = newDate;
     this.startDate = dates.start;
     this.endDate = dates.end;
   };
 
-  @action addPnl = pnl => {
+  @action addPnl = (pnl) => {
     this.pnl += pnl;
   };
 
@@ -32,24 +37,58 @@ export class Store {
     this.pnl = 0;
   };
 
-  @action pushGlobalHash = hash => {
+  @action pushGlobalHash = (hash) => {
     this.globalHash.push(hash);
   };
 
-  //   constructor(isServer, initialData = {}) {
-  //     this.lastUpdate =
-  //       initialData.lastUpdate != null ? initialData.lastUpdate : Date.now();
-  //     this.light = !!initialData.light;
-  //   }
+  @action addTempNote = (time, note) => {
+    if (this.tempNotes[0] == undefined) {
+      let newNote = {};
+      newNote["note"] = note;
+      newNote["time"] = time;
+      this.tempNotes.push(newNote);
+    } else {
+      let alreadyPresentNote = false;
+      for (let i = 0; i < this.tempNotes.length; i++) {
+        if (this.tempNotes[i].time == time) {
+          this.tempNotes[i].note = note;
+          alreadyPresentNote = true;
+        }
+        if (i == this.tempNotes.length - 1 && alreadyPresentNote == false) {
+          let newNote = {};
+          newNote["note"] = note;
+          newNote["time"] = time;
+          this.tempNotes.push(newNote);
+        }
+      }
+    }
+  };
 
-  //   @action start = () => {
-  //     this.timer = setInterval(() => {
-  //       this.lastUpdate = Date.now();
-  //       this.light = true;
-  //     }, 1000);
-  //   };
+  @action clearTempNotes = () => {
+    this.tempNotes = [];
+  };
 
-  //   stop = () => clearInterval(this.timer);
+  @action addTempTag = (time, tag) => {
+    let newTag = {};
+    newTag["tag"] = tag;
+    newTag["time"] = time;
+    this.tempTags.push(newTag);
+    this.changeHasTempTags();
+  };
+
+  @action clearTempTags = () => {
+    this.tempTags = [];
+  };
+
+  @action changeHasTempTags = () => {
+    this.hasTempTags = true;
+  };
+  @action resetHasTempTags = () => {
+    this.hasTempTags = false;
+  };
+  @action setSymbol = (newSymbol) => {
+    this.symbol = newSymbol;
+  };
 }
 
 let store = null;
