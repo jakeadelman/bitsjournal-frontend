@@ -30,28 +30,28 @@ function addZeroBefore(n) {
 }
 
 export function getStateDate(input) {
-  if (input == 1) {
+  if (input == "Today") {
     let dates = {};
     dates.end = makeDateHrs(0);
     dates.start = makeDateHrs(24);
     console.log("is today");
     return dates;
   }
-  if (input == 2) {
+  if (input == "Yesterday") {
     let dates = {};
     dates.end = makeDateHrs(1);
     dates.start = makeDateDays(2);
     console.log("is yesterday");
     return dates;
   }
-  if (input == 3) {
+  if (input == "This Week") {
     let dates = {};
     dates.end = makeDateHrs(0);
     dates.start = makeDateDays(7);
     console.log("is this week");
     return dates;
   }
-  if (input == 4) {
+  if (input == "This Month") {
     let dates = {};
     dates.end = makeDateHrs(0);
     dates.start = makeDateDays(30);

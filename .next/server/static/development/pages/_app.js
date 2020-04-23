@@ -122,7 +122,7 @@ function addZeroBefore(n) {
 }
 
 function getStateDate(input) {
-  if (input == 1) {
+  if (input == "Today") {
     var dates = {};
     dates.end = makeDateHrs(0);
     dates.start = makeDateHrs(24);
@@ -130,7 +130,7 @@ function getStateDate(input) {
     return dates;
   }
 
-  if (input == 2) {
+  if (input == "Yesterday") {
     var _dates = {};
     _dates.end = makeDateHrs(1);
     _dates.start = makeDateDays(2);
@@ -138,7 +138,7 @@ function getStateDate(input) {
     return _dates;
   }
 
-  if (input == 3) {
+  if (input == "This Week") {
     var _dates2 = {};
     _dates2.end = makeDateHrs(0);
     _dates2.start = makeDateDays(7);
@@ -146,7 +146,7 @@ function getStateDate(input) {
     return _dates2;
   }
 
-  if (input == 4) {
+  if (input == "This Month") {
     var _dates3 = {};
     _dates3.end = makeDateHrs(0);
     _dates3.start = makeDateDays(30);
@@ -691,7 +691,7 @@ var Store = (_class = (_temp = function Store() {
   enumerable: true,
   writable: true,
   initializer: function initializer() {
-    return 1;
+    return "Today";
   }
 }), _descriptor8 = _applyDecoratedDescriptor(_class.prototype, "pnl", [mobx__WEBPACK_IMPORTED_MODULE_0__["observable"]], {
   configurable: true,

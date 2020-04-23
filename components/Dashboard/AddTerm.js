@@ -81,7 +81,7 @@ const AddTodo = () => {
       {(addSearchTerm, { data }) => (
         <div>
           <form
-            onSubmit={e => {
+            onSubmit={(e) => {
               e.preventDefault();
               addSearchTerm({ variables: { searchterm: input.value } });
               input.value = "";
@@ -89,7 +89,7 @@ const AddTodo = () => {
             }}
           >
             <input
-              ref={node => {
+              ref={(node) => {
                 input = node;
               }}
             />
@@ -97,13 +97,6 @@ const AddTodo = () => {
               Add
             </button>
           </form>
-          {/* <style jsx>
-            {`
-              .add-button {
-                margin-top: 5px;
-              }
-            `}
-          </style> */}
         </div>
       )}
     </Mutation>

@@ -15,7 +15,7 @@ export class Store {
   @persist @observable endDate = "2020-02-28T12:43:56.702Z";
   @persist @observable symbol = "XBTUSD";
 
-  @persist @observable date = 1;
+  @persist @observable date = "Today";
   @observable pnl = 0;
   @observable globalHash = [];
   @persist @observable tempNotes = [];

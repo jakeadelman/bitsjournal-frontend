@@ -1,6 +1,6 @@
 import { Query } from "react-apollo";
 import ReChart from "../Charts/ReChart";
-import Sidebar from "../Categories/Menu";
+import Sidebar from "../Menu/Menu";
 import gql from "graphql-tag";
 import styled from "styled-components";
 import { inject, observer } from "mobx-react";
@@ -14,12 +14,9 @@ import {
 import { getStateDate } from "../Helpers/Functions";
 import { equal } from "fast-deep-equal";
 import ApiKeyForm from "./AddApiForm";
-import TotalDat from "./Hashtags";
+import TotalDat from "./Dashboard";
+import TotalDat768 from "./768px/Dashboard";
 import { when, reaction } from "mobx";
-// import { pushGlobalHash } from "../../stores/store";
-// import { useState, useEffect } from "react";
-
-// import { storesContext } from "../../stores/UserStore";
 
 @inject(["store"])
 @observer
@@ -60,6 +57,8 @@ class FetchQuery extends React.Component {
 class Comp extends React.Component {
   constructor(props) {
     super(props);
+    this.state = { width: 0 };
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
 
   componentDidMount() {
@@ -69,13 +68,24 @@ class Comp extends React.Component {
         this.forceUpdate(console.log("FORCE UPDATE WAS CALLED"));
       }
     );
+    this.updateWindowDimensions();
+    window.addEventListener("resize", this.updateWindowDimensions);
   }
 
   componentWillUnmount() {
     this.tempTagsReaction();
+    window.removeEventListener("resize", this.updateWindowDimensions);
+  }
+
+  updateWindowDimensions() {
+    console.log(window.innerWidth);
+    this.setState({
+      width: window.innerWidth,
+    });
   }
 
   render() {
+    console.log("rerendered");
     return (
       <Query query={this.props.query} variables={this.props.vars}>
         {({ loading, error, data }) => {
@@ -87,7 +97,11 @@ class Comp extends React.Component {
             this.props.store.resetHasTempTags();
             this.props.store.clearTempNotes();
             this.props.store.clearTempTags();
-            return <TotalDat data={data} />;
+            if (this.state.width > 768) {
+              return <TotalDat data={data} />;
+            } else {
+              return <TotalDat768 data={data} />;
+            }
           }
         }}
       </Query>
