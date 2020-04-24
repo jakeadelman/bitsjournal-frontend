@@ -128,7 +128,9 @@ const SetSymbol = styled.div`
 const DropdownContainer = styled.div`
   height: 100px;
 `;
-const DropdownListContainer = styled.ul``;
+const DropdownListContainer = styled.ul`
+  list-style-type: none;
+`;
 const DropdownListItem = styled.li`
   text-align: center;
   font-size: 15px;

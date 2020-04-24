@@ -97,12 +97,14 @@ module.exports =
 /*!*****************************************!*\
   !*** ./components/Helpers/Functions.js ***!
   \*****************************************/
-/*! exports provided: formatDateMonthOnly, getStateDate, calcCommission */
+/*! exports provided: formatDateMonthOnly, formatDateShort, formatDateShortWithHour, getStateDate, calcCommission */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "formatDateMonthOnly", function() { return formatDateMonthOnly; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "formatDateShort", function() { return formatDateShort; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "formatDateShortWithHour", function() { return formatDateShortWithHour; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getStateDate", function() { return getStateDate; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "calcCommission", function() { return calcCommission; });
 function formatDateMonthOnly(date) {
@@ -112,9 +114,30 @@ function formatDateMonthOnly(date) {
   var day = theDate.getDate();
   var hours = addZeroBefore(theDate.getHours());
   var mins = addZeroBefore(theDate.getMinutes());
-  var monthIndex = theDate.getMonth();
+  var monthIndex = theDate.getMonth(); // var monthIndex = addZeroBefore(theDate.getMonth());
+
   var year = theDate.getFullYear();
   return day + " " + monthNames[monthIndex] + ", " + hours + ":" + mins;
+}
+function formatDateShort(date) {
+  var utcDate = date;
+  var theDate = new Date(utcDate);
+  var day = addZeroBefore(theDate.getDate());
+  var hours = addZeroBefore(theDate.getHours());
+  var mins = addZeroBefore(theDate.getMinutes());
+  var monthIndex = addZeroBefore(theDate.getMonth());
+  var year = theDate.getFullYear();
+  return monthIndex.toString() + "/" + day.toString();
+}
+function formatDateShortWithHour(date) {
+  var utcDate = date;
+  var theDate = new Date(utcDate);
+  var day = addZeroBefore(theDate.getDate());
+  var hours = addZeroBefore(theDate.getHours());
+  var mins = addZeroBefore(theDate.getMinutes());
+  var monthIndex = addZeroBefore(theDate.getMonth());
+  var year = theDate.getFullYear();
+  return monthIndex.toString() + "/" + day.toString() + " " + hours.toString() + ":" + mins.toString();
 }
 
 function addZeroBefore(n) {

@@ -5,8 +5,8 @@ import {
   NextToDivHeader,
   RowContainer,
   ContainDivHeader,
-} from "../Charts/ReChart";
-import ReChart from "../Charts/ReChart";
+} from "./ReChart";
+import ReChart from "./ReChart";
 import Sidebar from "../Menu/Menu";
 import { getNewDat } from "./helpers";
 
@@ -27,13 +27,24 @@ export default class extends React.Component {
     this.getGlobalHashtags = this.getGlobalHashtags.bind(this);
     this.hashtagClicked = this.hashtagClicked.bind(this);
     this.hashtagClickedBack = this.hashtagClickedBack.bind(this);
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
 
   componentWillMount() {
     this.setState({ data: this.props.data });
     this.getGlobalHashtags(this.props.data);
   }
-  componentDidMount() {}
+  componentDidMount() {
+    window.addEventListener("resize", this.updateWindowDimensions);
+  }
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updateWindowDimensions);
+  }
+  updateWindowDimensions() {
+    this.setState({
+      width: window.innerWidth,
+    });
+  }
 
   async getGlobalHashtags(data) {
     for (let i = 0; i < data.fetchTradeHistory.length; i++) {
@@ -219,15 +230,27 @@ export default class extends React.Component {
                 );
               })}
             </TopHashtagDiv>
-            <ContainDivHeader>
-              <NextToDivHeader>Start</NextToDivHeader>
-              <NextToDivHeader>End</NextToDivHeader>
-              <NextToDivHeader>Direction</NextToDivHeader>
-              <NextToDivHeader>Avg Entry</NextToDivHeader>
-              <NextToDivHeader>Avg Exit</NextToDivHeader>
-              <NextToDivHeader>Qty</NextToDivHeader>
-              <NextToDivHeader>Realized Pnl</NextToDivHeader>
-            </ContainDivHeader>
+            {this.state.width > 1380 ? (
+              <ContainDivHeader>
+                <NextToDivHeader>Start</NextToDivHeader>
+                <NextToDivHeader>End</NextToDivHeader>
+                <NextToDivHeader>Direction</NextToDivHeader>
+                <NextToDivHeader>Avg Entry</NextToDivHeader>
+                <NextToDivHeader>Avg Exit</NextToDivHeader>
+                <NextToDivHeader>Qty</NextToDivHeader>
+                <NextToDivHeader>Realized Pnl</NextToDivHeader>
+              </ContainDivHeader>
+            ) : (
+              <ContainDivHeader>
+                <NextToDivHeader>Start</NextToDivHeader>
+                <NextToDivHeader>End</NextToDivHeader>
+                <NextToDivHeader>Direction</NextToDivHeader>
+                <NextToDivHeader>Entry</NextToDivHeader>
+                <NextToDivHeader>Exit</NextToDivHeader>
+                <NextToDivHeader>Qty</NextToDivHeader>
+                <NextToDivHeader>RPNL</NextToDivHeader>
+              </ContainDivHeader>
+            )}
             <ReChart
               data={this.state.data}
               filteredData={this.state.filteredData}

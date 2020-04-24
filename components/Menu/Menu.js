@@ -6,7 +6,7 @@ import Header from "./Header";
 import { inject } from "mobx-react";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
-import { ContainDivClicked } from "../Charts/ReChart";
+import { ContainDivClicked } from "../Dashboard/ReChart";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons";
 
@@ -161,7 +161,9 @@ const SetSymbol = styled.div`
 const DropdownContainer = styled.div`
   height: 100px;
 `;
-const DropdownListContainer = styled.ul``;
+const DropdownListContainer = styled.ul`
+  list-style-type: none;
+`;
 const DropdownListItem = styled.li`
   text-align: center;
   font-size: 15px;

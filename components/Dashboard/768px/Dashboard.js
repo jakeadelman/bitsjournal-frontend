@@ -5,8 +5,8 @@ import {
   NextToDivHeader,
   RowContainer,
   ContainDivHeader,
-} from "../../Charts/ReChart";
-import ReChart from "../../Charts/ReChart";
+} from "../ReChart";
+import ReChart from "../ReChart";
 import Sidebar768 from "../../Menu/768px/Menu";
 import { getNewDat } from "../helpers";
 
@@ -33,7 +33,6 @@ export default class extends React.Component {
     this.setState({ data: this.props.data });
     this.getGlobalHashtags(this.props.data);
   }
-  componentDidMount() {}
 
   async getGlobalHashtags(data) {
     for (let i = 0; i < data.fetchTradeHistory.length; i++) {
@@ -225,11 +224,11 @@ export default class extends React.Component {
             <ContainDivHeader>
               <NextToDivHeader>Start</NextToDivHeader>
               <NextToDivHeader>End</NextToDivHeader>
-              <NextToDivHeader>Direction</NextToDivHeader>
-              <NextToDivHeader>Avg Entry</NextToDivHeader>
-              <NextToDivHeader>Avg Exit</NextToDivHeader>
+              <NextToDivHeader>L/S</NextToDivHeader>
+              <NextToDivHeader>Entry</NextToDivHeader>
+              <NextToDivHeader>Exit</NextToDivHeader>
               <NextToDivHeader>Qty</NextToDivHeader>
-              <NextToDivHeader>Realized Pnl</NextToDivHeader>
+              <NextToDivHeader>RPNL</NextToDivHeader>
             </ContainDivHeader>
             <ReChart
               data={this.state.data}

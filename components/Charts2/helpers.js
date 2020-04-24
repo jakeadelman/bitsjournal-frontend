@@ -1,7 +1,8 @@
 export const timeCompare = (d, datu, timeframe) => {
   var MS_PER_MINUTE = 60000;
   var coeffFive = 1000 * 60 * 5;
-  var coeffOne = 1000 * 60 * 5;
+  // var coeffOne = 1000 * 60 * 5;
+  var coeffOne = 1000 * 60;
   if (timeframe == "1m") {
     return (
       Math.round(d.date.getTime() / coeffOne) * coeffOne ===
@@ -15,6 +16,11 @@ export const timeCompare = (d, datu, timeframe) => {
     );
   }
   if (timeframe == "1h") {
+    // console.log(
+    //   d,
+    //   d.date.getHours() === datu.getHours() &&
+    //     d.date.getDate() === datu.getDate()
+    // );
     return (
       d.date.getHours() === datu.getHours() &&
       d.date.getDate() === datu.getDate()
@@ -25,7 +31,7 @@ export const timeCompare = (d, datu, timeframe) => {
   }
 };
 
-export const getYRangeNums = data => {
+export const getYRangeNums = (data) => {
   let lowNum;
   let highNum;
   for (let i = 0; i < data.length; i++) {
@@ -50,12 +56,18 @@ export const getYRangeNums = data => {
 };
 
 export const findYValSell = (yLow, yHigh, price) => {
-  let fullRange = yHigh - yLow;
-  let myRange = yHigh - price;
-  return myRange / (fullRange * 1.5);
+  // let fullRange = yHigh - yLow;
+  // let myRange = yHigh - parseInt(price);
+  // let outOf = myRange / fullRange;
+  // let multiplied = outOf * 180 + 70;
+  // console.log(outOf, multiplied);
+  return 80;
 };
 export const findYValBuy = (yLow, yHigh, price) => {
   let fullRange = yHigh - yLow;
-  let myRange = yHigh - price;
-  return myRange / (fullRange / 1.5);
+  let myRange = yHigh - parseInt(price);
+  let outOf = myRange / fullRange;
+  let multiplied = outOf * 180 + 100;
+  console.log(outOf, multiplied);
+  return multiplied;
 };

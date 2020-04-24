@@ -20,9 +20,43 @@ export function formatDateMonthOnly(date) {
   var hours = addZeroBefore(theDate.getHours());
   var mins = addZeroBefore(theDate.getMinutes());
   var monthIndex = theDate.getMonth();
+  // var monthIndex = addZeroBefore(theDate.getMonth());
   var year = theDate.getFullYear();
 
   return day + " " + monthNames[monthIndex] + ", " + hours + ":" + mins;
+}
+
+export function formatDateShort(date) {
+  let utcDate = date;
+  let theDate = new Date(utcDate);
+
+  var day = addZeroBefore(theDate.getDate());
+  var hours = addZeroBefore(theDate.getHours());
+  var mins = addZeroBefore(theDate.getMinutes());
+  var monthIndex = addZeroBefore(theDate.getMonth());
+  var year = theDate.getFullYear();
+
+  return monthIndex.toString() + "/" + day.toString();
+}
+export function formatDateShortWithHour(date) {
+  let utcDate = date;
+  let theDate = new Date(utcDate);
+
+  var day = addZeroBefore(theDate.getDate());
+  var hours = addZeroBefore(theDate.getHours());
+  var mins = addZeroBefore(theDate.getMinutes());
+  var monthIndex = addZeroBefore(theDate.getMonth());
+  var year = theDate.getFullYear();
+
+  return (
+    monthIndex.toString() +
+    "/" +
+    day.toString() +
+    " " +
+    hours.toString() +
+    ":" +
+    mins.toString()
+  );
 }
 
 function addZeroBefore(n) {

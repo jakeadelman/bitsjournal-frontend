@@ -6,7 +6,7 @@ import Header from "./Header";
 import { inject } from "mobx-react";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
-import { ContainDivClicked } from "../../Charts/ReChart";
+import { ContainDivClicked } from "../../Dashboard/ReChart";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons";
 
@@ -81,11 +81,11 @@ const Sidebar = inject("store")(
         </LapInner>
         {store.pnl >= 0 ? (
           <LapInner>
-            <InnerLapper>{store.pnl.toFixed(4) + "xbt"}</InnerLapper>
+            <InnerLapper>+{store.pnl.toFixed(4) + "xbt"}</InnerLapper>
           </LapInner>
         ) : (
           <LapInner>
-            <InnerLapper>{store.pnl.toFixed(4) + "xbt"}</InnerLapper>
+            <InnerLapper>-{store.pnl.toFixed(4) + "xbt"}</InnerLapper>
           </LapInner>
         )}
       </LapContain>
@@ -104,7 +104,7 @@ const LapInner = styled.div`
 `;
 const LapFurtherIn = styled.div`
   margin: 0 auto;
-  width: 80px;
+  width: 100px;
 `;
 
 export default Sidebar;
@@ -180,7 +180,9 @@ const SetSymbol = styled.div`
 const DropdownContainer = styled.div`
   height: 100px;
 `;
-const DropdownListContainer = styled.ul``;
+const DropdownListContainer = styled.ul`
+  list-style-type: none;
+`;
 const DropdownListItem = styled.li`
   text-align: center;
   font-size: 15px;

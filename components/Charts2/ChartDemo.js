@@ -12,24 +12,24 @@ import {
   EdgeIndicator,
   CurrentCoordinate,
   MouseCoordinateX,
-  MouseCoordinateY
+  MouseCoordinateY,
 } from "react-stockcharts/lib/coordinates";
 import {
   timeCompare,
   getYRangeNums,
   findYValBuy,
-  findYValSell
+  findYValSell,
 } from "./helpers";
 
 import {
   LabelAnnotation,
   Label,
-  Annotate
+  Annotate,
 } from "react-stockcharts/lib/annotation";
 import { discontinuousTimeScaleProvider } from "react-stockcharts/lib/scale";
 import {
   OHLCTooltip,
-  MovingAverageTooltip
+  MovingAverageTooltip,
 } from "react-stockcharts/lib/tooltip";
 import { ema } from "react-stockcharts/lib/indicator";
 import { fitWidth } from "react-stockcharts/lib/helper";
@@ -40,22 +40,23 @@ class CandleStickChartWithAnnotation extends React.Component {
     super(props);
   }
   componentDidMount() {
-    // console.log(this.props);
+    // console.log(this.props.data);
+    // console.log(this.props.initialData);
     let yRangeNums = getYRangeNums(this.props.data);
     this.setState({ yRangeNums: yRangeNums });
   }
   render() {
     const margin = { left: 20, right: 50, top: 30, bottom: 30 };
     const height = 400;
-    const { type, data: initialData, width, ratio } = this.props;
+    const { type, width, ratio, data: initialData } = this.props;
 
     const [yAxisLabelX, yAxisLabelY] = [
       width - margin.left - 40,
-      (height - margin.top - margin.bottom) / 2
+      (height - margin.top - margin.bottom) / 2,
     ];
 
     const xScaleProvider = discontinuousTimeScaleProvider.inputDateAccessor(
-      d => d.date
+      (d) => d.date
     );
     const { data, xScale, xAccessor, displayXAccessor } = xScaleProvider(
       initialData
@@ -63,8 +64,6 @@ class CandleStickChartWithAnnotation extends React.Component {
 
     const start = xAccessor(last(data));
     const end = xAccessor(data[Math.max(0, data.length - 150)]);
-    // console.log(start, "CHART START");
-    // console.log(end, "CHART END");
     const xExtents = [start, end];
 
     if (this.state == null) {
@@ -87,7 +86,7 @@ class CandleStickChartWithAnnotation extends React.Component {
       >
         <Chart
           id={1}
-          yExtents={[d => [d.high, d.low]]}
+          yExtents={[(d) => [d.high, d.low]]}
           padding={{ top: 80, bottom: 80 }}
         >
           <XAxis axisAt="bottom" orient="bottom" />
@@ -104,66 +103,64 @@ class CandleStickChartWithAnnotation extends React.Component {
           <YAxis axisAt="right" orient="right" ticks={5} />
           <CandlestickSeries />
           <OHLCTooltip origin={[-10, 0]} />
-          {this.props.trades.map(each => {
+          {this.props.trades.map((each) => {
             // console.log(
             //   "mapping total length" + this.props.trades.length.toString(),
             //   each
             // );
             let datu = new Date(each.timestamp);
+            // console.log(datu, this.props.timeframe);
             if (each.side == "Buy") {
               const annotationPropsUp = {
                 fontFamily: "Glyphicons Halflings",
-                fontSize: 20,
+                fontSize: 15,
                 fill: "#018001",
+                // fill: rgba(1, 128, 1, 0.5),
                 opacity: 0.8,
-                text: "˄",
+                text: "▲",
                 y: ({ yScale }) => {
-                  return (
-                    yScale.range()[0] *
-                    findYValBuy(
-                      this.state.yRangeNums[0],
-                      this.state.yRangeNums[1],
-                      each.price
-                    )
-                  );
+                  return yScale.range()[0] + 20;
+                  // return findYValBuy(
+                  //   this.state.yRangeNums[0],
+                  //   this.state.yRangeNums[1],
+                  //   each.price
+                  // );
                 },
                 onClick: console.log.bind(console),
-                tooltip: d => timeFormat("%B")(d.date)
+                tooltip: (d) => timeFormat("%B")(d.date),
                 // onMouseOver: console.log.bind(console),
               };
 
               return (
                 <Annotate
                   with={LabelAnnotation}
-                  when={d => timeCompare(d, datu, this.props.timeframe)}
+                  when={(d) => timeCompare(d, datu, this.props.timeframe)}
                   usingProps={annotationPropsUp}
                 />
               );
             } else if (each.side == "Sell") {
               const annotationPropsDown = {
                 fontFamily: "Glyphicons Halflings",
-                fontSize: 20,
+                fontSize: 15,
                 fill: "#FF0000",
                 opacity: 0.8,
-                text: "˅",
+                text: "▼",
                 y: ({ yScale }) => {
-                  return (
-                    yScale.range()[0] *
-                    findYValSell(
-                      this.state.yRangeNums[0],
-                      this.state.yRangeNums[1],
-                      each.price
-                    )
-                  );
+                  return yScale.range()[1] - 20;
+                  // return findYValSell(
+                  //   this.state.yRangeNums[0],
+                  //   this.state.yRangeNums[1],
+                  //   each.price
+                  // );
                 },
                 onClick: console.log.bind(console),
-                tooltip: d => timeFormat("%B")(d.date)
+                tooltip: (d) => timeFormat("%B")(d.date),
                 // onMouseOver: console.log.bind(console),
               };
               return (
                 <Annotate
                   with={LabelAnnotation}
-                  when={d => timeCompare(d, datu, this.props.timeframe)}
+                  when={(d) => timeCompare(d, datu, this.props.timeframe)}
                   usingProps={annotationPropsDown}
                 />
               );
@@ -185,11 +182,11 @@ CandleStickChartWithAnnotation.propTypes = {
   data: PropTypes.array.isRequired,
   width: PropTypes.number.isRequired,
   ratio: PropTypes.number.isRequired,
-  type: PropTypes.oneOf(["svg", "hybrid"]).isRequired
+  type: PropTypes.oneOf(["svg", "hybrid"]).isRequired,
 };
 
 CandleStickChartWithAnnotation.defaultProps = {
-  type: "svg"
+  type: "svg",
 };
 
 CandleStickChartWithAnnotation = fitWidth(CandleStickChartWithAnnotation);
