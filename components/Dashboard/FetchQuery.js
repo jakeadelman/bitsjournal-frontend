@@ -97,6 +97,8 @@ class Comp extends React.Component {
             this.props.store.resetHasTempTags();
             this.props.store.clearTempNotes();
             this.props.store.clearTempTags();
+            this.props.store.resetPnl();
+
             if (this.state.width > 768) {
               return <TotalDat data={data} />;
             } else {

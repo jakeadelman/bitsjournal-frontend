@@ -7,15 +7,21 @@
       "publicPath": "static/chunks/0.js"
     }
   ],
-  "bootstrap/dist/css/bootstrap.min.css": [
+  "react-datepicker/dist/react-datepicker.css": [
     {
-      "id": "./node_modules/bootstrap/dist/css/bootstrap.min.css",
-      "name": "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+      "id": "./node_modules/react-datepicker/dist/react-datepicker.css",
+      "name": "./node_modules/react-datepicker/dist/react-datepicker.css",
       "file": "static/chunks/styles.js",
       "publicPath": "static/chunks/styles.js"
     }
   ],
   "undefined": [
+    {
+      "id": 8,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
     {
       "id": 4,
       "name": null,
@@ -37,6 +43,14 @@
     {
       "id": 7,
       "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    }
+  ],
+  "bootstrap/dist/css/bootstrap.min.css": [
+    {
+      "id": "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+      "name": "./node_modules/bootstrap/dist/css/bootstrap.min.css",
       "file": "static/chunks/styles.js",
       "publicPath": "static/chunks/styles.js"
     }

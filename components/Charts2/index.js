@@ -25,9 +25,7 @@ export default class ChartComponent extends React.Component {
     let diffMs = Math.abs(startTime - endTime);
     var diffSecs = diffMs / 1000;
     var diffMins = Math.round(diffSecs / 60); // minutes
-    // var diffHrs = Math.round(diffMins / 60); // hours
-    // let myTimeframe = "1m";
-    // console.log(diffMins, "DIFFMINS");
+
     try {
       if (diffMins < 60) {
         //   this.setState({ candleData: this.props.onemin });

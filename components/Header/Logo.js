@@ -26,7 +26,7 @@ const Logo = styled.div`
   margin-right: auto;
   font-size: 21px;
   font-weight: 500;
-  color: ${props => props.theme.normalText};
+  color: ${(props) => props.theme.normalText};
   text-decoration: none;
 
   @media (max-width: 425px) {

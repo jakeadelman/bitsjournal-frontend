@@ -16,13 +16,23 @@ export const timeCompare = (d, datu, timeframe) => {
     );
   }
   if (timeframe == "1h") {
-    // console.log(
-    //   d,
-    //   d.date.getHours() === datu.getHours() &&
-    //     d.date.getDate() === datu.getDate()
-    // );
+    // if (
+    //   (d,
+    //   d.date.getHours() === datu.getHours() + 1 &&
+    //     d.date.getDate() === datu.getDate())
+    // ) {
+    //   console.log(
+    //     d,
+    //     d.date.getHours(),
+    //     datu.getHours(),
+    //     d.date.getDate(),
+    //     datu.getDate(),
+    //     d,
+    //     datu
+    //   );
+    // }
     return (
-      d.date.getHours() === datu.getHours() &&
+      d.date.getHours() === datu.getHours() + 1 &&
       d.date.getDate() === datu.getDate()
     );
   }

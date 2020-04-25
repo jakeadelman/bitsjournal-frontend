@@ -89,6 +89,10 @@ export class Store {
   @action setSymbol = (newSymbol) => {
     this.symbol = newSymbol;
   };
+
+  @action resetPnl = () => {
+    this.pnl = 0;
+  };
 }
 
 let store = null;

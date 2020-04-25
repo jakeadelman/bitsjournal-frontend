@@ -5,6 +5,7 @@ import { observer } from "mobx-react-lite";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons";
+import { wideFont } from "../../shared/helpers";
 
 const SidebarCategoryList = inject("store")(
   observer(({ store }) => {

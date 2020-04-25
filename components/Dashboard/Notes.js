@@ -14,14 +14,22 @@ import { faPlus, faTimes, faEquals } from "@fortawesome/free-solid-svg-icons";
 import { inject, observer } from "mobx-react";
 import { when } from "mobx";
 import equal from "fast-deep-equal";
+import TextareaAutosize from "react-autosize-textarea";
+import { wideFont } from "../shared/helpers";
 
 @inject(["store"])
 @observer
 export default class extends Component {
   constructor(props) {
     super(props);
-    this.state = { value: "", hashtags: [], initHashtags: [] };
+    this.state = {
+      value: "",
+      hashtags: [],
+      initHashtags: [],
+      showNotes: false,
+    };
 
+    this.setShowNotes = this.setShowNotes.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -111,6 +119,14 @@ export default class extends Component {
       });
     };
   }
+
+  setShowNotes() {
+    if (this.state.showNotes == false) {
+      this.setState({ showNotes: true });
+    } else {
+      this.setState({ showNotes: false });
+    }
+  }
   render() {
     return (
       <ApolloConsumer>
@@ -144,18 +160,48 @@ export default class extends Component {
                   );
                 }
               })}
-              <NotesInput
-                type="text"
+              {this.state.showNotes == true ? (
+                <ShowNotesDiv onClick={() => this.setShowNotes()}>
+                  <ShowNotesInner>Hide Notes</ShowNotesInner>
+                </ShowNotesDiv>
+              ) : (
+                <ShowNotesDiv onClick={() => this.setShowNotes()}>
+                  <ShowNotesInner>Show Notes</ShowNotesInner>
+                </ShowNotesDiv>
+              )}
+            </FullRow>
+            {this.state.showNotes == true ? (
+              <TextareaAutosize
+                style={{
+                  width: "100%",
+                  padding: "12px 20px",
+                  margin: "8px 0",
+                  boxSizing: "border-box",
+                  background: "#f8f8ff",
+                  border: "none",
+                  outline: "none",
+                  fontSize: "16px",
+                }}
+                rows={5}
+                maxRows={25}
                 value={this.state.value}
                 onChange={this.handleChange(client)}
-              ></NotesInput>
-            </FullRow>
+              />
+            ) : null}
           </div>
         )}
       </ApolloConsumer>
     );
   }
 }
+// const NotesInput = styled.textarea`
+//   width: 100%;
+//   padding: 12px 20px;
+//   margin: 8px 0;
+//   box-sizing: border-box;
+//   background: #f8f8ff;
+//   border: none;
+// `;
 
 @inject(["store"])
 @observer
@@ -229,7 +275,7 @@ class AddHashtag extends Component {
                 value={this.state.value}
                 onChange={this.handleChange}
               />
-              <AddHashSubmit type="submit" value="Add" />
+              <AddHashSubmit type="submit" value="Add Hashtag" />
             </form>
           </PopupTop>
         ) : null}
@@ -273,6 +319,33 @@ const SingleHashtagDiv = styled.div`
   white-space: nowrap;
   display: flex;
   flex-direction: row;
+  margin-left: 0px;
+`;
+
+const ShowNotesDiv = styled.div`
+  background: #fff;
+  margin: 20px 8px;
+
+  color: #000;
+  padding: 10px;
+  padding-top: 8px;
+  white-space: nowrap;
+  display: flex;
+  flex-direction: row;
+  margin-left: 0px;
+  border-radius: 2px;
+
+  :hover {
+    transition: none;
+    cursor: pointer;
+  }
+`;
+
+const ShowNotesInner = styled.div`
+  ${wideFont}
+  font-size:13px;
+  transition: none;
+  margin: auto;
 `;
 
 const SingleHashtagText = styled.div`
@@ -287,7 +360,7 @@ const SingleHashtagDelete = styled.div`
 `;
 
 const HashtagDiv = styled.div`
-  margin: auto;
+  margin: auto 0;
   text-align: center;
   vertical-align: middle;
   color: white;
@@ -308,7 +381,7 @@ const NotesSubmit = styled.input`
   color: white;
 `;
 
-const NotesInput = styled.input`
+const NotesInput = styled.textarea`
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;

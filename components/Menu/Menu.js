@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { ContainDivClicked } from "../Dashboard/ReChart";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons";
+import { wideFont } from "../shared/helpers";
 
 // border: 1px solid ${props => props.theme.border};
 
@@ -151,7 +152,10 @@ const Lapper4 = styled.aside`
   }
 `;
 const SetSymbol = styled.div`
-  font-size: 15px;
+  ${wideFont}
+  font-weight:500;
+  font-size: 14px;
+  padding: 5px;
   color: #fff;
   :hover {
     cursor: pointer;
@@ -166,7 +170,9 @@ const DropdownListContainer = styled.ul`
 `;
 const DropdownListItem = styled.li`
   text-align: center;
-  font-size: 15px;
+  ${wideFont}
+  font-weight:500;
+  font-size: 14px;
   color: #fff;
   :hover {
     cursor: pointer;
