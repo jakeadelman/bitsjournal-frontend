@@ -2,7 +2,6 @@ import App from "../components/App";
 import Header from "../components/Header/HomeHeader";
 import styled, { ThemeProvider } from "styled-components";
 import theme from "../components/theme";
-import HomeSvg from "../components/HomepageSvg";
 import { smallFont, wideFont } from "../components/shared/helpers";
 // import Typing from "react-typing-animation";
 import Typist from "react-typist";
@@ -13,10 +12,10 @@ import LoginPage from "./login";
 const Cookie = require("js-cookie");
 
 let cursor = {
-  blink: true
+  blink: true,
 };
 
-export default function() {
+export default function () {
   // componentDidMount() {
   const cook = Cookie.get("isAuth");
   if (!!cook) {
@@ -75,7 +74,7 @@ export default function() {
 }
 
 const OuterWrapper = styled.div`
-  background-color: ${props => props.theme.foreground};
+  background-color: ${(props) => props.theme.foreground};
   height: 100%;
   margin-bottom: 0;
   padding-bottom: 0;
@@ -84,7 +83,7 @@ const Wrapper = styled.div`
   display: flex;
   margin: 0 10vw;
   height: auto;
-  background-color: ${props => props.theme.foreground};
+  background-color: ${(props) => props.theme.foreground};
 
   @media (max-width: 1024px) {
     margin: 0 5vw;
@@ -137,7 +136,7 @@ const RowOne = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 100px;
-  background-color: ${props => props.theme.foreground};
+  background-color: ${(props) => props.theme.foreground};
 `;
 
 const InnerRowContainer = styled.div`
