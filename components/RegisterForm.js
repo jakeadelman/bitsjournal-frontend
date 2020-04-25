@@ -1,6 +1,5 @@
 import { ApolloConsumer } from "react-apollo";
 import gql from "graphql-tag";
-import { allPostsQuery, allPostsQueryVars } from "./PostList";
 import Input from "./Form2/Input";
 import Label from "./form/Label";
 import Button from "./shared/Button";
@@ -42,9 +41,9 @@ export default function RegisterForm() {
             }
           }
         `,
-        variables: { firstName, lastName, email, password }
+        variables: { firstName, lastName, email, password },
       })
-      .then(response => {
+      .then((response) => {
         if (response.data) {
           Cookie.set("uid", response.data.register.id);
           Router.push("/signup");
@@ -56,9 +55,9 @@ export default function RegisterForm() {
 
   return (
     <ApolloConsumer>
-      {client => (
+      {(client) => (
         <FormWrapper>
-          <StyledForm onSubmit={event => handleSubmit(event, client)}>
+          <StyledForm onSubmit={(event) => handleSubmit(event, client)}>
             <InputWrapper>
               <Label>firstname</Label>
               <Input placeholder="" name="firstName" type="text" required />
@@ -91,7 +90,7 @@ const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  ${props =>
+  ${(props) =>
     props.loading &&
     "filter: grayscale(0.5) blur(5px) opacity(0.6); pointer-events: none"};
 `;

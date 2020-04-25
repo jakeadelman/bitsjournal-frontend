@@ -1,7 +1,6 @@
 import App from "../components/App";
 import Header from "../components/Header/Header";
 import RegisterSubmit from "../components/RegisterForm";
-import PostList from "../components/PostList";
 import styled, { ThemeProvider } from "styled-components";
 import theme from "../components/theme";
 import Router from "next/router";
