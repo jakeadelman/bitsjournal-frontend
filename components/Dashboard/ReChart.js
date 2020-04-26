@@ -11,7 +11,7 @@ import {
   Legend,
 } from "recharts";
 import styled, { ThemeProvider } from "styled-components";
-import { wideFont } from "../shared/helpers";
+import { wideFont, smallFont } from "../shared/helpers";
 import theme from "../theme";
 import {
   formatDateMonthOnly,
@@ -447,13 +447,13 @@ class MakeCol extends Component {
                   <NextToDiv>{this.state.pnl.toFixed(4) + "xbt"}</NextToDiv>
                 </ContainDivClicked>
                 <ContainDivBlack>
-                  <NextToDivBlack>Timestamp</NextToDivBlack>
-                  <NextToDivBlack>Side</NextToDivBlack>
-                  <NextToDivBlack>Order Type</NextToDivBlack>
-                  <NextToDivBlack>Price</NextToDivBlack>
-                  <NextToDivBlack>Order Qty</NextToDivBlack>
-                  <NextToDivBlack>Leaves Qty</NextToDivBlack>
-                  <NextToDivBlack>Commission</NextToDivBlack>
+                  <NextToDivBlackTitle>Timestamp</NextToDivBlackTitle>
+                  <NextToDivBlackTitle>Side</NextToDivBlackTitle>
+                  <NextToDivBlackTitle>Order Type</NextToDivBlackTitle>
+                  <NextToDivBlackTitle>Price</NextToDivBlackTitle>
+                  <NextToDivBlackTitle>Order Qty</NextToDivBlackTitle>
+                  <NextToDivBlackTitle>Leaves Qty</NextToDivBlackTitle>
+                  <NextToDivBlackTitle>Commission</NextToDivBlackTitle>
                 </ContainDivBlack>
 
                 {this.state.data.map((dat) => {
@@ -514,13 +514,13 @@ class MakeCol extends Component {
                   <NextToDiv>{this.state.pnl.toFixed(4) + "xbt"}</NextToDiv>
                 </ContainDivClicked>
                 <ContainDivBlack>
-                  <NextToDivBlack>Timestamp</NextToDivBlack>
-                  <NextToDivBlack>Side</NextToDivBlack>
-                  <NextToDivBlack>Order Type</NextToDivBlack>
-                  <NextToDivBlack>Price</NextToDivBlack>
-                  <NextToDivBlack>Order Qty</NextToDivBlack>
-                  <NextToDivBlack>Leaves Qty</NextToDivBlack>
-                  <NextToDivBlack>Commission</NextToDivBlack>
+                  <NextToDivBlackTitle>Timestamp</NextToDivBlackTitle>
+                  <NextToDivBlackTitle>Side</NextToDivBlackTitle>
+                  <NextToDivBlackTitle>Order Type</NextToDivBlackTitle>
+                  <NextToDivBlackTitle>Price</NextToDivBlackTitle>
+                  <NextToDivBlackTitle>Order Qty</NextToDivBlackTitle>
+                  <NextToDivBlackTitle>Leaves Qty</NextToDivBlackTitle>
+                  <NextToDivBlackTitle>Commission</NextToDivBlackTitle>
                 </ContainDivBlack>
 
                 {this.state.data.map((dat) => {
@@ -615,13 +615,13 @@ class MakeCol extends Component {
                   <NextToDiv>{this.state.pnl.toFixed(4) + "xbt"}</NextToDiv>
                 </ContainDivClicked>
                 <ContainDivBlack>
-                  <NextToDivBlack>Timestamp</NextToDivBlack>
-                  <NextToDivBlack>Side</NextToDivBlack>
-                  <NextToDivBlack>Type</NextToDivBlack>
-                  <NextToDivBlack>Price</NextToDivBlack>
-                  <NextToDivBlack>Qty</NextToDivBlack>
-                  <NextToDivBlack>Leaves</NextToDivBlack>
-                  <NextToDivBlack>Commission</NextToDivBlack>
+                  <NextToDivBlackTitle>Timestamp</NextToDivBlackTitle>
+                  <NextToDivBlackTitle>Side</NextToDivBlackTitle>
+                  <NextToDivBlackTitle>Type</NextToDivBlackTitle>
+                  <NextToDivBlackTitle>Price</NextToDivBlackTitle>
+                  <NextToDivBlackTitle>Qty</NextToDivBlackTitle>
+                  <NextToDivBlackTitle>Leaves</NextToDivBlackTitle>
+                  <NextToDivBlackTitle>Commission</NextToDivBlackTitle>
                 </ContainDivBlack>
 
                 {this.state.data.map((dat) => {
@@ -682,13 +682,13 @@ class MakeCol extends Component {
                   <NextToDiv>{this.state.pnl.toFixed(4) + "xbt"}</NextToDiv>
                 </ContainDivClicked>
                 <ContainDivBlack>
-                  <NextToDivBlack>Timestamp</NextToDivBlack>
-                  <NextToDivBlack>Side</NextToDivBlack>
-                  <NextToDivBlack>Type</NextToDivBlack>
-                  <NextToDivBlack>Price</NextToDivBlack>
-                  <NextToDivBlack>Qty</NextToDivBlack>
-                  <NextToDivBlack>Leaves</NextToDivBlack>
-                  <NextToDivBlack>Commission</NextToDivBlack>
+                  <NextToDivBlackTitle>Timestamp</NextToDivBlackTitle>
+                  <NextToDivBlackTitle>Side</NextToDivBlackTitle>
+                  <NextToDivBlackTitle>Type</NextToDivBlackTitle>
+                  <NextToDivBlackTitle>Price</NextToDivBlackTitle>
+                  <NextToDivBlackTitle>Qty</NextToDivBlackTitle>
+                  <NextToDivBlackTitle>Leaves</NextToDivBlackTitle>
+                  <NextToDivBlackTitle>Commission</NextToDivBlackTitle>
                 </ContainDivBlack>
 
                 {this.state.data.map((dat) => {
@@ -762,10 +762,11 @@ export const ContainDiv = styled.div`
   display: flex;
   flex-direction: row;
   height: 52px;
-
-  border-bottom: 1px solid #d3d3d3;
+  ${wideFont}
+  font-weight: 200;
   &:hover {
-    border-left: 3px solid black;
+    transition: none;
+    border-left: 2px solid #d3d3d3;
     cursor: pointer;
   }
 `;
@@ -775,10 +776,15 @@ export const ContainDivClicked = styled.div`
   flex-direction: row;
   height: 52px;
 
-  border-bottom: 1px solid #d3d3d3;
+  transition: none;
 
-  border-left: 5px solid black;
+  border-top: 1px solid #d3d3d3;
+  border-bottom: 1px solid #d3d3d3;
+  ${wideFont}
+  font-weight: 200;
+  border-left: 10px solid #d3d3d3;
   cursor: pointer;
+  box-shadow: 10px 10px 8px 10px #000000;
 `;
 export const ContainDivBlack = styled.div`
   width: 100%;
@@ -793,15 +799,19 @@ export const ContainDivHeader = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
-  height: 52px;
+  height: 42px;
   border-bottom: 1px solid #d3d3d3;
 `;
 
 export const NextToDiv = styled.div`
   display: inline-block;
   width: 30%;
-  padding: 10px;
+  padding: 8px;
+  padding-top: 14px;
   padding-left: 12px;
+  font-size: 14px;
+  color: #000000;
+
   @media (max-width: 550px) {
     font-size: 13px;
   }
@@ -812,7 +822,17 @@ export const NextToDivBlack = styled.div`
   width: 30%;
   padding: 5px;
   padding-left: 12px;
-  font-size: 14px;
+  font-size: 15px;
+  color: #78838e;
+`;
+export const NextToDivBlackTitle = styled.div`
+  display: inline-block;
+  width: 30%;
+  padding: 5px;
+  padding-left: 13px;
+  padding-top: 10px;
+  font-size: 15px;
+  color: #78838e;
 `;
 export const NextToDivBlackTime = styled.div`
   display: inline-block;
@@ -820,6 +840,7 @@ export const NextToDivBlackTime = styled.div`
   padding: 5px;
   padding-left: 12px;
   font-size: 14px;
+  color: #78838e;
   @media (max-width: 1200px) {
     font-size: 13px;
   }
@@ -836,6 +857,8 @@ export const NextToDivHeader = styled.div`
   text-transform: uppercase;
   padding: 10px;
   padding-left: 12px;
+  ${smallFont}
+  font-size:14px;
 `;
 
 const ReadMore = styled.div`

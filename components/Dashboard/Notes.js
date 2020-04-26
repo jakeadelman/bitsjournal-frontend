@@ -312,10 +312,9 @@ const PopupTop = styled.div`
 const SingleHashtagDiv = styled.div`
   background: #f8f8ff;
   margin: 20px 8px;
-
   color: black;
   padding: 10px;
-  padding-top: 8px;
+
   white-space: nowrap;
   display: flex;
   flex-direction: row;

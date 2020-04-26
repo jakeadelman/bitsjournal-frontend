@@ -12,6 +12,7 @@ import { getNewDat } from "./helpers";
 
 import { inject, observer } from "mobx-react";
 import { when } from "mobx";
+import { wideFont } from "../shared/helpers";
 
 @inject("store")
 @observer
@@ -234,7 +235,7 @@ export default class extends React.Component {
               <ContainDivHeader>
                 <NextToDivHeader>Start</NextToDivHeader>
                 <NextToDivHeader>End</NextToDivHeader>
-                <NextToDivHeader>Direction</NextToDivHeader>
+                <NextToDivHeader>L/S</NextToDivHeader>
                 <NextToDivHeader>Avg Entry</NextToDivHeader>
                 <NextToDivHeader>Avg Exit</NextToDivHeader>
                 <NextToDivHeader>Qty</NextToDivHeader>
@@ -244,7 +245,7 @@ export default class extends React.Component {
               <ContainDivHeader>
                 <NextToDivHeader>Start</NextToDivHeader>
                 <NextToDivHeader>End</NextToDivHeader>
-                <NextToDivHeader>Direction</NextToDivHeader>
+                <NextToDivHeader>L/S</NextToDivHeader>
                 <NextToDivHeader>Entry</NextToDivHeader>
                 <NextToDivHeader>Exit</NextToDivHeader>
                 <NextToDivHeader>Qty</NextToDivHeader>
@@ -267,7 +268,7 @@ export default class extends React.Component {
 const TopHashtagDiv = styled.div`
   display: flex;
   flex-direction: row;
-  margin-bottom: 8px;
+  margin-bottom: 14px;
 `;
 const TopHashtagIndividual = styled.div`
   background: #f8f8ff;

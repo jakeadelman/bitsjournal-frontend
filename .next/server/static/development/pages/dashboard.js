@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -1704,6 +1704,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var mobx_react__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(mobx_react__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var mobx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! mobx */ "mobx");
 /* harmony import */ var mobx__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(mobx__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _shared_helpers__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../shared/helpers */ "./components/shared/helpers.js");
 
 
 var _dec, _class2;
@@ -1731,6 +1732,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -2132,7 +2134,7 @@ function (_React$Component) {
               return _this4.hashtagClicked(hash);
             }
           }, "#", hash);
-        })), this.state.width > 1380 ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["ContainDivHeader"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "Start"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "End"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "Direction"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "Avg Entry"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "Avg Exit"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "Qty"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "Realized Pnl")) : react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["ContainDivHeader"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "Start"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "End"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "Direction"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "Entry"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "Exit"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "Qty"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "RPNL")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        })), this.state.width > 1380 ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["ContainDivHeader"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "Start"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "End"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "L/S"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "Avg Entry"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "Avg Exit"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "Qty"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "Realized Pnl")) : react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["ContainDivHeader"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "Start"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "End"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "L/S"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "Entry"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "Exit"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "Qty"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "RPNL")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["default"], {
           data: this.state.data,
           filteredData: this.state.filteredData,
           initData: this.props.data
@@ -2148,7 +2150,7 @@ function (_React$Component) {
 var TopHashtagDiv = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.div.withConfig({
   displayName: "Dashboard__TopHashtagDiv",
   componentId: "ij5648-0"
-})(["display:flex;flex-direction:row;margin-bottom:8px;"]);
+})(["display:flex;flex-direction:row;margin-bottom:14px;"]);
 var TopHashtagIndividual = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.div.withConfig({
   displayName: "Dashboard__TopHashtagIndividual",
   componentId: "ij5648-1"
@@ -2906,7 +2908,7 @@ var PopupTop = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.div.with
 var SingleHashtagDiv = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.div.withConfig({
   displayName: "Notes__SingleHashtagDiv",
   componentId: "i5ukt5-3"
-})(["background:#f8f8ff;margin:20px 8px;color:black;padding:10px;padding-top:8px;white-space:nowrap;display:flex;flex-direction:row;margin-left:0px;"]);
+})(["background:#f8f8ff;margin:20px 8px;color:black;padding:10px;white-space:nowrap;display:flex;flex-direction:row;margin-left:0px;"]);
 var ShowNotesDiv = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.div.withConfig({
   displayName: "Notes__ShowNotesDiv",
   componentId: "i5ukt5-4"
@@ -2946,7 +2948,7 @@ var NotesInput = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.textar
 /*!*****************************************!*\
   !*** ./components/Dashboard/ReChart.js ***!
   \*****************************************/
-/*! exports provided: default, ContainDiv, ContainDivClicked, ContainDivBlack, ContainDivHeader, NextToDiv, NextToDivBlack, NextToDivBlackTime, NextToDivHeader */
+/*! exports provided: default, ContainDiv, ContainDivClicked, ContainDivBlack, ContainDivHeader, NextToDiv, NextToDivBlack, NextToDivBlackTitle, NextToDivBlackTime, NextToDivHeader */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2958,6 +2960,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ContainDivHeader", function() { return ContainDivHeader; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NextToDiv", function() { return NextToDiv; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NextToDivBlack", function() { return NextToDivBlack; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NextToDivBlackTitle", function() { return NextToDivBlackTitle; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NextToDivBlackTime", function() { return NextToDivBlackTime; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NextToDivHeader", function() { return NextToDivHeader; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
@@ -3481,7 +3484,7 @@ function (_Component) {
             onClick: this.clicked.bind(this)
           }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, Object(_Helpers_Functions_js__WEBPACK_IMPORTED_MODULE_5__["formatDateMonthOnly"])(this.state.data[0].timestamp)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, Object(_Helpers_Functions_js__WEBPACK_IMPORTED_MODULE_5__["formatDateMonthOnly"])(this.state.data[this.state.data.length - 1].timestamp)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(IsShort, {
             side: this.state.data[0].side
-          }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, "$", this.state.avgEntryPrice.toFixed(1)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, "$", this.state.avgExitPrice.toFixed(1)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, this.state.cumQty), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, this.state.pnl.toFixed(4) + "xbt")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ContainDivBlack, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "Timestamp"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "Side"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "Order Type"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "Price"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "Order Qty"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "Leaves Qty"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "Commission")), this.state.data.map(function (dat) {
+          }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, "$", this.state.avgEntryPrice.toFixed(1)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, "$", this.state.avgExitPrice.toFixed(1)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, this.state.cumQty), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, this.state.pnl.toFixed(4) + "xbt")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ContainDivBlack, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, "Timestamp"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, "Side"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, "Order Type"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, "Price"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, "Order Qty"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, "Leaves Qty"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, "Commission")), this.state.data.map(function (dat) {
             return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ContainDivBlack, {
               onClick: _this4.clicked.bind(_this4)
             }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, Object(_Helpers_Functions_js__WEBPACK_IMPORTED_MODULE_5__["formatDateMonthOnly"])(dat.timestamp)), dat.execType == "Trade" ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.side) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.execType), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.orderType), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "$", dat.price.toString()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.orderQty), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.leavesQty == "0" ? "" : dat.leavesQty), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.execType == "Funding" ? "" : Object(_Helpers_Functions_js__WEBPACK_IMPORTED_MODULE_5__["calcCommission"])(dat.price, dat.side, dat.orderQty, dat.leavesQty, dat.orderType)));
@@ -3496,7 +3499,7 @@ function (_Component) {
             onClick: this.clicked
           }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, Object(_Helpers_Functions_js__WEBPACK_IMPORTED_MODULE_5__["formatDateMonthOnly"])(this.state.data[0].timestamp)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, Object(_Helpers_Functions_js__WEBPACK_IMPORTED_MODULE_5__["formatDateMonthOnly"])(this.state.data[this.state.data.length - 1].timestamp)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(IsShort, {
             side: this.state.data[0].side
-          }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, "$", this.state.avgEntryPrice.toFixed(1)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, "$", this.state.avgExitPrice.toFixed(1)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, this.state.cumQty), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, this.state.pnl.toFixed(4) + "xbt")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ContainDivBlack, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "Timestamp"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "Side"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "Order Type"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "Price"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "Order Qty"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "Leaves Qty"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "Commission")), this.state.data.map(function (dat) {
+          }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, "$", this.state.avgEntryPrice.toFixed(1)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, "$", this.state.avgExitPrice.toFixed(1)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, this.state.cumQty), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, this.state.pnl.toFixed(4) + "xbt")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ContainDivBlack, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, "Timestamp"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, "Side"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, "Order Type"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, "Price"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, "Order Qty"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, "Leaves Qty"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, "Commission")), this.state.data.map(function (dat) {
             return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ContainDivBlack, {
               onClick: _this4.clicked.bind(_this4)
             }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, Object(_Helpers_Functions_js__WEBPACK_IMPORTED_MODULE_5__["formatDateMonthOnly"])(dat.timestamp)), dat.execType == "Trade" ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.side) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.execType), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.orderType), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "$", dat.price.toString()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.orderQty), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.leavesQty == "0" ? "" : dat.leavesQty), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.execType == "Funding" ? "" : Object(_Helpers_Functions_js__WEBPACK_IMPORTED_MODULE_5__["calcCommission"])(dat.price, dat.side, dat.orderQty, dat.leavesQty, dat.orderType)));
@@ -3529,7 +3532,7 @@ function (_Component) {
             onClick: this.clicked.bind(this)
           }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, Object(_Helpers_Functions_js__WEBPACK_IMPORTED_MODULE_5__["formatDateShort"])(this.state.data[0].timestamp)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, Object(_Helpers_Functions_js__WEBPACK_IMPORTED_MODULE_5__["formatDateShort"])(this.state.data[this.state.data.length - 1].timestamp)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(IsShort, {
             side: this.state.data[0].side
-          }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, "$", this.state.avgEntryPrice.toFixed(1)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, "$", this.state.avgExitPrice.toFixed(1)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, this.state.cumQty), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, this.state.pnl.toFixed(4) + "xbt")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ContainDivBlack, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "Timestamp"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "Side"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "Type"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "Price"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "Qty"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "Leaves"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "Commission")), this.state.data.map(function (dat) {
+          }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, "$", this.state.avgEntryPrice.toFixed(1)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, "$", this.state.avgExitPrice.toFixed(1)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, this.state.cumQty), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, this.state.pnl.toFixed(4) + "xbt")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ContainDivBlack, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, "Timestamp"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, "Side"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, "Type"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, "Price"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, "Qty"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, "Leaves"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, "Commission")), this.state.data.map(function (dat) {
             return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ContainDivBlack, {
               onClick: _this4.clicked.bind(_this4)
             }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTime, null, Object(_Helpers_Functions_js__WEBPACK_IMPORTED_MODULE_5__["formatDateShortWithHour"])(dat.timestamp)), dat.execType == "Trade" ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.side) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.execType), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.orderType), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "$", dat.price.toString()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.orderQty), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.leavesQty == "0" ? "" : dat.leavesQty), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.execType == "Funding" ? "" : Object(_Helpers_Functions_js__WEBPACK_IMPORTED_MODULE_5__["calcCommission"])(dat.price, dat.side, dat.orderQty, dat.leavesQty, dat.orderType)));
@@ -3544,7 +3547,7 @@ function (_Component) {
             onClick: this.clicked
           }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, Object(_Helpers_Functions_js__WEBPACK_IMPORTED_MODULE_5__["formatDateShort"])(this.state.data[0].timestamp)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, Object(_Helpers_Functions_js__WEBPACK_IMPORTED_MODULE_5__["formatDateShort"])(this.state.data[this.state.data.length - 1].timestamp)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(IsShort, {
             side: this.state.data[0].side
-          }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, "$", this.state.avgEntryPrice.toFixed(1)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, "$", this.state.avgExitPrice.toFixed(1)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, this.state.cumQty), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, this.state.pnl.toFixed(4) + "xbt")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ContainDivBlack, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "Timestamp"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "Side"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "Type"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "Price"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "Qty"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "Leaves"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "Commission")), this.state.data.map(function (dat) {
+          }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, "$", this.state.avgEntryPrice.toFixed(1)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, "$", this.state.avgExitPrice.toFixed(1)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, this.state.cumQty), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, this.state.pnl.toFixed(4) + "xbt")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ContainDivBlack, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, "Timestamp"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, "Side"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, "Type"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, "Price"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, "Qty"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, "Leaves"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, "Commission")), this.state.data.map(function (dat) {
             return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ContainDivBlack, {
               onClick: _this4.clicked.bind(_this4)
             }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTime, null, Object(_Helpers_Functions_js__WEBPACK_IMPORTED_MODULE_5__["formatDateShortWithHour"])(dat.timestamp)), dat.execType == "Trade" ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.side) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.execType), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.orderType), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "$", dat.price.toString()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.orderQty), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.leavesQty == "0" ? "" : dat.leavesQty), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.execType == "Funding" ? "" : Object(_Helpers_Functions_js__WEBPACK_IMPORTED_MODULE_5__["calcCommission"])(dat.price, dat.side, dat.orderQty, dat.leavesQty, dat.orderType)));
@@ -3600,11 +3603,11 @@ function (_Component2) {
 var ContainDiv = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.div.withConfig({
   displayName: "ReChart__ContainDiv",
   componentId: "mo5ubi-0"
-})(["width:100%;display:flex;flex-direction:row;height:52px;border-bottom:1px solid #d3d3d3;&:hover{border-left:3px solid black;cursor:pointer;}"]);
+})(["width:100%;display:flex;flex-direction:row;height:52px;", " font-weight:200;&:hover{transition:none;border-left:2px solid #d3d3d3;cursor:pointer;}"], _shared_helpers__WEBPACK_IMPORTED_MODULE_3__["wideFont"]);
 var ContainDivClicked = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.div.withConfig({
   displayName: "ReChart__ContainDivClicked",
   componentId: "mo5ubi-1"
-})(["width:100%;display:flex;flex-direction:row;height:52px;border-bottom:1px solid #d3d3d3;border-left:5px solid black;cursor:pointer;"]);
+})(["width:100%;display:flex;flex-direction:row;height:52px;transition:none;border-top:1px solid #d3d3d3;border-bottom:1px solid #d3d3d3;", " font-weight:200;border-left:10px solid #d3d3d3;cursor:pointer;box-shadow:10px 10px 8px 10px #000000;"], _shared_helpers__WEBPACK_IMPORTED_MODULE_3__["wideFont"]);
 var ContainDivBlack = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.div.withConfig({
   displayName: "ReChart__ContainDivBlack",
   componentId: "mo5ubi-2"
@@ -3612,48 +3615,52 @@ var ContainDivBlack = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.d
 var ContainDivHeader = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.div.withConfig({
   displayName: "ReChart__ContainDivHeader",
   componentId: "mo5ubi-3"
-})(["width:100%;display:flex;flex-direction:row;height:52px;border-bottom:1px solid #d3d3d3;"]);
+})(["width:100%;display:flex;flex-direction:row;height:42px;border-bottom:1px solid #d3d3d3;"]);
 var NextToDiv = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.div.withConfig({
   displayName: "ReChart__NextToDiv",
   componentId: "mo5ubi-4"
-})(["display:inline-block;width:30%;padding:10px;padding-left:12px;@media (max-width:550px){font-size:13px;}"]);
+})(["display:inline-block;width:30%;padding:8px;padding-top:14px;padding-left:12px;font-size:14px;color:#000000;@media (max-width:550px){font-size:13px;}"]);
 var NextToDivBlack = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.div.withConfig({
   displayName: "ReChart__NextToDivBlack",
   componentId: "mo5ubi-5"
-})(["display:inline-block;width:30%;padding:5px;padding-left:12px;font-size:14px;"]);
+})(["display:inline-block;width:30%;padding:5px;padding-left:12px;font-size:15px;color:#78838e;"]);
+var NextToDivBlackTitle = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.div.withConfig({
+  displayName: "ReChart__NextToDivBlackTitle",
+  componentId: "mo5ubi-6"
+})(["display:inline-block;width:30%;padding:5px;padding-left:13px;padding-top:10px;font-size:15px;color:#78838e;"]);
 var NextToDivBlackTime = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.div.withConfig({
   displayName: "ReChart__NextToDivBlackTime",
-  componentId: "mo5ubi-6"
-})(["display:inline-block;width:30%;padding:5px;padding-left:12px;font-size:14px;@media (max-width:1200px){font-size:13px;}@media (max-width:663px){padding-top:0px !important;}"]);
+  componentId: "mo5ubi-7"
+})(["display:inline-block;width:30%;padding:5px;padding-left:12px;font-size:14px;color:#78838e;@media (max-width:1200px){font-size:13px;}@media (max-width:663px){padding-top:0px !important;}"]);
 var NextToDivHeader = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.div.withConfig({
   displayName: "ReChart__NextToDivHeader",
-  componentId: "mo5ubi-7"
-})(["display:inline-block;width:30%;color:#78838e;font-weight:600;display:inline-block;text-transform:uppercase;padding:10px;padding-left:12px;"]);
+  componentId: "mo5ubi-8"
+})(["display:inline-block;width:30%;color:#78838e;font-weight:600;display:inline-block;text-transform:uppercase;padding:10px;padding-left:12px;", " font-size:14px;"], _shared_helpers__WEBPACK_IMPORTED_MODULE_3__["smallFont"]);
 var ReadMore = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.div.withConfig({
   displayName: "ReChart__ReadMore",
-  componentId: "mo5ubi-8"
+  componentId: "mo5ubi-9"
 })(["position:absolute;bottom:0;left:0;width:100%;text-align:center;margin:0;padding:10px 0;background-image:-webkit-gradient( linear,left top,left bottom,color-stop(0,rgba(255,0,0,0)),color-stop(1,rgba(248,248,255,1)) );"]);
 var ReadMoreTall = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.div.withConfig({
   displayName: "ReChart__ReadMoreTall",
-  componentId: "mo5ubi-9"
+  componentId: "mo5ubi-10"
 })(["position:absolute;bottom:0;left:0;width:100%;text-align:center;margin:0;padding:10px 0;"]); // background-image: linear-gradient(to bottom, transparent, black);
 
 var MoreBoxShort = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.div.withConfig({
   displayName: "ReChart__MoreBoxShort",
-  componentId: "mo5ubi-10"
+  componentId: "mo5ubi-11"
 })(["max-height:200px;position:relative;overflow:hidden;"]);
 var MoreBoxTall = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.div.withConfig({
   displayName: "ReChart__MoreBoxTall",
-  componentId: "mo5ubi-11"
+  componentId: "mo5ubi-12"
 })(["max-height:none;position:relative;overflow:hidden;"]);
 var TotalDetails = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.div.withConfig({
   displayName: "ReChart__TotalDetails",
-  componentId: "mo5ubi-12"
+  componentId: "mo5ubi-13"
 })([""]); // border: 1px solid rgba(33, 37, 40, 0.7);
 
 var ReadMoreInner = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.div.withConfig({
   displayName: "ReChart__ReadMoreInner",
-  componentId: "mo5ubi-13"
+  componentId: "mo5ubi-14"
 })(["color:rgba(33,37,40,1);padding:0;margin:auto;width:30px;border-radius:2px;-webkit-transition-property:none;-moz-transition-property:none;-o-transition-property:none;transition-property:none;:hover{cursor:pointer;background-color:rgba(33,37,40,1);color:#fff;-webkit-transition-property:none;-moz-transition-property:none;-o-transition-property:none;transition-property:none;}font-size:20px;"]);
 
 /***/ }),
@@ -5643,7 +5650,7 @@ function initializeStore(initialData) {
 
 /***/ }),
 
-/***/ 3:
+/***/ 4:
 /*!**********************************!*\
   !*** multi ./pages/dashboard.js ***!
   \**********************************/
