@@ -447,13 +447,27 @@ class MakeCol extends Component {
                   <NextToDiv>{this.state.pnl.toFixed(4) + "xbt"}</NextToDiv>
                 </ContainDivClicked>
                 <ContainDivBlack>
-                  <NextToDivBlackTitle>Timestamp</NextToDivBlackTitle>
-                  <NextToDivBlackTitle>Side</NextToDivBlackTitle>
-                  <NextToDivBlackTitle>Order Type</NextToDivBlackTitle>
-                  <NextToDivBlackTitle>Price</NextToDivBlackTitle>
-                  <NextToDivBlackTitle>Order Qty</NextToDivBlackTitle>
-                  <NextToDivBlackTitle>Leaves Qty</NextToDivBlackTitle>
-                  <NextToDivBlackTitle>Commission</NextToDivBlackTitle>
+                  <NextToDivBlackTitle>
+                    <TitleSpan>Timestamp</TitleSpan>
+                  </NextToDivBlackTitle>
+                  <NextToDivBlackTitle>
+                    <TitleSpan>Side</TitleSpan>
+                  </NextToDivBlackTitle>
+                  <NextToDivBlackTitle>
+                    <TitleSpan>Order Type</TitleSpan>
+                  </NextToDivBlackTitle>
+                  <NextToDivBlackTitle>
+                    <TitleSpan>Price</TitleSpan>
+                  </NextToDivBlackTitle>
+                  <NextToDivBlackTitle>
+                    <TitleSpan>Order Qty</TitleSpan>
+                  </NextToDivBlackTitle>
+                  <NextToDivBlackTitle>
+                    <TitleSpan>Leaves Qty</TitleSpan>
+                  </NextToDivBlackTitle>
+                  <NextToDivBlackTitle>
+                    <TitleSpan>Commission</TitleSpan>
+                  </NextToDivBlackTitle>
                 </ContainDivBlack>
 
                 {this.state.data.map((dat) => {
@@ -514,13 +528,27 @@ class MakeCol extends Component {
                   <NextToDiv>{this.state.pnl.toFixed(4) + "xbt"}</NextToDiv>
                 </ContainDivClicked>
                 <ContainDivBlack>
-                  <NextToDivBlackTitle>Timestamp</NextToDivBlackTitle>
-                  <NextToDivBlackTitle>Side</NextToDivBlackTitle>
-                  <NextToDivBlackTitle>Order Type</NextToDivBlackTitle>
-                  <NextToDivBlackTitle>Price</NextToDivBlackTitle>
-                  <NextToDivBlackTitle>Order Qty</NextToDivBlackTitle>
-                  <NextToDivBlackTitle>Leaves Qty</NextToDivBlackTitle>
-                  <NextToDivBlackTitle>Commission</NextToDivBlackTitle>
+                  <NextToDivBlackTitle>
+                    <TitleSpan>Timestamp</TitleSpan>
+                  </NextToDivBlackTitle>
+                  <NextToDivBlackTitle>
+                    <TitleSpan>Side</TitleSpan>
+                  </NextToDivBlackTitle>
+                  <NextToDivBlackTitle>
+                    <TitleSpan>Order Type</TitleSpan>
+                  </NextToDivBlackTitle>
+                  <NextToDivBlackTitle>
+                    <TitleSpan>Price</TitleSpan>
+                  </NextToDivBlackTitle>
+                  <NextToDivBlackTitle>
+                    <TitleSpan>Order Qty</TitleSpan>
+                  </NextToDivBlackTitle>
+                  <NextToDivBlackTitle>
+                    <TitleSpan>Leaves Qty</TitleSpan>
+                  </NextToDivBlackTitle>
+                  <NextToDivBlackTitle>
+                    <TitleSpan>Commission</TitleSpan>
+                  </NextToDivBlackTitle>
                 </ContainDivBlack>
 
                 {this.state.data.map((dat) => {
@@ -615,13 +643,27 @@ class MakeCol extends Component {
                   <NextToDiv>{this.state.pnl.toFixed(4) + "xbt"}</NextToDiv>
                 </ContainDivClicked>
                 <ContainDivBlack>
-                  <NextToDivBlackTitle>Timestamp</NextToDivBlackTitle>
-                  <NextToDivBlackTitle>Side</NextToDivBlackTitle>
-                  <NextToDivBlackTitle>Type</NextToDivBlackTitle>
-                  <NextToDivBlackTitle>Price</NextToDivBlackTitle>
-                  <NextToDivBlackTitle>Qty</NextToDivBlackTitle>
-                  <NextToDivBlackTitle>Leaves</NextToDivBlackTitle>
-                  <NextToDivBlackTitle>Commission</NextToDivBlackTitle>
+                  <NextToDivBlackTitle>
+                    <TitleSpan>Timestamp</TitleSpan>
+                  </NextToDivBlackTitle>
+                  <NextToDivBlackTitle>
+                    <TitleSpan>Side</TitleSpan>
+                  </NextToDivBlackTitle>
+                  <NextToDivBlackTitle>
+                    <TitleSpan>Order Type</TitleSpan>
+                  </NextToDivBlackTitle>
+                  <NextToDivBlackTitle>
+                    <TitleSpan>Price</TitleSpan>
+                  </NextToDivBlackTitle>
+                  <NextToDivBlackTitle>
+                    <TitleSpan>Order Qty</TitleSpan>
+                  </NextToDivBlackTitle>
+                  <NextToDivBlackTitle>
+                    <TitleSpan>Leaves Qty</TitleSpan>
+                  </NextToDivBlackTitle>
+                  <NextToDivBlackTitle>
+                    <TitleSpan>Commission</TitleSpan>
+                  </NextToDivBlackTitle>
                 </ContainDivBlack>
 
                 {this.state.data.map((dat) => {
@@ -682,13 +724,27 @@ class MakeCol extends Component {
                   <NextToDiv>{this.state.pnl.toFixed(4) + "xbt"}</NextToDiv>
                 </ContainDivClicked>
                 <ContainDivBlack>
-                  <NextToDivBlackTitle>Timestamp</NextToDivBlackTitle>
-                  <NextToDivBlackTitle>Side</NextToDivBlackTitle>
-                  <NextToDivBlackTitle>Type</NextToDivBlackTitle>
-                  <NextToDivBlackTitle>Price</NextToDivBlackTitle>
-                  <NextToDivBlackTitle>Qty</NextToDivBlackTitle>
-                  <NextToDivBlackTitle>Leaves</NextToDivBlackTitle>
-                  <NextToDivBlackTitle>Commission</NextToDivBlackTitle>
+                  <NextToDivBlackTitle>
+                    <TitleSpan>Timestamp</TitleSpan>
+                  </NextToDivBlackTitle>
+                  <NextToDivBlackTitle>
+                    <TitleSpan>Side</TitleSpan>
+                  </NextToDivBlackTitle>
+                  <NextToDivBlackTitle>
+                    <TitleSpan>Order Type</TitleSpan>
+                  </NextToDivBlackTitle>
+                  <NextToDivBlackTitle>
+                    <TitleSpan>Price</TitleSpan>
+                  </NextToDivBlackTitle>
+                  <NextToDivBlackTitle>
+                    <TitleSpan>Order Qty</TitleSpan>
+                  </NextToDivBlackTitle>
+                  <NextToDivBlackTitle>
+                    <TitleSpan>Leaves Qty</TitleSpan>
+                  </NextToDivBlackTitle>
+                  <NextToDivBlackTitle>
+                    <TitleSpan>Commission</TitleSpan>
+                  </NextToDivBlackTitle>
                 </ContainDivBlack>
 
                 {this.state.data.map((dat) => {
@@ -762,11 +818,14 @@ export const ContainDiv = styled.div`
   display: flex;
   flex-direction: row;
   height: 52px;
-  ${wideFont}
-  font-weight: 200;
+
+  font-weight: 400;
+  border-bottom: 1px solid #f2f2f2;
+
   &:hover {
+    border-bottom: none;
     transition: none;
-    border-left: 2px solid #d3d3d3;
+    border-left: 3px solid #212528;
     cursor: pointer;
   }
 `;
@@ -778,13 +837,10 @@ export const ContainDivClicked = styled.div`
 
   transition: none;
 
-  border-top: 1px solid #d3d3d3;
-  border-bottom: 1px solid #d3d3d3;
-  ${wideFont}
-  font-weight: 200;
-  border-left: 10px solid #d3d3d3;
+  font-weight: 400;
+  border-left: 5px solid #212528;
+  border-radius: none;
   cursor: pointer;
-  box-shadow: 10px 10px 8px 10px #000000;
 `;
 export const ContainDivBlack = styled.div`
   width: 100%;
@@ -809,7 +865,7 @@ export const NextToDiv = styled.div`
   padding: 8px;
   padding-top: 14px;
   padding-left: 12px;
-  font-size: 14px;
+  font-size: 15px;
   color: #000000;
 
   @media (max-width: 550px) {
@@ -820,27 +876,35 @@ export const NextToDiv = styled.div`
 export const NextToDivBlack = styled.div`
   display: inline-block;
   width: 30%;
-  padding: 5px;
+  padding: 4px;
   padding-left: 12px;
-  font-size: 15px;
-  color: #78838e;
+  font-size: 14px;
+  padding-top: 9px;
 `;
 export const NextToDivBlackTitle = styled.div`
   display: inline-block;
   width: 30%;
-  padding: 5px;
-  padding-left: 13px;
-  padding-top: 10px;
-  font-size: 15px;
-  color: #78838e;
+  padding: 4px;
+  padding-left: 14px;
+  padding-top: 9px;
+  font-size: 14px;
+`;
+
+const TitleSpan = styled.span`
+  display: inline-block;
+  border-bottom: 1px dotted black;
+  padding-bottom: 0px;
+  font-size: 13px;
+  font-weight: 300;
+  color: black;
 `;
 export const NextToDivBlackTime = styled.div`
   display: inline-block;
   width: 30%;
-  padding: 5px;
+  padding: 4px;
   padding-left: 12px;
   font-size: 14px;
-  color: #78838e;
+  padding-top: 10px;
   @media (max-width: 1200px) {
     font-size: 13px;
   }

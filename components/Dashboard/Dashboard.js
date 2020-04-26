@@ -276,6 +276,7 @@ const TopHashtagIndividual = styled.div`
   padding: 8px;
   margin: 0 10px;
   border-radius: 2px;
+  ${wideFont}
   :hover {
     cursor: pointer;
   }
@@ -286,6 +287,7 @@ const TopHashtagIndividualActive = styled.div`
   padding: 8px;
   margin: 0 10px;
   border-radius: 2px;
+  ${wideFont}
   :hover {
     cursor: pointer;
   }
@@ -303,4 +305,5 @@ const ChartWrapper = styled.div`
 const Wrapper = styled.div`
   display: flex;
   align-items: flex-align;
+  margin-top: 5px;
 `;

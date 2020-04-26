@@ -15,7 +15,7 @@ import { inject, observer } from "mobx-react";
 import { when } from "mobx";
 import equal from "fast-deep-equal";
 import TextareaAutosize from "react-autosize-textarea";
-import { wideFont } from "../shared/helpers";
+import { wideFont, smallFont } from "../shared/helpers";
 
 @inject(["store"])
 @observer
@@ -313,12 +313,13 @@ const SingleHashtagDiv = styled.div`
   background: #f8f8ff;
   margin: 20px 8px;
   color: black;
-  padding: 10px;
+  padding: 5px 7px;
 
   white-space: nowrap;
   display: flex;
   flex-direction: row;
   margin-left: 0px;
+  border-radius: 2px;
 `;
 
 const ShowNotesDiv = styled.div`
@@ -348,11 +349,13 @@ const ShowNotesInner = styled.div`
 `;
 
 const SingleHashtagText = styled.div`
-  text-align: center;
-  vertical-align: middle;
+  margin: auto;
+  ${wideFont}
 `;
 const SingleHashtagDelete = styled.div`
+  margin: auto;
   margin-left: 6px;
+  margin-bottom: 4px;
   :hover {
     cursor: pointer;
   }
