@@ -1,7 +1,5 @@
 import Link from "next/link";
 import { withRouter } from "next/router";
-// import Dropdown from "./Dropdown";
-// import Head from "Header/Head";
 import styled, { ThemeProvider } from "styled-components";
 import theme from "../theme";
 import { useContext, useState } from "react";
@@ -69,10 +67,11 @@ export default withRouter(Header);
 
 const StyledLink = styled.div`
   ${headerItem};
-  ${wideFont};
   ${link};
   margin: 0;
-  color: ${props => props.theme.mutedText};
+  color: ${(props) => props.theme.mutedText};
+  color: #fff;
+  text-transform: capitalize;
 
   position: relative;
   cursor: pointer;
@@ -86,28 +85,27 @@ const StyledLink = styled.div`
     right: 0;
     bottom: 0;
     opacity: 0;
-    border-bottom: 1px solid ${props => props.theme.accent};
+    border-bottom: 1px solid ${(props) => props.theme.accent};
   }
 
   :hover {
     opacity: 1;
-    color: ${props => props.theme.accent};
+    color: ${(props) => props.theme.accent};
   }
   :hover::after {
     opacity: 1;
-    border-bottom: 1px solid ${props => props.theme.accent};
+    border-bottom: 1px solid ${(props) => props.theme.accent};
   }
 
   &.active::after {
     left: 0;
     right: 0;
     bottom: 0;
-    border-bottom: 3px solid ${props => props.theme.accent};
+    border-bottom: 3px solid ${(props) => props.theme.accent};
   }
   font-weight: 700;
   letter-spacing: 0.05em;
-  font-size: 12px;
-  text-transform: uppercase;
+  font-size: 14px;
 `;
 
 const Wrapper = styled.header`
@@ -116,12 +114,15 @@ const Wrapper = styled.header`
   top: 0;
   display: flex;
   align-items: stretch;
-  margin-bottom: 24px;
+
   border-bottom: 2px solid #eee;
-  height: 68px;
-  padding: 0 10vw;
-  background-color: ${props => props.theme.foreground};
+  height: 55px;
+  padding: 0 0vw;
+  font-weight: 700;
+  background-color: ${(props) => props.theme.foreground};
   user-select: none;
+  background-color: #212527;
+
   @media (max-width: 425px) {
     margin-bottom: 16px;
     height: 40px;
@@ -130,6 +131,7 @@ const Wrapper = styled.header`
     padding: 0;
   }
 `;
+// background-color: #23282d;
 
 // const Wrapper = styled.header`
 //   position: sticky;

@@ -1,5 +1,5 @@
 import { Query } from "react-apollo";
-import ReChart from "./ReChart";
+import ReChart from "./Trades";
 import Sidebar from "../Menu/Menu";
 import gql from "graphql-tag";
 import styled from "styled-components";
@@ -10,7 +10,7 @@ import {
   NextToDivHeader,
   RowContainer,
   ContainDivHeader,
-} from "./ReChart";
+} from "./Trades";
 import { getStateDate } from "../Helpers/Functions";
 import { equal } from "fast-deep-equal";
 import ApiKeyForm from "./AddApiForm";

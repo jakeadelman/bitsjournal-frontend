@@ -5,9 +5,9 @@ import {
   NextToDivHeader,
   RowContainer,
   ContainDivHeader,
-} from "./ReChart";
-import ReChart from "./ReChart";
-import Sidebar from "../Menu/Menu";
+} from "./Trades";
+import ReChart from "./Trades";
+import Sidebar, { SymbolChooser, Pnl } from "../Menu/Menu";
 import { getNewDat } from "./helpers";
 
 import { inject, observer } from "mobx-react";
@@ -230,40 +230,51 @@ export default class extends React.Component {
                   </TopHashtagIndividual>
                 );
               })}
+              <TopHashtagIndividualActivePnl style={{ margin: "0 auto" }}>
+                <Pnl />
+              </TopHashtagIndividualActivePnl>
+              <TopHashtagIndividualActive style={{ marginRight: "0" }}>
+                <SymbolChooser />
+              </TopHashtagIndividualActive>
             </TopHashtagDiv>
-            {this.state.width > 1380 ? (
-              <ContainDivHeader>
-                <NextToDivHeader>Start</NextToDivHeader>
-                <NextToDivHeader>End</NextToDivHeader>
-                <NextToDivHeader>L/S</NextToDivHeader>
-                <NextToDivHeader>Avg Entry</NextToDivHeader>
-                <NextToDivHeader>Avg Exit</NextToDivHeader>
-                <NextToDivHeader>Qty</NextToDivHeader>
-                <NextToDivHeader>Realized Pnl</NextToDivHeader>
-              </ContainDivHeader>
-            ) : (
-              <ContainDivHeader>
-                <NextToDivHeader>Start</NextToDivHeader>
-                <NextToDivHeader>End</NextToDivHeader>
-                <NextToDivHeader>L/S</NextToDivHeader>
-                <NextToDivHeader>Entry</NextToDivHeader>
-                <NextToDivHeader>Exit</NextToDivHeader>
-                <NextToDivHeader>Qty</NextToDivHeader>
-                <NextToDivHeader>RPNL</NextToDivHeader>
-              </ContainDivHeader>
-            )}
-            <ReChart
-              data={this.state.data}
-              filteredData={this.state.filteredData}
-              initData={this.props.data}
-            />
+            <WholeGrid>
+              {this.state.width > 1380 ? (
+                <ContainDivHeader>
+                  <NextToDivHeader>Start</NextToDivHeader>
+                  <NextToDivHeader>End</NextToDivHeader>
+                  <NextToDivHeader>L/S</NextToDivHeader>
+                  <NextToDivHeader>Avg Entry</NextToDivHeader>
+                  <NextToDivHeader>Avg Exit</NextToDivHeader>
+                  <NextToDivHeader>Qty</NextToDivHeader>
+                  <NextToDivHeader>Realized Pnl</NextToDivHeader>
+                </ContainDivHeader>
+              ) : (
+                <ContainDivHeader>
+                  <NextToDivHeader>Start</NextToDivHeader>
+                  <NextToDivHeader>End</NextToDivHeader>
+                  <NextToDivHeader>L/S</NextToDivHeader>
+                  <NextToDivHeader>Entry</NextToDivHeader>
+                  <NextToDivHeader>Exit</NextToDivHeader>
+                  <NextToDivHeader>Qty</NextToDivHeader>
+                  <NextToDivHeader>RPNL</NextToDivHeader>
+                </ContainDivHeader>
+              )}
+              <ReChart
+                data={this.state.data}
+                filteredData={this.state.filteredData}
+                initData={this.props.data}
+              />
+            </WholeGrid>
           </ChartWrapper>
-          <Sidebar />
         </Wrapper>
       );
     }
   }
 }
+
+const WholeGrid = styled.div`
+  border: 1px solid #f2f2f2;
+`;
 
 const TopHashtagDiv = styled.div`
   display: flex;
@@ -277,6 +288,7 @@ const TopHashtagIndividual = styled.div`
   margin: 0 10px;
   border-radius: 2px;
   ${wideFont}
+
   :hover {
     cursor: pointer;
   }
@@ -293,10 +305,22 @@ const TopHashtagIndividualActive = styled.div`
   }
 `;
 
+const TopHashtagIndividualActivePnl = styled.div`
+  color: #fff;
+  padding: 0px;
+  margin: 0 10px;
+  border-radius: 2px;
+  ${wideFont}
+  :hover {
+    cursor: pointer;
+  }
+`;
+
 const ChartWrapper = styled.div`
   background: white;
   padding: 5px;
   width: 100%;
+  padding: 10px;
   @media (max-width: 768px) {
     margin: 0 5vw;
   }
@@ -304,6 +328,5 @@ const ChartWrapper = styled.div`
 
 const Wrapper = styled.div`
   display: flex;
-  align-items: flex-align;
   margin-top: 5px;
 `;

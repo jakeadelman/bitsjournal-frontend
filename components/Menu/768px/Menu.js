@@ -6,7 +6,7 @@ import Header from "./Header";
 import { inject } from "mobx-react";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
-import { ContainDivClicked } from "../../Dashboard/ReChart";
+import { ContainDivClicked } from "../../Dashboard/Trades";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons";
 

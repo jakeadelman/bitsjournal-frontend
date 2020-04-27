@@ -7,16 +7,23 @@ import bitcoinLogo from "../../static/bitcoin.svg";
 const HeaderLogo = () => (
   <Logo>
     <Link prefetch href="/">
-      <img
-        src="/static/bitcoin-logo.svg"
-        style={{ margin: "auto", maxWidth: "28px" }}
-      />
-    </Link>
-    <Link prefetch href="/">
-      <span style={{ marginLeft: "-2px" }}>its Journal</span>
+      <span>₿itsjournal</span>
     </Link>
   </Logo>
 );
+// const HeaderLogo = () => (
+//   <Logo>
+//     <Link prefetch href="/">
+//       <img
+//         src="/static/bitcoin-logo.svg"
+//         style={{ margin: "auto", maxWidth: "28px" }}
+//       />
+//     </Link>
+//     <Link prefetch href="/">
+//       <span style={{ marginLeft: "-2px" }}>its Journal</span>
+//     </Link>
+//   </Logo>
+// );
 
 export default HeaderLogo;
 
@@ -28,6 +35,7 @@ const Logo = styled.div`
   font-weight: 500;
   color: ${(props) => props.theme.normalText};
   text-decoration: none;
+  color: #fff;
 
   @media (max-width: 425px) {
     padding: 0 8px 0 16px;

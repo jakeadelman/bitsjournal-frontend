@@ -6,12 +6,72 @@ import Header from "./Header";
 import { inject } from "mobx-react";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
-import { ContainDivClicked } from "../Dashboard/ReChart";
+import { ContainDivClicked } from "../Dashboard/Trades";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons";
 import { wideFont } from "../shared/helpers";
 
 // border: 1px solid ${props => props.theme.border};
+
+export const SymbolChooser = inject("store")(
+  observer(({ store }) => {
+    const [dropdown, setDropdown] = useState(false);
+
+    const showDropdown = () => {
+      if (dropdown == false) {
+        setDropdown(true);
+      } else {
+        setDropdown(false);
+      }
+    };
+    return (
+      <SetSymbol
+        onClick={() => {
+          showDropdown();
+        }}
+      >
+        {dropdown == true ? (
+          <FontAwesomeIcon
+            icon={faCaretUp}
+            style={{
+              transition: "none",
+              marginRight: "4px",
+              marginLeft: "3px",
+            }}
+          />
+        ) : (
+          <FontAwesomeIcon
+            icon={faCaretDown}
+            style={{
+              transition: "none",
+              marginRight: "4px",
+              marginLeft: "3px",
+            }}
+          />
+        )}
+        {store.symbol}
+      </SetSymbol>
+    );
+  })
+);
+
+export const Pnl = inject("store")(
+  observer(({ store }) => {
+    return (
+      <div style={{ minHeight: "100%" }}>
+        {store.pnl >= 0 ? (
+          <Lapper2>
+            <InnerLapper>{store.pnl.toFixed(4) + "xbt"}</InnerLapper>
+          </Lapper2>
+        ) : (
+          <Lapper3>
+            <InnerLapper>{store.pnl.toFixed(4) + "xbt"}</InnerLapper>
+          </Lapper3>
+        )}
+      </div>
+    );
+  })
+);
 
 const Sidebar = inject("store")(
   observer(({ store }) => {
@@ -123,20 +183,14 @@ const Lapper2 = styled.aside`
   border-radius: 2px;
   background-color: ${(props) => props.theme.foreground};
   background-color: green;
-  max-height: 30px;
-  @media (max-width: 768px) {
-    display: none;
-  }
+  margin: auto;
 `;
 
 const Lapper3 = styled.aside`
   border-radius: 2px;
   background-color: ${(props) => props.theme.foreground};
   background-color: red;
-  max-height: 30px;
-  @media (max-width: 768px) {
-    display: none;
-  }
+  margin: auto;
 `;
 
 const Lapper4 = styled.aside`
@@ -151,12 +205,12 @@ const Lapper4 = styled.aside`
     display: none;
   }
 `;
-const SetSymbol = styled.div`
-  ${wideFont}
-  font-weight:500;
+export const SetSymbol = styled.div`
+  font-weight: 500;
   font-size: 14px;
-  padding: 5px;
+  ${wideFont}
   color: #fff;
+  background-color: #212527;
   :hover {
     cursor: pointer;
   }

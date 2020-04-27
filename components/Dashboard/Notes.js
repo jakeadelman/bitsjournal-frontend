@@ -334,7 +334,7 @@ const ShowNotesDiv = styled.div`
   flex-direction: row;
   margin-left: 0px;
   border-radius: 2px;
-
+  background: #f8f8ff;
   :hover {
     transition: none;
     cursor: pointer;
@@ -373,6 +373,7 @@ const HashtagDiv = styled.div`
 const FullRow = styled.form`
   display: flex;
   flex-direction: row;
+  background: #f8f8ff;
 `;
 
 const NotesSubmit = styled.input`
@@ -386,7 +387,7 @@ const NotesSubmit = styled.input`
 const NotesInput = styled.textarea`
   width: 100%;
   padding: 12px 20px;
-  margin: 8px 0;
+  margin: 0px 0;
   box-sizing: border-box;
   background: #f8f8ff;
   border: none;

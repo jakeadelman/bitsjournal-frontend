@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -199,8 +199,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _shared_helpers__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../shared/helpers */ "./components/shared/helpers.js");
 
 
- // import Dropdown from "./Dropdown";
-// import Head from "Header/Head";
 
 
 
@@ -251,7 +249,7 @@ var Header = function Header(_ref) {
 var StyledLink = styled_components__WEBPACK_IMPORTED_MODULE_3___default.a.div.withConfig({
   displayName: "Header__StyledLink",
   componentId: "sc-19c2vr5-0"
-})(["", ";", ";", ";margin:0;color:", ";position:relative;cursor:pointer;::after{", ";content:\"\";position:absolute;left:0;right:0;bottom:0;opacity:0;border-bottom:1px solid ", ";}:hover{opacity:1;color:", ";}:hover::after{opacity:1;border-bottom:1px solid ", ";}&.active::after{left:0;right:0;bottom:0;border-bottom:3px solid ", ";}font-weight:700;letter-spacing:0.05em;font-size:12px;text-transform:uppercase;"], _shared_helpers__WEBPACK_IMPORTED_MODULE_7__["headerItem"], _shared_helpers__WEBPACK_IMPORTED_MODULE_7__["wideFont"], _shared_helpers__WEBPACK_IMPORTED_MODULE_7__["link"], function (props) {
+})(["", ";", ";margin:0;color:", ";color:#fff;text-transform:capitalize;position:relative;cursor:pointer;::after{", ";content:\"\";position:absolute;left:0;right:0;bottom:0;opacity:0;border-bottom:1px solid ", ";}:hover{opacity:1;color:", ";}:hover::after{opacity:1;border-bottom:1px solid ", ";}&.active::after{left:0;right:0;bottom:0;border-bottom:3px solid ", ";}font-weight:700;letter-spacing:0.05em;font-size:14px;"], _shared_helpers__WEBPACK_IMPORTED_MODULE_7__["headerItem"], _shared_helpers__WEBPACK_IMPORTED_MODULE_7__["link"], function (props) {
   return props.theme.mutedText;
 }, Object(_shared_helpers__WEBPACK_IMPORTED_MODULE_7__["transition"])("opacity", "border-bottom-width"), function (props) {
   return props.theme.accent;
@@ -265,9 +263,10 @@ var StyledLink = styled_components__WEBPACK_IMPORTED_MODULE_3___default.a.div.wi
 var Wrapper = styled_components__WEBPACK_IMPORTED_MODULE_3___default.a.header.withConfig({
   displayName: "Header__Wrapper",
   componentId: "sc-19c2vr5-1"
-})(["position:sticky;z-index:10;top:0;display:flex;align-items:stretch;margin-bottom:24px;border-bottom:2px solid #eee;height:68px;padding:0 10vw;background-color:", ";user-select:none;@media (max-width:425px){margin-bottom:16px;height:40px;}@media (max-width:768px){padding:0;}"], function (props) {
+})(["position:sticky;z-index:10;top:0;display:flex;align-items:stretch;border-bottom:2px solid #eee;height:55px;padding:0 0vw;font-weight:700;background-color:", ";user-select:none;background-color:#212527;@media (max-width:425px){margin-bottom:16px;height:40px;}@media (max-width:768px){padding:0;}"], function (props) {
   return props.theme.foreground;
-}); // const Wrapper = styled.header`
+}); // background-color: #23282d;
+// const Wrapper = styled.header`
 //   position: sticky;
 //   z-index: 10;
 //   top: 0;
@@ -436,27 +435,27 @@ var HeaderLogo = function HeaderLogo() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Logo, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
     prefetch: true,
     href: "/"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    src: "/static/bitcoin-logo.svg",
-    style: {
-      margin: "auto",
-      maxWidth: "28px"
-    }
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
-    prefetch: true,
-    href: "/"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    style: {
-      marginLeft: "-2px"
-    }
-  }, "its Journal")));
-};
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u20BFitsjournal")));
+}; // const HeaderLogo = () => (
+//   <Logo>
+//     <Link prefetch href="/">
+//       <img
+//         src="/static/bitcoin-logo.svg"
+//         style={{ margin: "auto", maxWidth: "28px" }}
+//       />
+//     </Link>
+//     <Link prefetch href="/">
+//       <span style={{ marginLeft: "-2px" }}>its Journal</span>
+//     </Link>
+//   </Logo>
+// );
+
 
 /* harmony default export */ __webpack_exports__["default"] = (HeaderLogo);
 var Logo = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.div.withConfig({
   displayName: "Logo",
   componentId: "sc-195qc4m-0"
-})(["", " margin-right:auto;font-size:21px;font-weight:500;color:", ";text-decoration:none;@media (max-width:425px){padding:0 8px 0 16px;font-size:19px;}"], _shared_helpers__WEBPACK_IMPORTED_MODULE_3__["headerItem"], function (props) {
+})(["", " margin-right:auto;font-size:21px;font-weight:500;color:", ";text-decoration:none;color:#fff;@media (max-width:425px){padding:0 8px 0 16px;font-size:19px;}"], _shared_helpers__WEBPACK_IMPORTED_MODULE_3__["headerItem"], function (props) {
   return props.theme.normalText;
 }); // display: flex;
 // align-items: center;
@@ -1038,7 +1037,7 @@ var Annotation1 = styled_components__WEBPACK_IMPORTED_MODULE_4___default.a.div.w
 
 /***/ }),
 
-/***/ 4:
+/***/ 3:
 /*!******************************!*\
   !*** multi ./pages/index.js ***!
   \******************************/

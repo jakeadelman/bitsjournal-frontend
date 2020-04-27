@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -795,7 +795,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! styled-components */ "styled-components");
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _ReChart__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../ReChart */ "./components/Dashboard/ReChart.js");
+/* harmony import */ var _Trades__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Trades */ "./components/Dashboard/Trades.js");
 /* harmony import */ var _Menu_768px_Menu__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Menu/768px/Menu */ "./components/Menu/768px/Menu.js");
 /* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../helpers */ "./components/Dashboard/helpers.js");
 /* harmony import */ var mobx_react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! mobx-react */ "mobx-react");
@@ -1215,7 +1215,7 @@ function (_React$Component) {
               return _this4.hashtagClicked(hash);
             }
           }, "#", hash);
-        })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["ContainDivHeader"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "Start"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "End"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "L/S"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "Entry"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "Exit"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "Qty"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "RPNL")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Trades__WEBPACK_IMPORTED_MODULE_3__["ContainDivHeader"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Trades__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "Start"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Trades__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "End"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Trades__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "L/S"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Trades__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "Entry"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Trades__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "Exit"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Trades__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "Qty"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Trades__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "RPNL")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Trades__WEBPACK_IMPORTED_MODULE_3__["default"], {
           data: this.state.data,
           filteredData: this.state.filteredData,
           initData: this.props.data
@@ -1671,7 +1671,11 @@ function (_React$Component) {
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(styled_components__WEBPACK_IMPORTED_MODULE_1__["ThemeProvider"], {
         theme: Object(_theme__WEBPACK_IMPORTED_MODULE_2__["default"])(false)
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FetchQuery__WEBPACK_IMPORTED_MODULE_3__["default"], null));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        style: {
+          width: "100%"
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FetchQuery__WEBPACK_IMPORTED_MODULE_3__["default"], null)));
     }
   }]);
 
@@ -1697,7 +1701,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! styled-components */ "styled-components");
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _ReChart__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ReChart */ "./components/Dashboard/ReChart.js");
+/* harmony import */ var _Trades__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Trades */ "./components/Dashboard/Trades.js");
 /* harmony import */ var _Menu_Menu__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Menu/Menu */ "./components/Menu/Menu.js");
 /* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./helpers */ "./components/Dashboard/helpers.js");
 /* harmony import */ var mobx_react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! mobx-react */ "mobx-react");
@@ -2134,11 +2138,19 @@ function (_React$Component) {
               return _this4.hashtagClicked(hash);
             }
           }, "#", hash);
-        })), this.state.width > 1380 ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["ContainDivHeader"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "Start"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "End"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "L/S"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "Avg Entry"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "Avg Exit"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "Qty"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "Realized Pnl")) : react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["ContainDivHeader"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "Start"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "End"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "L/S"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "Entry"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "Exit"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "Qty"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "RPNL")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReChart__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(TopHashtagIndividualActivePnl, {
+          style: {
+            margin: "0 auto"
+          }
+        }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Menu_Menu__WEBPACK_IMPORTED_MODULE_4__["Pnl"], null)), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(TopHashtagIndividualActive, {
+          style: {
+            marginRight: "0"
+          }
+        }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Menu_Menu__WEBPACK_IMPORTED_MODULE_4__["SymbolChooser"], null))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(WholeGrid, null, this.state.width > 1380 ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Trades__WEBPACK_IMPORTED_MODULE_3__["ContainDivHeader"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Trades__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "Start"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Trades__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "End"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Trades__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "L/S"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Trades__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "Avg Entry"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Trades__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "Avg Exit"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Trades__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "Qty"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Trades__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "Realized Pnl")) : react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Trades__WEBPACK_IMPORTED_MODULE_3__["ContainDivHeader"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Trades__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "Start"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Trades__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "End"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Trades__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "L/S"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Trades__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "Entry"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Trades__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "Exit"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Trades__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "Qty"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Trades__WEBPACK_IMPORTED_MODULE_3__["NextToDivHeader"], null, "RPNL")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Trades__WEBPACK_IMPORTED_MODULE_3__["default"], {
           data: this.state.data,
           filteredData: this.state.filteredData,
           initData: this.props.data
-        })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Menu_Menu__WEBPACK_IMPORTED_MODULE_4__["default"], null));
+        }))));
       }
     }
   }]);
@@ -2147,26 +2159,34 @@ function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_1___default.a.Component)) || _class2) || _class2);
 
 
+var WholeGrid = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.div.withConfig({
+  displayName: "Dashboard__WholeGrid",
+  componentId: "ij5648-0"
+})(["border:1px solid #f2f2f2;"]);
 var TopHashtagDiv = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.div.withConfig({
   displayName: "Dashboard__TopHashtagDiv",
-  componentId: "ij5648-0"
+  componentId: "ij5648-1"
 })(["display:flex;flex-direction:row;margin-bottom:14px;"]);
 var TopHashtagIndividual = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.div.withConfig({
   displayName: "Dashboard__TopHashtagIndividual",
-  componentId: "ij5648-1"
+  componentId: "ij5648-2"
 })(["background:#f8f8ff;color:#000;padding:8px;margin:0 10px;border-radius:2px;", ":hover{cursor:pointer;}"], _shared_helpers__WEBPACK_IMPORTED_MODULE_8__["wideFont"]);
 var TopHashtagIndividualActive = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.div.withConfig({
   displayName: "Dashboard__TopHashtagIndividualActive",
-  componentId: "ij5648-2"
+  componentId: "ij5648-3"
 })(["background:#212528;color:#fff;padding:8px;margin:0 10px;border-radius:2px;", ":hover{cursor:pointer;}"], _shared_helpers__WEBPACK_IMPORTED_MODULE_8__["wideFont"]);
+var TopHashtagIndividualActivePnl = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.div.withConfig({
+  displayName: "Dashboard__TopHashtagIndividualActivePnl",
+  componentId: "ij5648-4"
+})(["color:#fff;padding:0px;margin:0 10px;border-radius:2px;", ":hover{cursor:pointer;}"], _shared_helpers__WEBPACK_IMPORTED_MODULE_8__["wideFont"]);
 var ChartWrapper = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.div.withConfig({
   displayName: "Dashboard__ChartWrapper",
-  componentId: "ij5648-3"
-})(["background:white;padding:5px;width:100%;@media (max-width:768px){margin:0 5vw;}"]);
+  componentId: "ij5648-5"
+})(["background:white;padding:5px;width:100%;padding:10px;@media (max-width:768px){margin:0 5vw;}"]);
 var Wrapper = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.div.withConfig({
   displayName: "Dashboard__Wrapper",
-  componentId: "ij5648-4"
-})(["display:flex;align-items:flex-align;margin-top:5px;"]);
+  componentId: "ij5648-6"
+})(["display:flex;margin-top:5px;"]);
 
 /***/ }),
 
@@ -2183,7 +2203,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_apollo__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-apollo */ "react-apollo");
 /* harmony import */ var react_apollo__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_apollo__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _ReChart__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ReChart */ "./components/Dashboard/ReChart.js");
+/* harmony import */ var _Trades__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Trades */ "./components/Dashboard/Trades.js");
 /* harmony import */ var _Menu_Menu__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Menu/Menu */ "./components/Menu/Menu.js");
 /* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! graphql-tag */ "graphql-tag");
 /* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(graphql_tag__WEBPACK_IMPORTED_MODULE_4__);
@@ -2912,7 +2932,7 @@ var SingleHashtagDiv = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.
 var ShowNotesDiv = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.div.withConfig({
   displayName: "Notes__ShowNotesDiv",
   componentId: "i5ukt5-4"
-})(["background:#fff;margin:20px 8px;color:#000;padding:10px;padding-top:8px;white-space:nowrap;display:flex;flex-direction:row;margin-left:0px;border-radius:2px;:hover{transition:none;cursor:pointer;}"]);
+})(["background:#fff;margin:20px 8px;color:#000;padding:10px;padding-top:8px;white-space:nowrap;display:flex;flex-direction:row;margin-left:0px;border-radius:2px;background:#f8f8ff;:hover{transition:none;cursor:pointer;}"]);
 var ShowNotesInner = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.div.withConfig({
   displayName: "Notes__ShowNotesInner",
   componentId: "i5ukt5-5"
@@ -2932,7 +2952,7 @@ var HashtagDiv = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.div.wi
 var FullRow = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.form.withConfig({
   displayName: "Notes__FullRow",
   componentId: "i5ukt5-9"
-})(["display:flex;flex-direction:row;"]);
+})(["display:flex;flex-direction:row;background:#f8f8ff;"]);
 var NotesSubmit = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.input.withConfig({
   displayName: "Notes__NotesSubmit",
   componentId: "i5ukt5-10"
@@ -2940,14 +2960,14 @@ var NotesSubmit = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.input
 var NotesInput = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.textarea.withConfig({
   displayName: "Notes__NotesInput",
   componentId: "i5ukt5-11"
-})(["width:100%;padding:12px 20px;margin:8px 0;box-sizing:border-box;background:#f8f8ff;border:none;"]);
+})(["width:100%;padding:12px 20px;margin:0px 0;box-sizing:border-box;background:#f8f8ff;border:none;"]);
 
 /***/ }),
 
-/***/ "./components/Dashboard/ReChart.js":
-/*!*****************************************!*\
-  !*** ./components/Dashboard/ReChart.js ***!
-  \*****************************************/
+/***/ "./components/Dashboard/Trades.js":
+/*!****************************************!*\
+  !*** ./components/Dashboard/Trades.js ***!
+  \****************************************/
 /*! exports provided: default, ContainDiv, ContainDivClicked, ContainDivBlack, ContainDivHeader, NextToDiv, NextToDivBlack, NextToDivBlackTitle, NextToDivBlackTime, NextToDivHeader */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3469,9 +3489,6 @@ function (_Component) {
     value: function render() {
       var _this4 = this;
 
-      // console.log(this.state.data[0], "DAT ZERO");
-      // if (this.state.data[0] != undefined) {
-      // if (this.state.width != null) {
       if (this.state.width > 1380) {
         if (this.state.clicked == false) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ContainDiv, {
@@ -3484,7 +3501,9 @@ function (_Component) {
             onClick: this.clicked.bind(this)
           }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, Object(_Helpers_Functions_js__WEBPACK_IMPORTED_MODULE_5__["formatDateMonthOnly"])(this.state.data[0].timestamp)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, Object(_Helpers_Functions_js__WEBPACK_IMPORTED_MODULE_5__["formatDateMonthOnly"])(this.state.data[this.state.data.length - 1].timestamp)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(IsShort, {
             side: this.state.data[0].side
-          }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, "$", this.state.avgEntryPrice.toFixed(1)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, "$", this.state.avgExitPrice.toFixed(1)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, this.state.cumQty), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, this.state.pnl.toFixed(4) + "xbt")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ContainDivBlack, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TitleSpan, null, "Timestamp")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TitleSpan, null, "Side")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TitleSpan, null, "Order Type")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TitleSpan, null, "Price")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TitleSpan, null, "Order Qty")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TitleSpan, null, "Leaves Qty")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TitleSpan, null, "Commission"))), this.state.data.map(function (dat) {
+          }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, "$", this.state.avgEntryPrice.toFixed(1)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, "$", this.state.avgExitPrice.toFixed(1)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, this.state.cumQty), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, this.state.pnl.toFixed(4) + "xbt")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Notes__WEBPACK_IMPORTED_MODULE_8__["default"], {
+            firstTrade: this.state.data[0]
+          }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ContainDivBlack, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TitleSpan, null, "Timestamp")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TitleSpan, null, "Side")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TitleSpan, null, "Order Type")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TitleSpan, null, "Price")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TitleSpan, null, "Order Qty")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TitleSpan, null, "Leaves Qty")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TitleSpan, null, "Commission"))), this.state.data.map(function (dat) {
             return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ContainDivBlack, {
               onClick: _this4.clicked.bind(_this4)
             }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, Object(_Helpers_Functions_js__WEBPACK_IMPORTED_MODULE_5__["formatDateMonthOnly"])(dat.timestamp)), dat.execType == "Trade" ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.side) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.execType), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.orderType), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "$", dat.price.toString()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.orderQty), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.leavesQty == "0" ? "" : dat.leavesQty), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.execType == "Funding" ? "" : Object(_Helpers_Functions_js__WEBPACK_IMPORTED_MODULE_5__["calcCommission"])(dat.price, dat.side, dat.orderQty, dat.leavesQty, dat.orderType)));
@@ -3499,7 +3518,9 @@ function (_Component) {
             onClick: this.clicked
           }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, Object(_Helpers_Functions_js__WEBPACK_IMPORTED_MODULE_5__["formatDateMonthOnly"])(this.state.data[0].timestamp)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, Object(_Helpers_Functions_js__WEBPACK_IMPORTED_MODULE_5__["formatDateMonthOnly"])(this.state.data[this.state.data.length - 1].timestamp)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(IsShort, {
             side: this.state.data[0].side
-          }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, "$", this.state.avgEntryPrice.toFixed(1)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, "$", this.state.avgExitPrice.toFixed(1)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, this.state.cumQty), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, this.state.pnl.toFixed(4) + "xbt")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ContainDivBlack, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TitleSpan, null, "Timestamp")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TitleSpan, null, "Side")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TitleSpan, null, "Order Type")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TitleSpan, null, "Price")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TitleSpan, null, "Order Qty")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TitleSpan, null, "Leaves Qty")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TitleSpan, null, "Commission"))), this.state.data.map(function (dat) {
+          }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, "$", this.state.avgEntryPrice.toFixed(1)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, "$", this.state.avgExitPrice.toFixed(1)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, this.state.cumQty), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, this.state.pnl.toFixed(4) + "xbt")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Notes__WEBPACK_IMPORTED_MODULE_8__["default"], {
+            firstTrade: this.state.data[0]
+          }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ContainDivBlack, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TitleSpan, null, "Timestamp")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TitleSpan, null, "Side")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TitleSpan, null, "Order Type")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TitleSpan, null, "Price")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TitleSpan, null, "Order Qty")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TitleSpan, null, "Leaves Qty")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TitleSpan, null, "Commission"))), this.state.data.map(function (dat) {
             return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ContainDivBlack, {
               onClick: _this4.clicked.bind(_this4)
             }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, Object(_Helpers_Functions_js__WEBPACK_IMPORTED_MODULE_5__["formatDateMonthOnly"])(dat.timestamp)), dat.execType == "Trade" ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.side) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.execType), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.orderType), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "$", dat.price.toString()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.orderQty), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.leavesQty == "0" ? "" : dat.leavesQty), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.execType == "Funding" ? "" : Object(_Helpers_Functions_js__WEBPACK_IMPORTED_MODULE_5__["calcCommission"])(dat.price, dat.side, dat.orderQty, dat.leavesQty, dat.orderType)));
@@ -3510,9 +3531,7 @@ function (_Component) {
             style: {
               transition: "none"
             }
-          })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Notes__WEBPACK_IMPORTED_MODULE_8__["default"], {
-            firstTrade: this.state.data[0]
-          }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Charts2_index__WEBPACK_IMPORTED_MODULE_7__["default"], {
+          })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Charts2_index__WEBPACK_IMPORTED_MODULE_7__["default"], {
             onemin: this.props.onemin,
             fivemin: this.props.fivemin,
             onehour: this.props.onehour,
@@ -3532,7 +3551,9 @@ function (_Component) {
             onClick: this.clicked.bind(this)
           }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, Object(_Helpers_Functions_js__WEBPACK_IMPORTED_MODULE_5__["formatDateShort"])(this.state.data[0].timestamp)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, Object(_Helpers_Functions_js__WEBPACK_IMPORTED_MODULE_5__["formatDateShort"])(this.state.data[this.state.data.length - 1].timestamp)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(IsShort, {
             side: this.state.data[0].side
-          }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, "$", this.state.avgEntryPrice.toFixed(1)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, "$", this.state.avgExitPrice.toFixed(1)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, this.state.cumQty), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, this.state.pnl.toFixed(4) + "xbt")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ContainDivBlack, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TitleSpan, null, "Timestamp")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TitleSpan, null, "Side")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TitleSpan, null, "Order Type")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TitleSpan, null, "Price")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TitleSpan, null, "Order Qty")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TitleSpan, null, "Leaves Qty")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TitleSpan, null, "Commission"))), this.state.data.map(function (dat) {
+          }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, "$", this.state.avgEntryPrice.toFixed(1)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, "$", this.state.avgExitPrice.toFixed(1)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, this.state.cumQty), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, this.state.pnl.toFixed(4) + "xbt")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Notes__WEBPACK_IMPORTED_MODULE_8__["default"], {
+            firstTrade: this.state.data[0]
+          }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ContainDivBlack, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TitleSpan, null, "Timestamp")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TitleSpan, null, "Side")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TitleSpan, null, "Order Type")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TitleSpan, null, "Price")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TitleSpan, null, "Order Qty")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TitleSpan, null, "Leaves Qty")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TitleSpan, null, "Commission"))), this.state.data.map(function (dat) {
             return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ContainDivBlack, {
               onClick: _this4.clicked.bind(_this4)
             }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTime, null, Object(_Helpers_Functions_js__WEBPACK_IMPORTED_MODULE_5__["formatDateShortWithHour"])(dat.timestamp)), dat.execType == "Trade" ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.side) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.execType), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.orderType), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "$", dat.price.toString()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.orderQty), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.leavesQty == "0" ? "" : dat.leavesQty), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.execType == "Funding" ? "" : Object(_Helpers_Functions_js__WEBPACK_IMPORTED_MODULE_5__["calcCommission"])(dat.price, dat.side, dat.orderQty, dat.leavesQty, dat.orderType)));
@@ -3547,7 +3568,9 @@ function (_Component) {
             onClick: this.clicked
           }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, Object(_Helpers_Functions_js__WEBPACK_IMPORTED_MODULE_5__["formatDateShort"])(this.state.data[0].timestamp)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, Object(_Helpers_Functions_js__WEBPACK_IMPORTED_MODULE_5__["formatDateShort"])(this.state.data[this.state.data.length - 1].timestamp)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(IsShort, {
             side: this.state.data[0].side
-          }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, "$", this.state.avgEntryPrice.toFixed(1)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, "$", this.state.avgExitPrice.toFixed(1)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, this.state.cumQty), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, this.state.pnl.toFixed(4) + "xbt")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ContainDivBlack, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TitleSpan, null, "Timestamp")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TitleSpan, null, "Side")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TitleSpan, null, "Order Type")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TitleSpan, null, "Price")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TitleSpan, null, "Order Qty")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TitleSpan, null, "Leaves Qty")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TitleSpan, null, "Commission"))), this.state.data.map(function (dat) {
+          }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, "$", this.state.avgEntryPrice.toFixed(1)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, "$", this.state.avgExitPrice.toFixed(1)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, this.state.cumQty), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDiv, null, this.state.pnl.toFixed(4) + "xbt")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Notes__WEBPACK_IMPORTED_MODULE_8__["default"], {
+            firstTrade: this.state.data[0]
+          }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ContainDivBlack, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TitleSpan, null, "Timestamp")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TitleSpan, null, "Side")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TitleSpan, null, "Order Type")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TitleSpan, null, "Price")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TitleSpan, null, "Order Qty")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TitleSpan, null, "Leaves Qty")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTitle, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TitleSpan, null, "Commission"))), this.state.data.map(function (dat) {
             return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ContainDivBlack, {
               onClick: _this4.clicked.bind(_this4)
             }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlackTime, null, Object(_Helpers_Functions_js__WEBPACK_IMPORTED_MODULE_5__["formatDateShortWithHour"])(dat.timestamp)), dat.execType == "Trade" ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.side) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.execType), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.orderType), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, "$", dat.price.toString()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.orderQty), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.leavesQty == "0" ? "" : dat.leavesQty), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextToDivBlack, null, dat.execType == "Funding" ? "" : Object(_Helpers_Functions_js__WEBPACK_IMPORTED_MODULE_5__["calcCommission"])(dat.price, dat.side, dat.orderQty, dat.leavesQty, dat.orderType)));
@@ -3558,9 +3581,7 @@ function (_Component) {
             style: {
               transition: "none"
             }
-          })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Notes__WEBPACK_IMPORTED_MODULE_8__["default"], {
-            firstTrade: this.state.data[0]
-          }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Charts2_index__WEBPACK_IMPORTED_MODULE_7__["default"], {
+          })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Charts2_index__WEBPACK_IMPORTED_MODULE_7__["default"], {
             onemin: this.props.onemin,
             fivemin: this.props.fivemin,
             onehour: this.props.onehour,
@@ -3601,70 +3622,71 @@ function (_Component2) {
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 var ContainDiv = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.div.withConfig({
-  displayName: "ReChart__ContainDiv",
-  componentId: "mo5ubi-0"
+  displayName: "Trades__ContainDiv",
+  componentId: "sc-2xufv3-0"
 })(["width:100%;display:flex;flex-direction:row;height:52px;font-weight:400;border-bottom:1px solid #f2f2f2;&:hover{border-bottom:none;transition:none;border-left:3px solid #212528;cursor:pointer;}"]);
 var ContainDivClicked = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.div.withConfig({
-  displayName: "ReChart__ContainDivClicked",
-  componentId: "mo5ubi-1"
-})(["width:100%;display:flex;flex-direction:row;height:52px;transition:none;font-weight:400;border-left:5px solid #212528;border-radius:none;cursor:pointer;"]);
+  displayName: "Trades__ContainDivClicked",
+  componentId: "sc-2xufv3-1"
+})(["width:100%;display:flex;flex-direction:row;height:52px;transition:none;font-weight:400;border-bottom:1px solid #f2f2f2;border-left:5px solid #212528;border-radius:none;cursor:pointer;background:#f8f8ff;"]);
 var ContainDivBlack = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.div.withConfig({
-  displayName: "ReChart__ContainDivBlack",
-  componentId: "mo5ubi-2"
+  displayName: "Trades__ContainDivBlack",
+  componentId: "sc-2xufv3-2"
 })(["width:100%;display:flex;flex-direction:row;height:42px;background:#f8f8ff;border-bottom:1px solid #f2f2f2;"]);
 var ContainDivHeader = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.div.withConfig({
-  displayName: "ReChart__ContainDivHeader",
-  componentId: "mo5ubi-3"
-})(["width:100%;display:flex;flex-direction:row;height:42px;border-bottom:1px solid #d3d3d3;"]);
+  displayName: "Trades__ContainDivHeader",
+  componentId: "sc-2xufv3-3"
+})(["width:100%;display:flex;flex-direction:row;height:42px;border-bottom:1px solid #d3d3d3;"]); // f2f2f2
+
 var NextToDiv = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.div.withConfig({
-  displayName: "ReChart__NextToDiv",
-  componentId: "mo5ubi-4"
-})(["display:inline-block;width:30%;padding:8px;padding-top:14px;padding-left:12px;font-size:15px;color:#000000;@media (max-width:550px){font-size:13px;}"]);
+  displayName: "Trades__NextToDiv",
+  componentId: "sc-2xufv3-4"
+})(["display:inline-block;width:30%;padding:8px;padding-top:14px;padding-left:12px;font-size:15px;color:#000000;border-right:1px solid #f2f2f2;font-weight:300;font-size:15px;@media (max-width:550px){font-size:13px;}"]);
 var NextToDivBlack = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.div.withConfig({
-  displayName: "ReChart__NextToDivBlack",
-  componentId: "mo5ubi-5"
-})(["display:inline-block;width:30%;padding:4px;padding-left:12px;font-size:14px;padding-top:9px;"]);
+  displayName: "Trades__NextToDivBlack",
+  componentId: "sc-2xufv3-5"
+})(["display:inline-block;width:30%;padding:4px;padding-left:12px;font-size:14px;padding-top:9px;border-right:1px solid #f2f2f2;"]);
 var NextToDivBlackTitle = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.div.withConfig({
-  displayName: "ReChart__NextToDivBlackTitle",
-  componentId: "mo5ubi-6"
+  displayName: "Trades__NextToDivBlackTitle",
+  componentId: "sc-2xufv3-6"
 })(["display:inline-block;width:30%;padding:4px;padding-left:14px;padding-top:9px;font-size:14px;"]);
 var TitleSpan = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.span.withConfig({
-  displayName: "ReChart__TitleSpan",
-  componentId: "mo5ubi-7"
+  displayName: "Trades__TitleSpan",
+  componentId: "sc-2xufv3-7"
 })(["display:inline-block;border-bottom:1px dotted black;padding-bottom:0px;font-size:13px;font-weight:300;color:black;"]);
 var NextToDivBlackTime = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.div.withConfig({
-  displayName: "ReChart__NextToDivBlackTime",
-  componentId: "mo5ubi-8"
+  displayName: "Trades__NextToDivBlackTime",
+  componentId: "sc-2xufv3-8"
 })(["display:inline-block;width:30%;padding:4px;padding-left:12px;font-size:14px;padding-top:10px;@media (max-width:1200px){font-size:13px;}@media (max-width:663px){padding-top:0px !important;}"]);
 var NextToDivHeader = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.div.withConfig({
-  displayName: "ReChart__NextToDivHeader",
-  componentId: "mo5ubi-9"
-})(["display:inline-block;width:30%;color:#78838e;font-weight:600;display:inline-block;text-transform:uppercase;padding:10px;padding-left:12px;", " font-size:14px;"], _shared_helpers__WEBPACK_IMPORTED_MODULE_3__["smallFont"]);
+  displayName: "Trades__NextToDivHeader",
+  componentId: "sc-2xufv3-9"
+})(["display:inline-block;width:30%;color:#78838e;font-weight:600;display:inline-block;text-transform:uppercase;padding:10px;padding-left:12px;", " font-size:13px;"], _shared_helpers__WEBPACK_IMPORTED_MODULE_3__["smallFont"]);
 var ReadMore = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.div.withConfig({
-  displayName: "ReChart__ReadMore",
-  componentId: "mo5ubi-10"
+  displayName: "Trades__ReadMore",
+  componentId: "sc-2xufv3-10"
 })(["position:absolute;bottom:0;left:0;width:100%;text-align:center;margin:0;padding:10px 0;background-image:-webkit-gradient( linear,left top,left bottom,color-stop(0,rgba(255,0,0,0)),color-stop(1,rgba(248,248,255,1)) );"]);
 var ReadMoreTall = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.div.withConfig({
-  displayName: "ReChart__ReadMoreTall",
-  componentId: "mo5ubi-11"
+  displayName: "Trades__ReadMoreTall",
+  componentId: "sc-2xufv3-11"
 })(["position:absolute;bottom:0;left:0;width:100%;text-align:center;margin:0;padding:10px 0;"]); // background-image: linear-gradient(to bottom, transparent, black);
 
 var MoreBoxShort = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.div.withConfig({
-  displayName: "ReChart__MoreBoxShort",
-  componentId: "mo5ubi-12"
-})(["max-height:200px;position:relative;overflow:hidden;"]);
+  displayName: "Trades__MoreBoxShort",
+  componentId: "sc-2xufv3-12"
+})(["max-height:300px;position:relative;overflow:hidden;"]);
 var MoreBoxTall = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.div.withConfig({
-  displayName: "ReChart__MoreBoxTall",
-  componentId: "mo5ubi-13"
+  displayName: "Trades__MoreBoxTall",
+  componentId: "sc-2xufv3-13"
 })(["max-height:none;position:relative;overflow:hidden;"]);
 var TotalDetails = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.div.withConfig({
-  displayName: "ReChart__TotalDetails",
-  componentId: "mo5ubi-14"
+  displayName: "Trades__TotalDetails",
+  componentId: "sc-2xufv3-14"
 })([""]); // border: 1px solid rgba(33, 37, 40, 0.7);
 
 var ReadMoreInner = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.div.withConfig({
-  displayName: "ReChart__ReadMoreInner",
-  componentId: "mo5ubi-15"
+  displayName: "Trades__ReadMoreInner",
+  componentId: "sc-2xufv3-15"
 })(["color:rgba(33,37,40,1);padding:0;margin:auto;width:30px;border-radius:2px;-webkit-transition-property:none;-moz-transition-property:none;-o-transition-property:none;transition-property:none;:hover{cursor:pointer;background-color:rgba(33,37,40,1);color:#fff;-webkit-transition-property:none;-moz-transition-property:none;-o-transition-property:none;transition-property:none;}font-size:20px;"]);
 
 /***/ }),
@@ -3958,8 +3980,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _shared_helpers__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../shared/helpers */ "./components/shared/helpers.js");
 
 
- // import Dropdown from "./Dropdown";
-// import Head from "Header/Head";
 
 
 
@@ -4010,7 +4030,7 @@ var Header = function Header(_ref) {
 var StyledLink = styled_components__WEBPACK_IMPORTED_MODULE_3___default.a.div.withConfig({
   displayName: "Header__StyledLink",
   componentId: "sc-19c2vr5-0"
-})(["", ";", ";", ";margin:0;color:", ";position:relative;cursor:pointer;::after{", ";content:\"\";position:absolute;left:0;right:0;bottom:0;opacity:0;border-bottom:1px solid ", ";}:hover{opacity:1;color:", ";}:hover::after{opacity:1;border-bottom:1px solid ", ";}&.active::after{left:0;right:0;bottom:0;border-bottom:3px solid ", ";}font-weight:700;letter-spacing:0.05em;font-size:12px;text-transform:uppercase;"], _shared_helpers__WEBPACK_IMPORTED_MODULE_7__["headerItem"], _shared_helpers__WEBPACK_IMPORTED_MODULE_7__["wideFont"], _shared_helpers__WEBPACK_IMPORTED_MODULE_7__["link"], function (props) {
+})(["", ";", ";margin:0;color:", ";color:#fff;text-transform:capitalize;position:relative;cursor:pointer;::after{", ";content:\"\";position:absolute;left:0;right:0;bottom:0;opacity:0;border-bottom:1px solid ", ";}:hover{opacity:1;color:", ";}:hover::after{opacity:1;border-bottom:1px solid ", ";}&.active::after{left:0;right:0;bottom:0;border-bottom:3px solid ", ";}font-weight:700;letter-spacing:0.05em;font-size:14px;"], _shared_helpers__WEBPACK_IMPORTED_MODULE_7__["headerItem"], _shared_helpers__WEBPACK_IMPORTED_MODULE_7__["link"], function (props) {
   return props.theme.mutedText;
 }, Object(_shared_helpers__WEBPACK_IMPORTED_MODULE_7__["transition"])("opacity", "border-bottom-width"), function (props) {
   return props.theme.accent;
@@ -4024,9 +4044,10 @@ var StyledLink = styled_components__WEBPACK_IMPORTED_MODULE_3___default.a.div.wi
 var Wrapper = styled_components__WEBPACK_IMPORTED_MODULE_3___default.a.header.withConfig({
   displayName: "Header__Wrapper",
   componentId: "sc-19c2vr5-1"
-})(["position:sticky;z-index:10;top:0;display:flex;align-items:stretch;margin-bottom:24px;border-bottom:2px solid #eee;height:68px;padding:0 10vw;background-color:", ";user-select:none;@media (max-width:425px){margin-bottom:16px;height:40px;}@media (max-width:768px){padding:0;}"], function (props) {
+})(["position:sticky;z-index:10;top:0;display:flex;align-items:stretch;border-bottom:2px solid #eee;height:55px;padding:0 0vw;font-weight:700;background-color:", ";user-select:none;background-color:#212527;@media (max-width:425px){margin-bottom:16px;height:40px;}@media (max-width:768px){padding:0;}"], function (props) {
   return props.theme.foreground;
-}); // const Wrapper = styled.header`
+}); // background-color: #23282d;
+// const Wrapper = styled.header`
 //   position: sticky;
 //   z-index: 10;
 //   top: 0;
@@ -4106,27 +4127,27 @@ var HeaderLogo = function HeaderLogo() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Logo, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
     prefetch: true,
     href: "/"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    src: "/static/bitcoin-logo.svg",
-    style: {
-      margin: "auto",
-      maxWidth: "28px"
-    }
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
-    prefetch: true,
-    href: "/"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    style: {
-      marginLeft: "-2px"
-    }
-  }, "its Journal")));
-};
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u20BFitsjournal")));
+}; // const HeaderLogo = () => (
+//   <Logo>
+//     <Link prefetch href="/">
+//       <img
+//         src="/static/bitcoin-logo.svg"
+//         style={{ margin: "auto", maxWidth: "28px" }}
+//       />
+//     </Link>
+//     <Link prefetch href="/">
+//       <span style={{ marginLeft: "-2px" }}>its Journal</span>
+//     </Link>
+//   </Logo>
+// );
+
 
 /* harmony default export */ __webpack_exports__["default"] = (HeaderLogo);
 var Logo = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.div.withConfig({
   displayName: "Logo",
   componentId: "sc-195qc4m-0"
-})(["", " margin-right:auto;font-size:21px;font-weight:500;color:", ";text-decoration:none;@media (max-width:425px){padding:0 8px 0 16px;font-size:19px;}"], _shared_helpers__WEBPACK_IMPORTED_MODULE_3__["headerItem"], function (props) {
+})(["", " margin-right:auto;font-size:21px;font-weight:500;color:", ";text-decoration:none;color:#fff;@media (max-width:425px){padding:0 8px 0 16px;font-size:19px;}"], _shared_helpers__WEBPACK_IMPORTED_MODULE_3__["headerItem"], function (props) {
   return props.theme.normalText;
 }); // display: flex;
 // align-items: center;
@@ -4471,7 +4492,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var mobx_react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(mobx_react__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! mobx-react-lite */ "mobx-react-lite");
 /* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(mobx_react_lite__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _Dashboard_ReChart__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../Dashboard/ReChart */ "./components/Dashboard/ReChart.js");
+/* harmony import */ var _Dashboard_Trades__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../Dashboard/Trades */ "./components/Dashboard/Trades.js");
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "@fortawesome/react-fontawesome");
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_8__);
 /* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "@fortawesome/free-solid-svg-icons");
@@ -4927,11 +4948,14 @@ var Header = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.span.withC
 /*!*********************************!*\
   !*** ./components/Menu/Menu.js ***!
   \*********************************/
-/*! exports provided: default */
+/*! exports provided: SymbolChooser, Pnl, default, SetSymbol */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SymbolChooser", function() { return SymbolChooser; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Pnl", function() { return Pnl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetSymbol", function() { return SetSymbol; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "styled-components");
@@ -4943,7 +4967,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var mobx_react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(mobx_react__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! mobx-react-lite */ "mobx-react-lite");
 /* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(mobx_react_lite__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _Dashboard_ReChart__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../Dashboard/ReChart */ "./components/Dashboard/ReChart.js");
+/* harmony import */ var _Dashboard_Trades__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../Dashboard/Trades */ "./components/Dashboard/Trades.js");
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "@fortawesome/react-fontawesome");
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_8__);
 /* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "@fortawesome/free-solid-svg-icons");
@@ -4970,13 +4994,57 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
  // border: 1px solid ${props => props.theme.border};
 
-var Sidebar = Object(mobx_react__WEBPACK_IMPORTED_MODULE_5__["inject"])("store")(Object(mobx_react_lite__WEBPACK_IMPORTED_MODULE_6__["observer"])(function (_ref) {
+var SymbolChooser = Object(mobx_react__WEBPACK_IMPORTED_MODULE_5__["inject"])("store")(Object(mobx_react_lite__WEBPACK_IMPORTED_MODULE_6__["observer"])(function (_ref) {
   var store = _ref.store;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState2 = _slicedToArray(_useState, 2),
       dropdown = _useState2[0],
       setDropdown = _useState2[1];
+
+  var showDropdown = function showDropdown() {
+    if (dropdown == false) {
+      setDropdown(true);
+    } else {
+      setDropdown(false);
+    }
+  };
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(SetSymbol, {
+    onClick: function onClick() {
+      showDropdown();
+    }
+  }, dropdown == true ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_8__["FontAwesomeIcon"], {
+    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__["faCaretUp"],
+    style: {
+      transition: "none",
+      marginRight: "4px",
+      marginLeft: "3px"
+    }
+  }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_8__["FontAwesomeIcon"], {
+    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__["faCaretDown"],
+    style: {
+      transition: "none",
+      marginRight: "4px",
+      marginLeft: "3px"
+    }
+  }), store.symbol);
+}));
+var Pnl = Object(mobx_react__WEBPACK_IMPORTED_MODULE_5__["inject"])("store")(Object(mobx_react_lite__WEBPACK_IMPORTED_MODULE_6__["observer"])(function (_ref2) {
+  var store = _ref2.store;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    style: {
+      minHeight: "100%"
+    }
+  }, store.pnl >= 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Lapper2, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(InnerLapper, null, store.pnl.toFixed(4) + "xbt")) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Lapper3, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(InnerLapper, null, store.pnl.toFixed(4) + "xbt")));
+}));
+var Sidebar = Object(mobx_react__WEBPACK_IMPORTED_MODULE_5__["inject"])("store")(Object(mobx_react_lite__WEBPACK_IMPORTED_MODULE_6__["observer"])(function (_ref3) {
+  var store = _ref3.store;
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      dropdown = _useState4[0],
+      setDropdown = _useState4[1];
 
   var clicked = function clicked(value) {
     store.setSymbol(value);
@@ -5044,13 +5112,13 @@ var InnerLapper = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.div.w
 var Lapper2 = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.aside.withConfig({
   displayName: "Menu__Lapper2",
   componentId: "sc-7pnj6a-3"
-})(["border-radius:2px;background-color:", ";background-color:green;max-height:30px;@media (max-width:768px){display:none;}"], function (props) {
+})(["border-radius:2px;background-color:", ";background-color:green;margin:auto;"], function (props) {
   return props.theme.foreground;
 });
 var Lapper3 = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.aside.withConfig({
   displayName: "Menu__Lapper3",
   componentId: "sc-7pnj6a-4"
-})(["border-radius:2px;background-color:", ";background-color:red;max-height:30px;@media (max-width:768px){display:none;}"], function (props) {
+})(["border-radius:2px;background-color:", ";background-color:red;margin:auto;"], function (props) {
   return props.theme.foreground;
 });
 var Lapper4 = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.aside.withConfig({
@@ -5062,7 +5130,7 @@ var Lapper4 = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.aside.wit
 var SetSymbol = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.div.withConfig({
   displayName: "Menu__SetSymbol",
   componentId: "sc-7pnj6a-6"
-})(["", " font-weight:500;font-size:14px;padding:5px;color:#fff;:hover{cursor:pointer;}"], _shared_helpers__WEBPACK_IMPORTED_MODULE_10__["wideFont"]);
+})(["font-weight:500;font-size:14px;", " color:#fff;background-color:#212527;:hover{cursor:pointer;}"], _shared_helpers__WEBPACK_IMPORTED_MODULE_10__["wideFont"]);
 var DropdownContainer = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.div.withConfig({
   displayName: "Menu__DropdownContainer",
   componentId: "sc-7pnj6a-7"
@@ -5273,14 +5341,18 @@ __webpack_require__.r(__webpack_exports__);
 
 function dashboard(_ref) {
   var initialState = _ref.initialState;
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_App__WEBPACK_IMPORTED_MODULE_2__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Header_Header__WEBPACK_IMPORTED_MODULE_3__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(styled_components__WEBPACK_IMPORTED_MODULE_4__["ThemeProvider"], {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_App__WEBPACK_IMPORTED_MODULE_2__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Header_Header__WEBPACK_IMPORTED_MODULE_3__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(PageWrap, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(styled_components__WEBPACK_IMPORTED_MODULE_4__["ThemeProvider"], {
     theme: _components_theme__WEBPACK_IMPORTED_MODULE_5__["default"]
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Wrapper, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Dashboard_DashInitialTerms__WEBPACK_IMPORTED_MODULE_1__["default"], null))));
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Wrapper, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Dashboard_DashInitialTerms__WEBPACK_IMPORTED_MODULE_1__["default"], null)))));
 }
+var PageWrap = styled_components__WEBPACK_IMPORTED_MODULE_4___default.a.div.withConfig({
+  displayName: "dashboard__PageWrap",
+  componentId: "dqnkpe-0"
+})(["height:100vh;margin:0 10vw;border-right:2px solid #f2f2f2;border-left:2px solid #f2f2f2;"]);
 var Wrapper = styled_components__WEBPACK_IMPORTED_MODULE_4___default.a.div.withConfig({
   displayName: "dashboard__Wrapper",
-  componentId: "dqnkpe-0"
-})(["display:flex;align-items:flex-start;margin:0 10vw;@media (max-width:1024px){margin:0 5vw;}@media (max-width:768px){display:block;margin:0;}"]);
+  componentId: "dqnkpe-1"
+})(["display:flex;align-items:flex-start;margin:0;@media (max-width:1024px){margin:0;}@media (max-width:768px){display:block;margin:0;}"]);
 
 /***/ }),
 
@@ -5654,7 +5726,7 @@ function initializeStore(initialData) {
 
 /***/ }),
 
-/***/ 3:
+/***/ 4:
 /*!**********************************!*\
   !*** multi ./pages/dashboard.js ***!
   \**********************************/

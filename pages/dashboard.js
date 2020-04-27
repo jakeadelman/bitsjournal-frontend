@@ -12,21 +12,30 @@ export default function dashboard({ initialState }) {
   return (
     <App>
       <Header />
-      <ThemeProvider theme={theme}>
-        <Wrapper>
-          <DashInitialTerms />
-        </Wrapper>
-      </ThemeProvider>
+      <PageWrap>
+        <ThemeProvider theme={theme}>
+          <Wrapper>
+            <DashInitialTerms />
+          </Wrapper>
+        </ThemeProvider>
+      </PageWrap>
     </App>
   );
 }
 
+const PageWrap = styled.div`
+  height: 100vh;
+  margin: 0 10vw;
+  border-right: 2px solid #f2f2f2;
+  border-left: 2px solid #f2f2f2;
+`;
+
 const Wrapper = styled.div`
   display: flex;
   align-items: flex-start;
-  margin: 0 10vw;
+  margin: 0;
   @media (max-width: 1024px) {
-    margin: 0 5vw;
+    margin: 0;
   }
   @media (max-width: 768px) {
     display: block;

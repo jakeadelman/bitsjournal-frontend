@@ -5,8 +5,8 @@ import {
   NextToDivHeader,
   RowContainer,
   ContainDivHeader,
-} from "../ReChart";
-import ReChart from "../ReChart";
+} from "../Trades";
+import ReChart from "../Trades";
 import Sidebar768 from "../../Menu/768px/Menu";
 import { getNewDat } from "../helpers";
 
