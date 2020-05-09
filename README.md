@@ -25,8 +25,8 @@
 ```
 1. Once logged in add api key at prompt 
 
-key: 
-secret: 
+id: 81LUIgAq0nzNd_9aWjGv423d
+secret: ri7ykG6VuEW4ad057gjzqNUgnfeNgcZR-8N-n62zFMaexgxW
 
 wait for it to import on backend (2 or 3 minutes) and reload page so you have data
 
