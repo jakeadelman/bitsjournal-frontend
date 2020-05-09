@@ -5,7 +5,7 @@ import { ApolloConsumer } from "react-apollo";
 import gql from "graphql-tag";
 import styled from "styled-components";
 import Button from "../shared/Button";
-import FormWrapper from "../Form2/FormWrapper";
+import FormWrapper from "../form/FormWrapper";
 import { smallFont } from "../shared/helpers";
 import register from "../../pages/register";
 import { removeArgumentsFromDocument } from "apollo-utilities";
@@ -20,12 +20,12 @@ function CheckoutForm({ stripe }) {
     stripe
       .createSource({
         type: "card",
-        owner: { email: "jacobzadelman@gmail.com" }
+        owner: { email: "jacobzadelman@gmail.com" },
       })
       .then(({ source }) => {
         return source.id.toString();
       })
-      .then(async source => {
+      .then(async (source) => {
         await client
           .mutate({
             mutation: gql`
@@ -33,9 +33,9 @@ function CheckoutForm({ stripe }) {
                 confirmCard(uid: $uid, source: $source)
               }
             `,
-            variables: { uid, source }
+            variables: { uid, source },
           })
-          .then(res => {
+          .then((res) => {
             Cookie.set("isAuth", "true");
             Router.push("/dashboard");
           });
@@ -44,9 +44,9 @@ function CheckoutForm({ stripe }) {
 
   return (
     <ApolloConsumer>
-      {client => (
+      {(client) => (
         <FormWrapper style={{ marginTop: "20vw" }}>
-          <StyledForm onSubmit={e => handleSubmit(e, client)}>
+          <StyledForm onSubmit={(e) => handleSubmit(e, client)}>
             <label style={{ width: "100%" }}>
               <CardElement style={{ base: { fontSize: "18px" } }} />
             </label>
@@ -77,7 +77,7 @@ const StyledForm = styled.form`
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
-  ${props =>
+  ${(props) =>
     props.loading &&
     "filter: grayscale(0.5) blur(5px) opacity(0.6); pointer-events: none"};
 `;

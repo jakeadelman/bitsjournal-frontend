@@ -19,20 +19,6 @@ class ConfirmUser extends React.Component {
   }
 }
 
-// export default props => {
-//   let token = props.token;
-//   let newDat;
-//   return (
-//     <Mutation mutation={confirmUserMutation} variables={{ token }}>
-//       {(confirmUser, { data }) => (
-//         <ConfirmUser confirm={confirmUser}>
-//           <div>thank you for confirming your email</div>
-//         </ConfirmUser>
-//       )}
-//     </Mutation>
-//   );
-// };
-
 export default class extends React.Component {
   constructor(props) {
     super(props);

@@ -602,7 +602,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _components_Helpers_Functions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/Helpers/Functions */ "./components/Helpers/Functions.js");
-var _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18, _descriptor19, _descriptor20, _descriptor21, _descriptor22, _descriptor23, _descriptor24, _temp;
+var _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18, _descriptor19, _descriptor20, _descriptor21, _descriptor22, _descriptor23, _descriptor24, _descriptor25, _descriptor26, _descriptor27, _descriptor28, _temp;
 
 function _initializerDefineProperty(target, property, descriptor, context) { if (!descriptor) return; Object.defineProperty(target, property, { enumerable: descriptor.enumerable, configurable: descriptor.configurable, writable: descriptor.writable, value: descriptor.initializer ? descriptor.initializer.call(context) : void 0 }); }
 
@@ -646,29 +646,37 @@ var Store = (_class = (_temp = function Store() {
 
   _initializerDefineProperty(this, "hasTempTags", _descriptor12, this);
 
-  _initializerDefineProperty(this, "changeDate", _descriptor13, this);
+  _initializerDefineProperty(this, "singleTrade", _descriptor13, this);
 
-  _initializerDefineProperty(this, "addPnl", _descriptor14, this);
+  _initializerDefineProperty(this, "hasSingleTrade", _descriptor14, this);
 
-  _initializerDefineProperty(this, "resetPnl", _descriptor15, this);
+  _initializerDefineProperty(this, "isSingleNotes", _descriptor15, this);
 
-  _initializerDefineProperty(this, "pushGlobalHash", _descriptor16, this);
+  _initializerDefineProperty(this, "changeDate", _descriptor16, this);
 
-  _initializerDefineProperty(this, "addTempNote", _descriptor17, this);
+  _initializerDefineProperty(this, "addPnl", _descriptor17, this);
 
-  _initializerDefineProperty(this, "clearTempNotes", _descriptor18, this);
+  _initializerDefineProperty(this, "resetPnl", _descriptor18, this);
 
-  _initializerDefineProperty(this, "addTempTag", _descriptor19, this);
+  _initializerDefineProperty(this, "pushGlobalHash", _descriptor19, this);
 
-  _initializerDefineProperty(this, "clearTempTags", _descriptor20, this);
+  _initializerDefineProperty(this, "addTempNote", _descriptor20, this);
 
-  _initializerDefineProperty(this, "changeHasTempTags", _descriptor21, this);
+  _initializerDefineProperty(this, "clearTempNotes", _descriptor21, this);
 
-  _initializerDefineProperty(this, "resetHasTempTags", _descriptor22, this);
+  _initializerDefineProperty(this, "addTempTag", _descriptor22, this);
 
-  _initializerDefineProperty(this, "setSymbol", _descriptor23, this);
+  _initializerDefineProperty(this, "clearTempTags", _descriptor23, this);
 
-  _initializerDefineProperty(this, "resetPnl", _descriptor24, this);
+  _initializerDefineProperty(this, "changeHasTempTags", _descriptor24, this);
+
+  _initializerDefineProperty(this, "resetHasTempTags", _descriptor25, this);
+
+  _initializerDefineProperty(this, "setSymbol", _descriptor26, this);
+
+  _initializerDefineProperty(this, "resetPnl", _descriptor27, this);
+
+  _initializerDefineProperty(this, "setSingleTrade", _descriptor28, this);
 }, _temp), (_descriptor = _applyDecoratedDescriptor(_class.prototype, "lastUpdate", [mobx__WEBPACK_IMPORTED_MODULE_0__["observable"]], {
   configurable: true,
   enumerable: true,
@@ -753,7 +761,28 @@ var Store = (_class = (_temp = function Store() {
   initializer: function initializer() {
     return false;
   }
-}), _descriptor13 = _applyDecoratedDescriptor(_class.prototype, "changeDate", [mobx__WEBPACK_IMPORTED_MODULE_0__["action"]], {
+}), _descriptor13 = _applyDecoratedDescriptor(_class.prototype, "singleTrade", [mobx_persist__WEBPACK_IMPORTED_MODULE_2__["persist"], mobx__WEBPACK_IMPORTED_MODULE_0__["observable"]], {
+  configurable: true,
+  enumerable: true,
+  writable: true,
+  initializer: function initializer() {
+    return {};
+  }
+}), _descriptor14 = _applyDecoratedDescriptor(_class.prototype, "hasSingleTrade", [mobx_persist__WEBPACK_IMPORTED_MODULE_2__["persist"], mobx__WEBPACK_IMPORTED_MODULE_0__["observable"]], {
+  configurable: true,
+  enumerable: true,
+  writable: true,
+  initializer: function initializer() {
+    return false;
+  }
+}), _descriptor15 = _applyDecoratedDescriptor(_class.prototype, "isSingleNotes", [mobx_persist__WEBPACK_IMPORTED_MODULE_2__["persist"], mobx__WEBPACK_IMPORTED_MODULE_0__["observable"]], {
+  configurable: true,
+  enumerable: true,
+  writable: true,
+  initializer: function initializer() {
+    return false;
+  }
+}), _descriptor16 = _applyDecoratedDescriptor(_class.prototype, "changeDate", [mobx__WEBPACK_IMPORTED_MODULE_0__["action"]], {
   configurable: true,
   enumerable: true,
   writable: true,
@@ -767,7 +796,7 @@ var Store = (_class = (_temp = function Store() {
       _this.endDate = dates.end;
     };
   }
-}), _descriptor14 = _applyDecoratedDescriptor(_class.prototype, "addPnl", [mobx__WEBPACK_IMPORTED_MODULE_0__["action"]], {
+}), _descriptor17 = _applyDecoratedDescriptor(_class.prototype, "addPnl", [mobx__WEBPACK_IMPORTED_MODULE_0__["action"]], {
   configurable: true,
   enumerable: true,
   writable: true,
@@ -778,7 +807,7 @@ var Store = (_class = (_temp = function Store() {
       _this2.pnl += pnl;
     };
   }
-}), _descriptor15 = _applyDecoratedDescriptor(_class.prototype, "resetPnl", [mobx__WEBPACK_IMPORTED_MODULE_0__["action"]], {
+}), _descriptor18 = _applyDecoratedDescriptor(_class.prototype, "resetPnl", [mobx__WEBPACK_IMPORTED_MODULE_0__["action"]], {
   configurable: true,
   enumerable: true,
   writable: true,
@@ -789,7 +818,7 @@ var Store = (_class = (_temp = function Store() {
       _this3.pnl = 0;
     };
   }
-}), _descriptor16 = _applyDecoratedDescriptor(_class.prototype, "pushGlobalHash", [mobx__WEBPACK_IMPORTED_MODULE_0__["action"]], {
+}), _descriptor19 = _applyDecoratedDescriptor(_class.prototype, "pushGlobalHash", [mobx__WEBPACK_IMPORTED_MODULE_0__["action"]], {
   configurable: true,
   enumerable: true,
   writable: true,
@@ -800,7 +829,7 @@ var Store = (_class = (_temp = function Store() {
       _this4.globalHash.push(hash);
     };
   }
-}), _descriptor17 = _applyDecoratedDescriptor(_class.prototype, "addTempNote", [mobx__WEBPACK_IMPORTED_MODULE_0__["action"]], {
+}), _descriptor20 = _applyDecoratedDescriptor(_class.prototype, "addTempNote", [mobx__WEBPACK_IMPORTED_MODULE_0__["action"]], {
   configurable: true,
   enumerable: true,
   writable: true,
@@ -834,7 +863,7 @@ var Store = (_class = (_temp = function Store() {
       }
     };
   }
-}), _descriptor18 = _applyDecoratedDescriptor(_class.prototype, "clearTempNotes", [mobx__WEBPACK_IMPORTED_MODULE_0__["action"]], {
+}), _descriptor21 = _applyDecoratedDescriptor(_class.prototype, "clearTempNotes", [mobx__WEBPACK_IMPORTED_MODULE_0__["action"]], {
   configurable: true,
   enumerable: true,
   writable: true,
@@ -845,7 +874,7 @@ var Store = (_class = (_temp = function Store() {
       _this6.tempNotes = [];
     };
   }
-}), _descriptor19 = _applyDecoratedDescriptor(_class.prototype, "addTempTag", [mobx__WEBPACK_IMPORTED_MODULE_0__["action"]], {
+}), _descriptor22 = _applyDecoratedDescriptor(_class.prototype, "addTempTag", [mobx__WEBPACK_IMPORTED_MODULE_0__["action"]], {
   configurable: true,
   enumerable: true,
   writable: true,
@@ -862,7 +891,7 @@ var Store = (_class = (_temp = function Store() {
       _this7.changeHasTempTags();
     };
   }
-}), _descriptor20 = _applyDecoratedDescriptor(_class.prototype, "clearTempTags", [mobx__WEBPACK_IMPORTED_MODULE_0__["action"]], {
+}), _descriptor23 = _applyDecoratedDescriptor(_class.prototype, "clearTempTags", [mobx__WEBPACK_IMPORTED_MODULE_0__["action"]], {
   configurable: true,
   enumerable: true,
   writable: true,
@@ -873,7 +902,7 @@ var Store = (_class = (_temp = function Store() {
       _this8.tempTags = [];
     };
   }
-}), _descriptor21 = _applyDecoratedDescriptor(_class.prototype, "changeHasTempTags", [mobx__WEBPACK_IMPORTED_MODULE_0__["action"]], {
+}), _descriptor24 = _applyDecoratedDescriptor(_class.prototype, "changeHasTempTags", [mobx__WEBPACK_IMPORTED_MODULE_0__["action"]], {
   configurable: true,
   enumerable: true,
   writable: true,
@@ -884,7 +913,7 @@ var Store = (_class = (_temp = function Store() {
       _this9.hasTempTags = true;
     };
   }
-}), _descriptor22 = _applyDecoratedDescriptor(_class.prototype, "resetHasTempTags", [mobx__WEBPACK_IMPORTED_MODULE_0__["action"]], {
+}), _descriptor25 = _applyDecoratedDescriptor(_class.prototype, "resetHasTempTags", [mobx__WEBPACK_IMPORTED_MODULE_0__["action"]], {
   configurable: true,
   enumerable: true,
   writable: true,
@@ -895,7 +924,7 @@ var Store = (_class = (_temp = function Store() {
       _this10.hasTempTags = false;
     };
   }
-}), _descriptor23 = _applyDecoratedDescriptor(_class.prototype, "setSymbol", [mobx__WEBPACK_IMPORTED_MODULE_0__["action"]], {
+}), _descriptor26 = _applyDecoratedDescriptor(_class.prototype, "setSymbol", [mobx__WEBPACK_IMPORTED_MODULE_0__["action"]], {
   configurable: true,
   enumerable: true,
   writable: true,
@@ -906,7 +935,7 @@ var Store = (_class = (_temp = function Store() {
       _this11.symbol = newSymbol;
     };
   }
-}), _descriptor24 = _applyDecoratedDescriptor(_class.prototype, "resetPnl", [mobx__WEBPACK_IMPORTED_MODULE_0__["action"]], {
+}), _descriptor27 = _applyDecoratedDescriptor(_class.prototype, "resetPnl", [mobx__WEBPACK_IMPORTED_MODULE_0__["action"]], {
   configurable: true,
   enumerable: true,
   writable: true,
@@ -915,6 +944,17 @@ var Store = (_class = (_temp = function Store() {
 
     return function () {
       _this12.pnl = 0;
+    };
+  }
+}), _descriptor28 = _applyDecoratedDescriptor(_class.prototype, "setSingleTrade", [mobx__WEBPACK_IMPORTED_MODULE_0__["action"]], {
+  configurable: true,
+  enumerable: true,
+  writable: true,
+  initializer: function initializer() {
+    var _this13 = this;
+
+    return function (dat) {
+      _this13.singleTrade = dat;
     };
   }
 })), _class);

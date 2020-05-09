@@ -1,5 +1,5 @@
 import React from "react";
-import RegisterForm from "../RegisterForm";
+import RegisterForm from "../form/RegisterForm";
 import FontAwesome from "react-fontawesome";
 import styled from "styled-components";
 import { smallFont } from "../shared/helpers";
@@ -9,19 +9,19 @@ export default class Dropdown extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      listOpen: false
+      listOpen: false,
     };
     this.toggleList = this.toggleList.bind(this);
   }
 
   handleClickOutside() {
     this.setState({
-      listOpen: false
+      listOpen: false,
     });
   }
   toggleList() {
-    this.setState(prevState => ({
-      listOpen: !prevState.listOpen
+    this.setState((prevState) => ({
+      listOpen: !prevState.listOpen,
     }));
   }
   render() {
@@ -58,15 +58,15 @@ const DropdownListItem = styled.div`
 const DropdownDiv = styled.div`
   position: absolute;
   display: block;
-  background-color: ${props => props.theme.foreground};
+  background-color: ${(props) => props.theme.foreground};
   margin-top: 45px;
-  border: 1px solid ${props => props.theme.border};
+  border: 1px solid ${(props) => props.theme.border};
   border-top: none;
 `;
 
 const StyledLink = styled.div`
   margin: auto 10px;
-  color: ${props => props.theme.mutedText};
+  color: ${(props) => props.theme.mutedText};
 
   position: relative;
   cursor: pointer;
@@ -78,19 +78,19 @@ const StyledLink = styled.div`
     right: 0;
     bottom: 0;
     opacity: 0;
-    border-bottom: 1px solid ${props => props.theme.accent};
+    border-bottom: 1px solid ${(props) => props.theme.accent};
   }
 
   :hover {
     opacity: 1;
-    color: ${props => props.theme.accent};
+    color: ${(props) => props.theme.accent};
   }
 
   &.active::after {
     left: 0;
     right: 0;
     bottom: 0;
-    border-bottom: 3px solid ${props => props.theme.accent};
+    border-bottom: 3px solid ${(props) => props.theme.accent};
   }
   font-weight: 700;
   letter-spacing: 0.05em;

@@ -25,51 +25,66 @@ export const SymbolChooser = inject("store")(
       }
     };
     return (
-      <SetSymbol
-        onClick={() => {
-          showDropdown();
-        }}
-      >
+      <Lapper2>
+        <SetSymbol
+          onClick={() => {
+            showDropdown();
+          }}
+        >
+          {dropdown == true ? (
+            <FontAwesomeIcon
+              icon={faCaretUp}
+              style={{
+                transition: "none",
+                marginRight: "4px",
+                marginLeft: "3px",
+              }}
+            />
+          ) : (
+            <FontAwesomeIcon
+              icon={faCaretDown}
+              style={{
+                transition: "none",
+                marginRight: "4px",
+                marginLeft: "3px",
+              }}
+            />
+          )}
+          {store.symbol}
+        </SetSymbol>
         {dropdown == true ? (
-          <FontAwesomeIcon
-            icon={faCaretUp}
-            style={{
-              transition: "none",
-              marginRight: "4px",
-              marginLeft: "3px",
-            }}
-          />
-        ) : (
-          <FontAwesomeIcon
-            icon={faCaretDown}
-            style={{
-              transition: "none",
-              marginRight: "4px",
-              marginLeft: "3px",
-            }}
-          />
-        )}
-        {store.symbol}
-      </SetSymbol>
+          <DropdownListContainer>
+            <DropdownListItem onClick={() => clicked("XBTUSD")}>
+              XBTUSD
+            </DropdownListItem>
+            <DropdownListItem onClick={() => clicked("XBTU20")}>
+              XBTU20
+            </DropdownListItem>
+            <DropdownListItem onClick={() => clicked("XBTM20")}>
+              XBTM20
+            </DropdownListItem>
+          </DropdownListContainer>
+        ) : null}
+      </Lapper2>
     );
   })
 );
 
 export const Pnl = inject("store")(
   observer(({ store }) => {
-    return (
-      <div style={{ minHeight: "100%" }}>
-        {store.pnl >= 0 ? (
-          <Lapper2>
-            <InnerLapper>{store.pnl.toFixed(4) + "xbt"}</InnerLapper>
-          </Lapper2>
-        ) : (
-          <Lapper3>
-            <InnerLapper>{store.pnl.toFixed(4) + "xbt"}</InnerLapper>
-          </Lapper3>
-        )}
-      </div>
-    );
+    if (store.pnl >= 0) {
+      return (
+        <Lapper2>
+          <InnerLapper>{store.pnl.toFixed(4) + "xbt"}</InnerLapper>
+        </Lapper2>
+      );
+    } else {
+      return (
+        <Lapper3>
+          <InnerLapper>{store.pnl.toFixed(4) + "xbt"}</InnerLapper>
+        </Lapper3>
+      );
+    }
   })
 );
 
@@ -177,6 +192,7 @@ const InnerLapper = styled.div`
   color: white;
   text-align: center;
   margin: auto;
+  padding: 3px;
 `;
 
 const Lapper2 = styled.aside`
@@ -184,6 +200,8 @@ const Lapper2 = styled.aside`
   background-color: ${(props) => props.theme.foreground};
   background-color: green;
   margin: auto;
+  margin-top: 0;
+  margin-bottom: 0;
 `;
 
 const Lapper3 = styled.aside`

@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -118,63 +118,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./components/Form2/FormWrapper.js":
-/*!*****************************************!*\
-  !*** ./components/Form2/FormWrapper.js ***!
-  \*****************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "styled-components");
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_0__);
-
-var FormWrapper = styled_components__WEBPACK_IMPORTED_MODULE_0___default.a.div.withConfig({
-  displayName: "FormWrapper",
-  componentId: "sc-1970mg2-0"
-})(["position:relative;overflow:hidden;margin:0 auto;border:1px solid ", ";border-radius:2px;width:375px;padding:24px;background-color:", ";@media (max-width:768px){padding:16px;}@media (max-width:", "){border-radius:0;border-left:none;border-right:none;}"], function (props) {
-  return props.theme.border;
-}, function (props) {
-  return props.theme.foreground;
-}, function (props) {
-  return props.wide ? "600px" : "375px";
-});
-/* harmony default export */ __webpack_exports__["default"] = (FormWrapper); // max-width: ${props => (props.wide ? "600px" : "375px")};
-
-/***/ }),
-
-/***/ "./components/Form2/Input.js":
-/*!***********************************!*\
-  !*** ./components/Form2/Input.js ***!
-  \***********************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "styled-components");
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_0__);
- // import { transition } from '../helpers';
-
-var Input = styled_components__WEBPACK_IMPORTED_MODULE_0___default.a.input.withConfig({
-  displayName: "Input",
-  componentId: "sc-9ditcq-0"
-})(["--border:", ";--shadow:", ";display:block;", ";border-radius:3px;width:100%;padding:8px;background-color:", ";font-size:15px;color:", ";appearance:none;outline:none;resize:vertical;:hover,:focus{border:1px solid var(--border);}:focus{box-shadow:0 0 0 2px var(--shadow);}"], function (props) {
-  return props.error ? props.theme.error : props.theme.accent;
-}, function (props) {
-  return props.error ? props.theme.error + "4d" : props.theme.accent + "4d";
-}, function (props) {
-  return props.error ? "\n    border: 1px solid var(--border)\n    " : "\n    border: 1px solid ".concat(props.theme.border, "\n  ");
-}, function (props) {
-  return props.theme.inputBackground;
-}, function (props) {
-  return props.theme.normalText;
-});
-/* harmony default export */ __webpack_exports__["default"] = (Input);
-
-/***/ }),
-
 /***/ "./components/Header/Header.js":
 /*!*************************************!*\
   !*** ./components/Header/Header.js ***!
@@ -196,7 +139,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Logo__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Logo */ "./components/Header/Logo.js");
 /* harmony import */ var _header_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./header.scss */ "./components/Header/header.scss");
 /* harmony import */ var _header_scss__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_header_scss__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _shared_helpers__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../shared/helpers */ "./components/shared/helpers.js");
+/* harmony import */ var _Menu_Datepicker__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../Menu/Datepicker */ "./components/Menu/Datepicker.js");
+/* harmony import */ var _shared_helpers__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../shared/helpers */ "./components/shared/helpers.js");
+
 
 
 
@@ -219,7 +164,7 @@ var Header = function Header(_ref) {
   if (!authOrNo) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(styled_components__WEBPACK_IMPORTED_MODULE_3__["ThemeProvider"], {
       theme: Object(_theme__WEBPACK_IMPORTED_MODULE_4__["default"])(false)
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Wrapper, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Logo__WEBPACK_IMPORTED_MODULE_5__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Wrapper, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Logo__WEBPACK_IMPORTED_MODULE_5__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(DatePickersWrap, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(DatePickerWrap, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Menu_Datepicker__WEBPACK_IMPORTED_MODULE_7__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(DatePickerWrap, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Menu_Datepicker__WEBPACK_IMPORTED_MODULE_7__["default"], null))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
       prefetch: true,
       href: "/login"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(StyledLink, {
@@ -233,7 +178,7 @@ var Header = function Header(_ref) {
   } else {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(styled_components__WEBPACK_IMPORTED_MODULE_3__["ThemeProvider"], {
       theme: Object(_theme__WEBPACK_IMPORTED_MODULE_4__["default"])(false)
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Wrapper, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Logo__WEBPACK_IMPORTED_MODULE_5__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Wrapper, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Logo__WEBPACK_IMPORTED_MODULE_5__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(DatePickersWrap, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(DatePickerWrap, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Menu_Datepicker__WEBPACK_IMPORTED_MODULE_7__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(DatePickerWrap, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Menu_Datepicker__WEBPACK_IMPORTED_MODULE_7__["default"], null))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
       prefetch: true,
       href: "/settings"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(StyledLink, {
@@ -246,25 +191,51 @@ var Header = function Header(_ref) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(next_router__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Header));
+var LogoWrap = styled_components__WEBPACK_IMPORTED_MODULE_3___default.a.div.withConfig({
+  displayName: "Header__LogoWrap",
+  componentId: "sc-19c2vr5-0"
+})([""]);
+var TempDiv = styled_components__WEBPACK_IMPORTED_MODULE_3___default.a.div.withConfig({
+  displayName: "Header__TempDiv",
+  componentId: "sc-19c2vr5-1"
+})(["margin:auto;"]);
+var LinksWrap = styled_components__WEBPACK_IMPORTED_MODULE_3___default.a.div.withConfig({
+  displayName: "Header__LinksWrap",
+  componentId: "sc-19c2vr5-2"
+})(["margin-right:0;margin-left:auto;"]);
+var DatePickersWrap = styled_components__WEBPACK_IMPORTED_MODULE_3___default.a.div.withConfig({
+  displayName: "Header__DatePickersWrap",
+  componentId: "sc-19c2vr5-3"
+})(["margin-left:0;margin-right:auto;display:flex;flex-direction:row;"]);
+var DatePickerWrap = styled_components__WEBPACK_IMPORTED_MODULE_3___default.a.div.withConfig({
+  displayName: "Header__DatePickerWrap",
+  componentId: "sc-19c2vr5-4"
+})(["margin:auto;"]);
 var StyledLink = styled_components__WEBPACK_IMPORTED_MODULE_3___default.a.div.withConfig({
   displayName: "Header__StyledLink",
-  componentId: "sc-19c2vr5-0"
-})(["", ";", ";margin:0;color:", ";color:#fff;text-transform:capitalize;position:relative;cursor:pointer;::after{", ";content:\"\";position:absolute;left:0;right:0;bottom:0;opacity:0;border-bottom:1px solid ", ";}:hover{opacity:1;color:", ";}:hover::after{opacity:1;border-bottom:1px solid ", ";}&.active::after{left:0;right:0;bottom:0;border-bottom:3px solid ", ";}font-weight:700;letter-spacing:0.05em;font-size:14px;"], _shared_helpers__WEBPACK_IMPORTED_MODULE_7__["headerItem"], _shared_helpers__WEBPACK_IMPORTED_MODULE_7__["link"], function (props) {
+  componentId: "sc-19c2vr5-5"
+})(["", ";", ";margin:0;color:", ";color:#fff;text-transform:capitalize;position:relative;cursor:pointer;"], _shared_helpers__WEBPACK_IMPORTED_MODULE_8__["headerItem"], _shared_helpers__WEBPACK_IMPORTED_MODULE_8__["link"], function (props) {
   return props.theme.mutedText;
-}, Object(_shared_helpers__WEBPACK_IMPORTED_MODULE_7__["transition"])("opacity", "border-bottom-width"), function (props) {
-  return props.theme.accent;
-}, function (props) {
-  return props.theme.accent;
-}, function (props) {
-  return props.theme.accent;
-}, function (props) {
-  return props.theme.accent;
 });
 var Wrapper = styled_components__WEBPACK_IMPORTED_MODULE_3___default.a.header.withConfig({
   displayName: "Header__Wrapper",
-  componentId: "sc-19c2vr5-1"
+  componentId: "sc-19c2vr5-6"
 })(["position:sticky;z-index:10;top:0;display:flex;align-items:stretch;border-bottom:2px solid #eee;height:55px;padding:0 0vw;font-weight:700;background-color:", ";user-select:none;background-color:#212527;@media (max-width:425px){margin-bottom:16px;height:40px;}@media (max-width:768px){padding:0;}"], function (props) {
   return props.theme.foreground;
+});
+var StyledLinkFirst = styled_components__WEBPACK_IMPORTED_MODULE_3___default.a.div.withConfig({
+  displayName: "Header__StyledLinkFirst",
+  componentId: "sc-19c2vr5-7"
+})(["", ";", ";margin:0;color:", ";color:#fff;text-transform:capitalize;position:relative;cursor:pointer;::after{", ";content:\"\";position:absolute;left:0;right:0;bottom:0;opacity:0;border-bottom:1px solid ", ";}:hover{opacity:1;color:", ";}:hover::after{opacity:1;border-bottom:1px solid ", ";}&.active::after{left:0;right:0;bottom:0;border-bottom:3px solid ", ";}font-weight:700;letter-spacing:0.05em;font-size:14px;margin-left:auto;"], _shared_helpers__WEBPACK_IMPORTED_MODULE_8__["headerItem"], _shared_helpers__WEBPACK_IMPORTED_MODULE_8__["link"], function (props) {
+  return props.theme.mutedText;
+}, Object(_shared_helpers__WEBPACK_IMPORTED_MODULE_8__["transition"])("opacity", "border-bottom-width"), function (props) {
+  return props.theme.accent;
+}, function (props) {
+  return props.theme.accent;
+}, function (props) {
+  return props.theme.accent;
+}, function (props) {
+  return props.theme.accent;
 }); // background-color: #23282d;
 // const Wrapper = styled.header`
 //   position: sticky;
@@ -400,62 +371,18 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var bitcoinLogo = function bitcoinLogo(props) {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", props, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("defs", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("linearGradient", {
-    id: "a",
-    x1: "0%",
-    y1: "0%",
-    x2: "0%",
-    y2: "100%"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("stop", {
-    offset: "0%",
-    stopColor: "#f9aa4b"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("stop", {
-    offset: "100%",
-    stopColor: "#f7931a"
-  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    d: "M63.036 39.741c-4.274 17.143-21.637 27.576-38.782 23.301C7.116 58.768-3.317 41.404.959 24.262 5.23 7.117 22.594-3.317 39.734.957c17.144 4.274 27.576 21.64 23.302 38.784z",
-    fill: "url(#a)",
-    transform: "scale(.01563)"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    d: "M.72.429C.73.362.68.326.61.303l.023-.09L.578.198.556.287a2.295 2.295 0 0 0-.044-.01l.022-.09L.48.175l-.022.09A1.835 1.835 0 0 1 .422.256L.346.236l-.014.06.04.01c.022.005.026.02.025.031L.371.44c.002 0 .004 0 .006.002L.371.44.335.584C.333.591.325.601.31.597L.27.587.243.65l.072.018.039.01L.33.769l.055.014.022-.09.044.011-.022.09.054.013.023-.09c.094.017.164.01.194-.075C.725.574.699.535.65.51.685.501.712.477.72.43zM.595.605C.578.673.463.635.426.627l.03-.121c.037.01.157.027.139.099zM.612.428C.596.49.501.458.47.45L.497.34c.031.008.131.022.115.087z",
-    fill: "#fff"
-  }));
-};
-
-bitcoinLogo.defaultProps = {
-  xmlns: "http://www.w3.org/2000/svg",
-  width: "512",
-  height: "512",
-  viewBox: "0 0 1 1",
-  preserveAspectRatio: "xMidYMid"
-};
-
 var HeaderLogo = function HeaderLogo() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Logo, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
     prefetch: true,
     href: "/"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u20BFitsjournal")));
-}; // const HeaderLogo = () => (
-//   <Logo>
-//     <Link prefetch href="/">
-//       <img
-//         src="/static/bitcoin-logo.svg"
-//         style={{ margin: "auto", maxWidth: "28px" }}
-//       />
-//     </Link>
-//     <Link prefetch href="/">
-//       <span style={{ marginLeft: "-2px" }}>its Journal</span>
-//     </Link>
-//   </Logo>
-// );
-
+};
 
 /* harmony default export */ __webpack_exports__["default"] = (HeaderLogo);
 var Logo = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.div.withConfig({
   displayName: "Logo",
   componentId: "sc-195qc4m-0"
-})(["", " margin-right:auto;font-size:21px;font-weight:500;color:", ";text-decoration:none;color:#fff;@media (max-width:425px){padding:0 8px 0 16px;font-size:19px;}"], _shared_helpers__WEBPACK_IMPORTED_MODULE_3__["headerItem"], function (props) {
+})(["", " margin-right:0;font-size:26px;font-weight:500;color:", ";text-decoration:none;color:#fff;@media (max-width:425px){padding:0 8px 0 16px;font-size:19px;}"], _shared_helpers__WEBPACK_IMPORTED_MODULE_3__["headerItem"], function (props) {
   return props.theme.normalText;
 }); // display: flex;
 // align-items: center;
@@ -478,10 +405,219 @@ var Logo = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.div.withConf
 
 /***/ }),
 
-/***/ "./components/LoginForm2.js":
+/***/ "./components/Menu/Datepicker.js":
+/*!***************************************!*\
+  !*** ./components/Menu/Datepicker.js ***!
+  \***************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Example; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_datepicker__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-datepicker */ "react-datepicker");
+/* harmony import */ var react_datepicker__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_datepicker__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var mobx_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! mobx-react */ "mobx-react");
+/* harmony import */ var mobx_react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(mobx_react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_datepicker_dist_react_datepicker_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-datepicker/dist/react-datepicker.css */ "./node_modules/react-datepicker/dist/react-datepicker.css");
+/* harmony import */ var react_datepicker_dist_react_datepicker_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_datepicker_dist_react_datepicker_css__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _datepicker_additional_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./datepicker-additional.css */ "./components/Menu/datepicker-additional.css");
+/* harmony import */ var _datepicker_additional_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_datepicker_additional_css__WEBPACK_IMPORTED_MODULE_4__);
+var _dec, _class, _temp;
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+ // CSS Modules, react-datepicker-cssmodules.css
+// import 'react-datepicker/dist/react-datepicker-cssmodules.css';
+
+var Example = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_2__["inject"])(["store"]), _dec(_class = Object(mobx_react__WEBPACK_IMPORTED_MODULE_2__["observer"])(_class = (_temp =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(Example, _React$Component);
+
+  function Example(props) {
+    var _this;
+
+    _classCallCheck(this, Example);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Example).call(this, props));
+
+    _this.handleChange = function (date) {
+      _this.setState({
+        date: date
+      });
+    };
+
+    _this.state = {
+      date: new Date()
+    };
+    return _this;
+  }
+
+  _createClass(Example, [{
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      console.log("just updated");
+
+      if (this.props.set == true) {
+        console.log("not equal");
+
+        if (this.props.start == true) {
+          console.log("was true");
+          var firstDate = this.state.date.toISOString();
+          var multiDate = firstDate.split("T");
+          this.props.store.startDate = multiDate[0] + "T00:00:00.000Z";
+          this.props.store.date = "Custom";
+        }
+
+        if (this.props.start == false) {
+          console.log("was false");
+
+          var _firstDate = this.state.date.toISOString();
+
+          var _multiDate = _firstDate.split("T");
+
+          this.props.store.endDate = _multiDate[0] + "T24:00:00.000Z";
+          console.log(this.props.store.endDate);
+          this.props.store.date = "Custom";
+        }
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_datepicker__WEBPACK_IMPORTED_MODULE_1___default.a, {
+        selected: this.state.date,
+        onChange: this.handleChange
+      });
+    }
+  }]);
+
+  return Example;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component), _temp)) || _class) || _class);
+
+
+/***/ }),
+
+/***/ "./components/Menu/datepicker-additional.css":
+/*!***************************************************!*\
+  !*** ./components/Menu/datepicker-additional.css ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
+/***/ "./components/form/FormWrapper.js":
+/*!****************************************!*\
+  !*** ./components/form/FormWrapper.js ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "styled-components");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_0__);
+
+var FormWrapper = styled_components__WEBPACK_IMPORTED_MODULE_0___default.a.div.withConfig({
+  displayName: "FormWrapper",
+  componentId: "sc-15qkhyq-0"
+})(["position:relative;overflow:hidden;margin:0 auto;border:1px solid ", ";border-radius:2px;width:375px;padding:24px;background-color:", ";@media (max-width:768px){padding:16px;}@media (max-width:", "){border-radius:0;border-left:none;border-right:none;}"], function (props) {
+  return props.theme.border;
+}, function (props) {
+  return props.theme.foreground;
+}, function (props) {
+  return props.wide ? "600px" : "375px";
+});
+/* harmony default export */ __webpack_exports__["default"] = (FormWrapper); // max-width: ${props => (props.wide ? "600px" : "375px")};
+
+/***/ }),
+
+/***/ "./components/form/Input.js":
 /*!**********************************!*\
-  !*** ./components/LoginForm2.js ***!
+  !*** ./components/form/Input.js ***!
   \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "styled-components");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_0__);
+ // import { transition } from '../helpers';
+// ${transition};
+
+var Input = styled_components__WEBPACK_IMPORTED_MODULE_0___default.a.input.withConfig({
+  displayName: "Input",
+  componentId: "sc-1gcscia-0"
+})(["--border:", ";--shadow:", ";display:block;", ";border-radius:3px;width:100%;padding:8px;background-color:", ";font-size:15px;color:", ";appearance:none;outline:none;resize:vertical;:hover,:focus{border:1px solid var(--border);}:focus{box-shadow:0 0 0 2px var(--shadow);}"], function (props) {
+  return props.error ? props.theme.error : props.theme.accent;
+}, function (props) {
+  return props.error ? props.theme.error + "4d" : props.theme.accent + "4d";
+}, function (props) {
+  return props.error ? "\n    border: 1px solid var(--border)\n    " : "\n    border: 1px solid ".concat(props.theme.border, "\n  ");
+}, function (props) {
+  return props.theme.inputBackground;
+}, function (props) {
+  return props.theme.normalText;
+});
+/* harmony default export */ __webpack_exports__["default"] = (Input);
+
+/***/ }),
+
+/***/ "./components/form/Label.js":
+/*!**********************************!*\
+  !*** ./components/form/Label.js ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "styled-components");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _shared_helpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../shared/helpers */ "./components/shared/helpers.js");
+
+
+var Label = styled_components__WEBPACK_IMPORTED_MODULE_0___default.a.label.withConfig({
+  displayName: "Label",
+  componentId: "sc-1n443xe-0"
+})(["", ";display:block;margin-bottom:8px;color:", ";"], _shared_helpers__WEBPACK_IMPORTED_MODULE_1__["smallFont"], function (props) {
+  return props.theme.mutedText;
+});
+/* harmony default export */ __webpack_exports__["default"] = (Label);
+
+/***/ }),
+
+/***/ "./components/form/LoginForm.js":
+/*!**************************************!*\
+  !*** ./components/form/LoginForm.js ***!
+  \**************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -503,10 +639,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! styled-components */ "styled-components");
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _Form2_FormWrapper__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Form2/FormWrapper */ "./components/Form2/FormWrapper.js");
-/* harmony import */ var _Form2_Input__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Form2/Input */ "./components/Form2/Input.js");
-/* harmony import */ var _form_Label__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./form/Label */ "./components/form/Label.js");
-/* harmony import */ var _shared_Button__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./shared/Button */ "./components/shared/Button.js");
+/* harmony import */ var _FormWrapper__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./FormWrapper */ "./components/form/FormWrapper.js");
+/* harmony import */ var _form_Input__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../form/Input */ "./components/form/Input.js");
+/* harmony import */ var _Label__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Label */ "./components/form/Label.js");
+/* harmony import */ var _shared_Button__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../shared/Button */ "./components/shared/Button.js");
 
 
 function _templateObject() {
@@ -619,16 +755,16 @@ var LoginForm = function LoginForm() {
       setWrongCredentials = _useState2[1];
 
   return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_apollo__WEBPACK_IMPORTED_MODULE_2__["ApolloConsumer"], null, function (client) {
-    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Form2_FormWrapper__WEBPACK_IMPORTED_MODULE_8__["default"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(StyledForm, {
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_FormWrapper__WEBPACK_IMPORTED_MODULE_8__["default"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(StyledForm, {
       onSubmit: function onSubmit(event) {
         return handleSubmit(event, client);
       }
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(InputWrapper, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_form_Label__WEBPACK_IMPORTED_MODULE_10__["default"], null, "email"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Form2_Input__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(InputWrapper, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Label__WEBPACK_IMPORTED_MODULE_10__["default"], null, "email"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_form_Input__WEBPACK_IMPORTED_MODULE_9__["default"], {
       placeholder: "",
       name: "email",
       type: "text",
       required: true
-    })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(InputWrapper, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_form_Label__WEBPACK_IMPORTED_MODULE_10__["default"], null, "password"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Form2_Input__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(InputWrapper, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Label__WEBPACK_IMPORTED_MODULE_10__["default"], null, "password"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_form_Input__WEBPACK_IMPORTED_MODULE_9__["default"], {
       placeholder: "",
       name: "password",
       type: "text",
@@ -651,43 +787,19 @@ var LoginForm = function LoginForm() {
 
 /* harmony default export */ __webpack_exports__["default"] = (LoginForm);
 var StyledForm = styled_components__WEBPACK_IMPORTED_MODULE_7___default.a.form.withConfig({
-  displayName: "LoginForm2__StyledForm",
-  componentId: "sc-1mwh11w-0"
+  displayName: "LoginForm__StyledForm",
+  componentId: "zc9mcq-0"
 })(["display:flex;flex-direction:column;align-items:flex-start;", ";"], function (props) {
   return props.loading && "filter: grayscale(0.5) blur(5px) opacity(0.6); pointer-events: none";
 });
 var SubmitButton = styled_components__WEBPACK_IMPORTED_MODULE_7___default()(_shared_Button__WEBPACK_IMPORTED_MODULE_11__["default"]).withConfig({
-  displayName: "LoginForm2__SubmitButton",
-  componentId: "sc-1mwh11w-1"
+  displayName: "LoginForm__SubmitButton",
+  componentId: "zc9mcq-1"
 })(["align-self:flex-end;margin-right:0px;margin-left:auto;"]);
 var InputWrapper = styled_components__WEBPACK_IMPORTED_MODULE_7___default.a.div.withConfig({
-  displayName: "LoginForm2__InputWrapper",
-  componentId: "sc-1mwh11w-2"
+  displayName: "LoginForm__InputWrapper",
+  componentId: "zc9mcq-2"
 })(["position:relative;margin-bottom:24px;width:100%;"]);
-
-/***/ }),
-
-/***/ "./components/form/Label.js":
-/*!**********************************!*\
-  !*** ./components/form/Label.js ***!
-  \**********************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "styled-components");
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _shared_helpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../shared/helpers */ "./components/shared/helpers.js");
-
-
-var Label = styled_components__WEBPACK_IMPORTED_MODULE_0___default.a.label.withConfig({
-  displayName: "Label",
-  componentId: "sc-1n443xe-0"
-})(["", ";display:block;margin-bottom:8px;color:", ";"], _shared_helpers__WEBPACK_IMPORTED_MODULE_1__["smallFont"], function (props) {
-  return props.theme.mutedText;
-});
-/* harmony default export */ __webpack_exports__["default"] = (Label);
 
 /***/ }),
 
@@ -813,6 +925,17 @@ var theme = function theme(isDark) {
 /*!***********************************************************!*\
   !*** ./node_modules/bootstrap/dist/css/bootstrap.min.css ***!
   \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
+/***/ "./node_modules/react-datepicker/dist/react-datepicker.css":
+/*!*****************************************************************!*\
+  !*** ./node_modules/react-datepicker/dist/react-datepicker.css ***!
+  \*****************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -987,7 +1110,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! styled-components */ "styled-components");
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _components_theme__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/theme */ "./components/theme.js");
-/* harmony import */ var _components_LoginForm2__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/LoginForm2 */ "./components/LoginForm2.js");
+/* harmony import */ var _components_form_LoginForm__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/form/LoginForm */ "./components/form/LoginForm.js");
 /* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! next/router */ "next/router");
 /* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var _components_shared_helpers__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/shared/helpers */ "./components/shared/helpers.js");
@@ -1015,7 +1138,7 @@ function LoginPage() {
   } else {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_App__WEBPACK_IMPORTED_MODULE_1__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(styled_components__WEBPACK_IMPORTED_MODULE_4__["ThemeProvider"], {
       theme: Object(_components_theme__WEBPACK_IMPORTED_MODULE_5__["default"])(false)
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Wrapper, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(HeaderLogoDiv, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Header_Logo__WEBPACK_IMPORTED_MODULE_3__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_LoginForm2__WEBPACK_IMPORTED_MODULE_6__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Annotation1, null, "BitsJournal is an automated trade journal for Bitmex.", " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_9___default.a, {
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Wrapper, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(HeaderLogoDiv, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Header_Logo__WEBPACK_IMPORTED_MODULE_3__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_form_LoginForm__WEBPACK_IMPORTED_MODULE_6__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Annotation1, null, "BitsJournal is an automated trade journal for Bitmex.", " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_9___default.a, {
       href: "/register"
     }, "Register"), " for our free beta or view demos on YouTube."))));
   }
@@ -1037,7 +1160,7 @@ var Annotation1 = styled_components__WEBPACK_IMPORTED_MODULE_4___default.a.div.w
 
 /***/ }),
 
-/***/ 3:
+/***/ 4:
 /*!******************************!*\
   !*** multi ./pages/index.js ***!
   \******************************/
@@ -1082,6 +1205,17 @@ module.exports = require("js-cookie");
 
 /***/ }),
 
+/***/ "mobx-react":
+/*!*****************************!*\
+  !*** external "mobx-react" ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("mobx-react");
+
+/***/ }),
+
 /***/ "next/link":
 /*!****************************!*\
   !*** external "next/link" ***!
@@ -1123,6 +1257,17 @@ module.exports = require("react");
 /***/ (function(module, exports) {
 
 module.exports = require("react-apollo");
+
+/***/ }),
+
+/***/ "react-datepicker":
+/*!***********************************!*\
+  !*** external "react-datepicker" ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("react-datepicker");
 
 /***/ }),
 

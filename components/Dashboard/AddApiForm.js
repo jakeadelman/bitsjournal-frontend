@@ -4,11 +4,9 @@ import gql from "graphql-tag";
 import Router from "next/router";
 import { Alert } from "reactstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-// import { observer } from "mobx-react-lite";
-// import { UserStoreContext } from "../stores/UserStore.ts";
 import styled from "styled-components";
-import FormWrapper from "../Form2/FormWrapper";
-import Input from "../Form2/Input";
+import FormWrapper from "../form/FormWrapper";
+import Input from "../form/Input";
 import Label from "../form/Label";
 import Button from "../shared/Button";
 const Cookie = require("js-cookie");
@@ -36,10 +34,10 @@ const ApiKeyForm = () => {
           addApiKey(key: $key, secret: $secret)
         }
       `,
-      variables: { key, secret }
+      variables: { key, secret },
     });
     apiRes
-      .then(apiRes => {
+      .then((apiRes) => {
         console.log("<<RES>>");
         console.log(apiRes.data.addApiKey);
         console.log(typeof apiRes.data.addApiKey);
@@ -48,7 +46,7 @@ const ApiKeyForm = () => {
         setRes(isTrue);
         setLoading(false);
       })
-      .catch(apiRes => {
+      .catch((apiRes) => {
         let isTrue = apiRes.data.addApiKey == true;
         console.log(isTrue);
         setRes(isTrue);
@@ -58,7 +56,7 @@ const ApiKeyForm = () => {
   if (notSubmitted == true) {
     return (
       <ApolloConsumer>
-        {client => (
+        {(client) => (
           <div>
             <div>
               <Alert color="info">
@@ -72,7 +70,7 @@ const ApiKeyForm = () => {
               </Alert>
             </div>
             <FormWrapper>
-              <StyledForm onSubmit={event => handleSubmit(event, client)}>
+              <StyledForm onSubmit={(event) => handleSubmit(event, client)}>
                 <InputWrapper>
                   <Label>key</Label>
                   <Input placeholder="" name="key" type="text" required />
@@ -99,10 +97,9 @@ const ApiKeyForm = () => {
       return <div>error submitting, please reload page and try again</div>;
     }
     if (res == true) {
-      console.log("IN TRUE");
       return (
         <ApolloConsumer>
-          {client => <Populate client={client} />}
+          {(client) => <Populate client={client} />}
         </ApolloConsumer>
       );
     }
@@ -121,9 +118,9 @@ const Populate = ({ client }) => {
           mutation {
             populate
           }
-        `
+        `,
       });
-      apiRes.then(reso => {
+      apiRes.then((reso) => {
         console.log("<<API RES>>");
         console.log(reso);
         console.log(reso.data.populate);
@@ -133,9 +130,9 @@ const Populate = ({ client }) => {
     }
   }, []);
 
-  const resetApi = async client => {
+  const resetApi = async (client) => {
     console.log("RESETTING");
-    return new Promise(async resolve => {
+    return new Promise(async (resolve) => {
       let key = "none";
       let secret = "none";
 
@@ -145,7 +142,7 @@ const Populate = ({ client }) => {
             addApiKey(key: $key, secret: $secret)
           }
         `,
-        variables: { key, secret }
+        variables: { key, secret },
       });
       return await myRes;
     });
@@ -158,7 +155,6 @@ const Populate = ({ client }) => {
       resetApi(client);
       return <div>api key not valid - reload and try again</div>;
     } else {
-      //   return <div>api key valid</div>;
       location.reload();
     }
   }
@@ -170,7 +166,7 @@ const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  ${props =>
+  ${(props) =>
     props.loading &&
     "filter: grayscale(0.5) blur(5px) opacity(0.6); pointer-events: none"};
 `;

@@ -5,6 +5,7 @@ import theme from "../theme";
 import { useContext, useState } from "react";
 import HeaderLogo from "./Logo";
 import "./header.scss";
+import DatePicker from "../Menu/Datepicker";
 
 import { headerItem, wideFont, link, transition } from "../shared/helpers";
 const Cookie = require("js-cookie");
@@ -21,6 +22,14 @@ const Header = ({ router }) => {
       <ThemeProvider theme={theme(false)}>
         <Wrapper>
           <HeaderLogo />
+          <DatePickersWrap>
+            <DatePickerWrap>
+              <DatePicker />
+            </DatePickerWrap>
+            <DatePickerWrap>
+              <DatePicker />
+            </DatePickerWrap>
+          </DatePickersWrap>
 
           <Link prefetch href="/login">
             <StyledLink
@@ -45,6 +54,14 @@ const Header = ({ router }) => {
       <ThemeProvider theme={theme(false)}>
         <Wrapper>
           <HeaderLogo />
+          <DatePickersWrap>
+            <DatePickerWrap>
+              <DatePicker />
+            </DatePickerWrap>
+            <DatePickerWrap>
+              <DatePicker />
+            </DatePickerWrap>
+          </DatePickersWrap>
 
           <Link prefetch href="/settings">
             <StyledLink
@@ -65,7 +82,64 @@ const Header = ({ router }) => {
 
 export default withRouter(Header);
 
+const LogoWrap = styled.div``;
+
+const TempDiv = styled.div`
+  margin: auto;
+`;
+
+const LinksWrap = styled.div`
+  margin-right: 0;
+  margin-left: auto;
+`;
+
+const DatePickersWrap = styled.div`
+  margin-left: 0;
+  margin-right: auto;
+  display: flex;
+  flex-direction: row;
+`;
+const DatePickerWrap = styled.div`
+  margin: auto;
+`;
+
 const StyledLink = styled.div`
+  ${headerItem};
+  ${link};
+  margin: 0;
+  color: ${(props) => props.theme.mutedText};
+  color: #fff;
+  text-transform: capitalize;
+
+  position: relative;
+  cursor: pointer;
+`;
+
+const Wrapper = styled.header`
+  position: sticky;
+  z-index: 10;
+  top: 0;
+  display: flex;
+  align-items: stretch;
+
+  border-bottom: 2px solid #eee;
+  height: 55px;
+  padding: 0 0vw;
+  font-weight: 700;
+  background-color: ${(props) => props.theme.foreground};
+  user-select: none;
+  background-color: #212527;
+
+  @media (max-width: 425px) {
+    margin-bottom: 16px;
+    height: 40px;
+  }
+  @media (max-width: 768px) {
+    padding: 0;
+  }
+`;
+
+const StyledLinkFirst = styled.div`
   ${headerItem};
   ${link};
   margin: 0;
@@ -106,31 +180,9 @@ const StyledLink = styled.div`
   font-weight: 700;
   letter-spacing: 0.05em;
   font-size: 14px;
+  margin-left: auto;
 `;
 
-const Wrapper = styled.header`
-  position: sticky;
-  z-index: 10;
-  top: 0;
-  display: flex;
-  align-items: stretch;
-
-  border-bottom: 2px solid #eee;
-  height: 55px;
-  padding: 0 0vw;
-  font-weight: 700;
-  background-color: ${(props) => props.theme.foreground};
-  user-select: none;
-  background-color: #212527;
-
-  @media (max-width: 425px) {
-    margin-bottom: 16px;
-    height: 40px;
-  }
-  @media (max-width: 768px) {
-    padding: 0;
-  }
-`;
 // background-color: #23282d;
 
 // const Wrapper = styled.header`

@@ -8,10 +8,24 @@ import {
 } from "./Trades";
 import ReChart from "./Trades";
 import Sidebar, { SymbolChooser, Pnl } from "../Menu/Menu";
-import { getNewDat } from "./helpers";
+import { getNewDat } from "./shared/helpers";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCaretLeft } from "@fortawesome/free-solid-svg-icons";
+import React, { useState } from "react";
+import Notes from "./Notes/NotesTest";
+import Tabs from "./Tabs";
+import {
+  Nav,
+  NavItem,
+  Dropdown,
+  DropdownItem,
+  DropdownToggle,
+  DropdownMenu,
+  NavLink,
+} from "reactstrap";
 
 import { inject, observer } from "mobx-react";
-import { when } from "mobx";
+import { when, reaction } from "mobx";
 import { wideFont } from "../shared/helpers";
 
 @inject("store")
@@ -24,6 +38,7 @@ export default class extends React.Component {
       globalHashActive: ["all"],
       data: null,
       filteredData: null,
+      isSingle: false,
     };
     this.getGlobalHashtags = this.getGlobalHashtags.bind(this);
     this.hashtagClicked = this.hashtagClicked.bind(this);
@@ -36,6 +51,24 @@ export default class extends React.Component {
     this.getGlobalHashtags(this.props.data);
   }
   componentDidMount() {
+    this.singleTradeReaction = reaction(
+      () => this.props.store.hasSingleTrade,
+      (notifications, reaction) => {
+        console.log("HAS SINGLE", this.props.store.hasSingleTrade);
+        if (this.props.store.hasSingleTrade == false) {
+          this.setState({ isSingle: false });
+          console.log("setting back");
+        } else {
+          this.setState({
+            isSingle: true,
+            singleTrade: this.props.store.singleTrade[0],
+          });
+          console.log(this.state, "STATEE");
+          console.log("setting back");
+        }
+      }
+    );
+
     window.addEventListener("resize", this.updateWindowDimensions);
   }
   componentWillUnmount() {
@@ -208,79 +241,171 @@ export default class extends React.Component {
   }
   render() {
     if (this.state.data != null) {
-      return (
-        <Wrapper>
-          <ChartWrapper>
-            <TopHashtagDiv>
-              {this.state.globalHashActive.map((hash) => {
-                return (
-                  <TopHashtagIndividualActive
-                    onClick={() => this.hashtagClickedBack(hash)}
-                  >
-                    #{hash}
-                  </TopHashtagIndividualActive>
-                );
-              })}
-              {this.state.globalHash.map((hash) => {
-                return (
-                  <TopHashtagIndividual
-                    onClick={() => this.hashtagClicked(hash)}
-                  >
-                    #{hash}
-                  </TopHashtagIndividual>
-                );
-              })}
-              <TopHashtagIndividualActivePnl style={{ margin: "0 auto" }}>
-                <Pnl />
-              </TopHashtagIndividualActivePnl>
-              <TopHashtagIndividualActive style={{ marginRight: "0" }}>
-                <SymbolChooser />
-              </TopHashtagIndividualActive>
-            </TopHashtagDiv>
-            <WholeGrid>
-              {this.state.width > 1380 ? (
-                <ContainDivHeader>
-                  <NextToDivHeader>Start</NextToDivHeader>
-                  <NextToDivHeader>End</NextToDivHeader>
-                  <NextToDivHeader>L/S</NextToDivHeader>
-                  <NextToDivHeader>Avg Entry</NextToDivHeader>
-                  <NextToDivHeader>Avg Exit</NextToDivHeader>
-                  <NextToDivHeader>Qty</NextToDivHeader>
-                  <NextToDivHeader>Realized Pnl</NextToDivHeader>
-                </ContainDivHeader>
-              ) : (
-                <ContainDivHeader>
-                  <NextToDivHeader>Start</NextToDivHeader>
-                  <NextToDivHeader>End</NextToDivHeader>
-                  <NextToDivHeader>L/S</NextToDivHeader>
-                  <NextToDivHeader>Entry</NextToDivHeader>
-                  <NextToDivHeader>Exit</NextToDivHeader>
-                  <NextToDivHeader>Qty</NextToDivHeader>
-                  <NextToDivHeader>RPNL</NextToDivHeader>
-                </ContainDivHeader>
-              )}
-              <ReChart
-                data={this.state.data}
-                filteredData={this.state.filteredData}
-                initData={this.props.data}
-              />
-            </WholeGrid>
-          </ChartWrapper>
-        </Wrapper>
-      );
+      if (this.state.isSingle == false) {
+        return (
+          <Wrapper>
+            <ChartWrapper>
+              <TopBarParent>
+                <TopBarChildBig>
+                  {this.state.globalHashActive.map((hash) => {
+                    return (
+                      <TopHashtagIndividualActive
+                        onClick={() => this.hashtagClickedBack(hash)}
+                      >
+                        #{hash}
+                      </TopHashtagIndividualActive>
+                    );
+                  })}
+                  {this.state.globalHash.map((hash) => {
+                    return (
+                      <TopHashtagIndividual
+                        onClick={() => this.hashtagClicked(hash)}
+                      >
+                        #{hash}
+                      </TopHashtagIndividual>
+                    );
+                  })}
+                </TopBarChildBig>
+                <TopBarChildSmall>
+                  <TopHashtagIndividualActivePnl>
+                    <Pnl />
+                  </TopHashtagIndividualActivePnl>
+                </TopBarChildSmall>
+                <TopBarChildBig>
+                  <TopHashtagIndividualActiveRight>
+                    <SymbolChooser />
+                  </TopHashtagIndividualActiveRight>
+                </TopBarChildBig>
+              </TopBarParent>
+              <WholeGrid>
+                {this.state.width > 1380 ? (
+                  <ContainDivHeader>
+                    <NextToDivHeader>Start</NextToDivHeader>
+                    <NextToDivHeader>End</NextToDivHeader>
+                    <NextToDivHeader>L/S</NextToDivHeader>
+                    <NextToDivHeader>Avg Entry</NextToDivHeader>
+                    <NextToDivHeader>Avg Exit</NextToDivHeader>
+                    <NextToDivHeader>Qty</NextToDivHeader>
+                    <NextToDivHeader>Realized Pnl</NextToDivHeader>
+                  </ContainDivHeader>
+                ) : (
+                  <ContainDivHeader>
+                    <NextToDivHeader>Start</NextToDivHeader>
+                    <NextToDivHeader>End</NextToDivHeader>
+                    <NextToDivHeader>L/S</NextToDivHeader>
+                    <NextToDivHeader>Entry</NextToDivHeader>
+                    <NextToDivHeader>Exit</NextToDivHeader>
+                    <NextToDivHeader>Qty</NextToDivHeader>
+                    <NextToDivHeader>RPNL</NextToDivHeader>
+                  </ContainDivHeader>
+                )}
+                <ReChart
+                  data={this.state.data}
+                  filteredData={this.state.filteredData}
+                  initData={this.props.data}
+                />
+              </WholeGrid>
+            </ChartWrapper>
+          </Wrapper>
+        );
+      } else {
+        return (
+          <Wrapper>
+            <ChartWrapper>
+              <TopBarParent>
+                <TopBarChildBig>
+                  <Tabs />
+                </TopBarChildBig>
+                <TopBarChildSmall>
+                  <TopHashtagIndividualActivePnl>
+                    <Pnl />
+                  </TopHashtagIndividualActivePnl>
+                </TopBarChildSmall>
+                <TopBarChildBig>
+                  <RightTabs>
+                    <Notes firstTrade={this.state.singleTrade} />
+                  </RightTabs>
+                </TopBarChildBig>
+              </TopBarParent>
+              <WholeGrid>
+                {this.state.width > 1380 ? (
+                  <ContainDivHeader>
+                    <NextToDivHeader>Start</NextToDivHeader>
+                    <NextToDivHeader>End</NextToDivHeader>
+                    <NextToDivHeader>L/S</NextToDivHeader>
+                    <NextToDivHeader>Avg Entry</NextToDivHeader>
+                    <NextToDivHeader>Avg Exit</NextToDivHeader>
+                    <NextToDivHeader>Qty</NextToDivHeader>
+                    <NextToDivHeader>Realized Pnl</NextToDivHeader>
+                  </ContainDivHeader>
+                ) : (
+                  <ContainDivHeader>
+                    <NextToDivHeader>Start</NextToDivHeader>
+                    <NextToDivHeader>End</NextToDivHeader>
+                    <NextToDivHeader>L/S</NextToDivHeader>
+                    <NextToDivHeader>Entry</NextToDivHeader>
+                    <NextToDivHeader>Exit</NextToDivHeader>
+                    <NextToDivHeader>Qty</NextToDivHeader>
+                    <NextToDivHeader>RPNL</NextToDivHeader>
+                  </ContainDivHeader>
+                )}
+                <ReChart
+                  data={this.state.data}
+                  filteredData={this.state.filteredData}
+                  initData={this.props.data}
+                />
+              </WholeGrid>
+            </ChartWrapper>
+          </Wrapper>
+        );
+      }
     }
   }
 }
 
+const SingleTabInner = styled.div`
+  margin: auto;
+`;
+
+const SingleTab = styled.div`
+  color: ${(props) => (props.isActive ? "#fff" : "#000")};
+  background-color: ${(props) => (props.isActive ? "#000" : "#fff")};
+
+  margin: auto 10px;
+  border-radius: 2px;
+  padding: 5px;
+  :hover {
+    cursor: pointer;
+  }
+`;
+
+const WrapTabs = styled.div`
+  display: flex;
+  flex-direction: row;
+  font-size: 15px;
+`;
 const WholeGrid = styled.div`
   border: 1px solid #f2f2f2;
 `;
 
-const TopHashtagDiv = styled.div`
+const TopBarParent = styled.div`
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   margin-bottom: 14px;
 `;
+
+const TopBarChildBig = styled.div`
+  flex: 1 1 45%; /*grow | shrink | basis */
+  display: flex;
+  flex-direction: row;
+`;
+const TopBarChildSmall = styled.div`
+  flex: 1 1 10%; /*grow | shrink | basis */
+  display: flex;
+  flex-direction: row;
+`;
+
 const TopHashtagIndividual = styled.div`
   background: #f8f8ff;
   color: #000;
@@ -292,7 +417,9 @@ const TopHashtagIndividual = styled.div`
   :hover {
     cursor: pointer;
   }
+  margin-left: 0;
 `;
+
 const TopHashtagIndividualActive = styled.div`
   background: #212528;
   color: #fff;
@@ -300,9 +427,35 @@ const TopHashtagIndividualActive = styled.div`
   margin: 0 10px;
   border-radius: 2px;
   ${wideFont}
+  margin:0 auto;
   :hover {
     cursor: pointer;
   }
+  margin-left: 0;
+`;
+const TopHashtagIndividualActiveRight = styled.div`
+  background: #212528;
+  color: #fff;
+  padding: 8px;
+  margin: 0 10px;
+  border-radius: 2px;
+  ${wideFont}
+  margin:0 auto;
+  :hover {
+    cursor: pointer;
+  }
+  margin-right: 0;
+`;
+const RightTabs = styled.div`
+  color: #fff;
+  margin: 0 10px;
+  border-radius: 2px;
+  ${wideFont}
+  margin:0 auto;
+  :hover {
+    cursor: pointer;
+  }
+  margin-right: 0;
 `;
 
 const TopHashtagIndividualActivePnl = styled.div`
@@ -314,6 +467,7 @@ const TopHashtagIndividualActivePnl = styled.div`
   :hover {
     cursor: pointer;
   }
+  margin: auto;
 `;
 
 const ChartWrapper = styled.div`

@@ -3,7 +3,7 @@ import Header from "../components/Header/Header";
 import HeaderLogo from "../components/Header/Logo";
 import styled, { ThemeProvider } from "styled-components";
 import theme from "../components/theme";
-import LoginForm2 from "../components/LoginForm2";
+import LoginForm from "../components/form/LoginForm";
 import Router from "next/router";
 import { smallFont } from "../components/shared/helpers";
 import Link from "next/link";
@@ -23,7 +23,7 @@ export default function LoginPage() {
             <HeaderLogoDiv>
               <HeaderLogo />
             </HeaderLogoDiv>
-            <LoginForm2 />
+            <LoginForm />
             <Annotation1>
               BitsJournal is an automated trade journal for Bitmex.{" "}
               <Link href="/register">Register</Link> for our free beta or view
@@ -65,5 +65,5 @@ export const Annotation1 = styled.div`
   max-width: 18vw;
   text-align: center;
 
-  color: ${props => props.theme.mutedText};
+  color: ${(props) => props.theme.mutedText};
 `;

@@ -20,13 +20,17 @@ import {
   formatDateShortWithHour,
 } from "../Helpers/Functions.js";
 import { inject, observer } from "mobx-react";
-import MainChart from "../Charts2/index";
-import Notes from "./Notes";
+import MainChart from "./Chart/index";
+import Notes from "./Notes/Notes";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons";
 import equal from "fast-deep-equal";
-import { when } from "mobx";
+import TextareaAutosize from "react-autosize-textarea";
+import MyTextArea from "./Notes/TextArea";
+import { when, reaction } from "mobx";
 
+@inject(["store"])
+@observer
 export default class Example extends PureComponent {
   constructor(props) {
     super(props);
@@ -119,6 +123,18 @@ export default class Example extends PureComponent {
     }
     this.updateWindowDimensions();
     window.addEventListener("resize", this.updateWindowDimensions);
+
+    this.singleNotesReaction = reaction(
+      () => this.props.store.isSingleNotes,
+      (notifications, reaction) => {
+        console.log(this.props.store.isSingleNotes);
+        if (this.props.store.isSingleNotes == false) {
+          this.setState({ isSingleNotes: false });
+        } else {
+          this.setState({ isSingleNotes: true });
+        }
+      }
+    );
   }
 
   componentWillUnmount() {
@@ -386,16 +402,22 @@ class MakeCol extends Component {
     }
   }
 
-  clicked() {
-    // console.log(this.state);
+  clicked(dat) {
+    console.log("CLICKEEEE", dat);
     if (this.state.clicked == false) {
+      this.props.store.setSingleTrade(dat);
+      this.props.store.hasSingleTrade = true;
+      console.log(this.props.store.singleTrade, "SINGLEEE");
       this.setState({ clicked: true });
     } else {
+      this.props.store.hasSingleTrade = false;
       this.setState({ clicked: false });
+      console.log(this.props.store.singleTrade, "SINGLEEE");
     }
   }
+
   readMoreClicked() {
-    // console.log(this.state);
+    console.log("READ MORE CLICKED");
     if (this.state.readMoreClicked == false) {
       this.setState({ readMoreClicked: true });
     } else {
@@ -404,193 +426,45 @@ class MakeCol extends Component {
   }
 
   render() {
-    if (this.state.width > 1380) {
-      if (this.state.clicked == false) {
-        return (
-          <ContainDiv onClick={this.clicked.bind(this)}>
-            <NextToDiv>
-              {formatDateMonthOnly(this.state.data[0].timestamp)}
-            </NextToDiv>
-            <NextToDiv>
-              {formatDateMonthOnly(
-                this.state.data[this.state.data.length - 1].timestamp
-              )}
-            </NextToDiv>
-            <IsShort side={this.state.data[0].side} />
-            <NextToDiv>${this.state.avgEntryPrice.toFixed(1)}</NextToDiv>
-            <NextToDiv>${this.state.avgExitPrice.toFixed(1)}</NextToDiv>
-            <NextToDiv>{this.state.cumQty}</NextToDiv>
-            <NextToDiv>{this.state.pnl.toFixed(4) + "xbt"}</NextToDiv>
-          </ContainDiv>
-        );
-      } else {
+    if (this.state.clicked == false) {
+      return (
+        <ContainDiv onClick={() => this.clicked(this.state.data)}>
+          <NextToDiv>
+            {formatDateMonthOnly(this.state.data[0].timestamp)}
+          </NextToDiv>
+          <NextToDiv>
+            {formatDateMonthOnly(
+              this.state.data[this.state.data.length - 1].timestamp
+            )}
+          </NextToDiv>
+          <IsShort side={this.state.data[0].side} />
+          <NextToDiv>${this.state.avgEntryPrice.toFixed(1)}</NextToDiv>
+          <NextToDiv>${this.state.avgExitPrice.toFixed(1)}</NextToDiv>
+          <NextToDiv>{this.state.cumQty}</NextToDiv>
+          <NextToDiv>{this.state.pnl.toFixed(4) + "xbt"}</NextToDiv>
+        </ContainDiv>
+      );
+    } else {
+      if (this.props.store.isSingleNotes == false) {
         return (
           <TotalDetails>
-            {this.state.readMoreClicked ? (
-              <MoreBoxTall>
-                <ContainDivClicked onClick={this.clicked.bind(this)}>
-                  <NextToDiv>
-                    {formatDateMonthOnly(this.state.data[0].timestamp)}
-                  </NextToDiv>
-                  <NextToDiv>
-                    {formatDateMonthOnly(
-                      this.state.data[this.state.data.length - 1].timestamp
-                    )}
-                  </NextToDiv>
-                  <IsShort side={this.state.data[0].side} />
-                  <NextToDiv>${this.state.avgEntryPrice.toFixed(1)}</NextToDiv>
-                  <NextToDiv>${this.state.avgExitPrice.toFixed(1)}</NextToDiv>
-                  <NextToDiv>{this.state.cumQty}</NextToDiv>
-                  <NextToDiv>{this.state.pnl.toFixed(4) + "xbt"}</NextToDiv>
-                </ContainDivClicked>
-                <Notes firstTrade={this.state.data[0]} />
-                <ContainDivBlack>
-                  <NextToDivBlackTitle>
-                    <TitleSpan>Timestamp</TitleSpan>
-                  </NextToDivBlackTitle>
-                  <NextToDivBlackTitle>
-                    <TitleSpan>Side</TitleSpan>
-                  </NextToDivBlackTitle>
-                  <NextToDivBlackTitle>
-                    <TitleSpan>Order Type</TitleSpan>
-                  </NextToDivBlackTitle>
-                  <NextToDivBlackTitle>
-                    <TitleSpan>Price</TitleSpan>
-                  </NextToDivBlackTitle>
-                  <NextToDivBlackTitle>
-                    <TitleSpan>Order Qty</TitleSpan>
-                  </NextToDivBlackTitle>
-                  <NextToDivBlackTitle>
-                    <TitleSpan>Leaves Qty</TitleSpan>
-                  </NextToDivBlackTitle>
-                  <NextToDivBlackTitle>
-                    <TitleSpan>Commission</TitleSpan>
-                  </NextToDivBlackTitle>
-                </ContainDivBlack>
-
-                {this.state.data.map((dat) => {
-                  return (
-                    <ContainDivBlack onClick={this.clicked.bind(this)}>
-                      <NextToDivBlack>
-                        {formatDateMonthOnly(dat.timestamp)}
-                      </NextToDivBlack>
-                      {dat.execType == "Trade" ? (
-                        <NextToDivBlack>{dat.side}</NextToDivBlack>
-                      ) : (
-                        <NextToDivBlack>{dat.execType}</NextToDivBlack>
-                      )}
-                      <NextToDivBlack>{dat.orderType}</NextToDivBlack>
-                      <NextToDivBlack>${dat.price.toString()}</NextToDivBlack>
-                      <NextToDivBlack>{dat.orderQty}</NextToDivBlack>
-                      <NextToDivBlack>
-                        {dat.leavesQty == "0" ? "" : dat.leavesQty}
-                      </NextToDivBlack>
-                      <NextToDivBlack>
-                        {dat.execType == "Funding"
-                          ? ""
-                          : calcCommission(
-                              dat.price,
-                              dat.side,
-                              dat.orderQty,
-                              dat.leavesQty,
-                              dat.orderType
-                            )}
-                      </NextToDivBlack>
-                    </ContainDivBlack>
-                  );
-                })}
-                <ReadMoreTall>
-                  <ReadMoreInner onClick={this.readMoreClicked}>
-                    <FontAwesomeIcon
-                      icon={faCaretUp}
-                      style={{ transition: "none" }}
-                    />
-                  </ReadMoreInner>
-                </ReadMoreTall>
-              </MoreBoxTall>
-            ) : (
-              <MoreBoxShort>
-                <ContainDivClicked onClick={this.clicked}>
-                  <NextToDiv>
-                    {formatDateMonthOnly(this.state.data[0].timestamp)}
-                  </NextToDiv>
-                  <NextToDiv>
-                    {formatDateMonthOnly(
-                      this.state.data[this.state.data.length - 1].timestamp
-                    )}
-                  </NextToDiv>
-                  <IsShort side={this.state.data[0].side} />
-                  <NextToDiv>${this.state.avgEntryPrice.toFixed(1)}</NextToDiv>
-                  <NextToDiv>${this.state.avgExitPrice.toFixed(1)}</NextToDiv>
-                  <NextToDiv>{this.state.cumQty}</NextToDiv>
-                  <NextToDiv>{this.state.pnl.toFixed(4) + "xbt"}</NextToDiv>
-                </ContainDivClicked>
-                <Notes firstTrade={this.state.data[0]} />
-                <ContainDivBlack>
-                  <NextToDivBlackTitle>
-                    <TitleSpan>Timestamp</TitleSpan>
-                  </NextToDivBlackTitle>
-                  <NextToDivBlackTitle>
-                    <TitleSpan>Side</TitleSpan>
-                  </NextToDivBlackTitle>
-                  <NextToDivBlackTitle>
-                    <TitleSpan>Order Type</TitleSpan>
-                  </NextToDivBlackTitle>
-                  <NextToDivBlackTitle>
-                    <TitleSpan>Price</TitleSpan>
-                  </NextToDivBlackTitle>
-                  <NextToDivBlackTitle>
-                    <TitleSpan>Order Qty</TitleSpan>
-                  </NextToDivBlackTitle>
-                  <NextToDivBlackTitle>
-                    <TitleSpan>Leaves Qty</TitleSpan>
-                  </NextToDivBlackTitle>
-                  <NextToDivBlackTitle>
-                    <TitleSpan>Commission</TitleSpan>
-                  </NextToDivBlackTitle>
-                </ContainDivBlack>
-
-                {this.state.data.map((dat) => {
-                  return (
-                    <ContainDivBlack onClick={this.clicked.bind(this)}>
-                      <NextToDivBlack>
-                        {formatDateMonthOnly(dat.timestamp)}
-                      </NextToDivBlack>
-                      {dat.execType == "Trade" ? (
-                        <NextToDivBlack>{dat.side}</NextToDivBlack>
-                      ) : (
-                        <NextToDivBlack>{dat.execType}</NextToDivBlack>
-                      )}
-                      <NextToDivBlack>{dat.orderType}</NextToDivBlack>
-                      <NextToDivBlack>${dat.price.toString()}</NextToDivBlack>
-                      <NextToDivBlack>{dat.orderQty}</NextToDivBlack>
-                      <NextToDivBlack>
-                        {dat.leavesQty == "0" ? "" : dat.leavesQty}
-                      </NextToDivBlack>
-                      <NextToDivBlack>
-                        {dat.execType == "Funding"
-                          ? ""
-                          : calcCommission(
-                              dat.price,
-                              dat.side,
-                              dat.orderQty,
-                              dat.leavesQty,
-                              dat.orderType
-                            )}
-                      </NextToDivBlack>
-                    </ContainDivBlack>
-                  );
-                })}
-                <ReadMore>
-                  <ReadMoreInner onClick={this.readMoreClicked}>
-                    <FontAwesomeIcon
-                      icon={faCaretDown}
-                      style={{ transition: "none" }}
-                    />
-                  </ReadMoreInner>
-                </ReadMore>
-              </MoreBoxShort>
-            )}
+            <MoreBoxTall>
+              <ContainDivClicked onClick={() => this.clicked(this.state.data)}>
+                <NextToDiv>
+                  {formatDateMonthOnly(this.state.data[0].timestamp)}
+                </NextToDiv>
+                <NextToDiv>
+                  {formatDateMonthOnly(
+                    this.state.data[this.state.data.length - 1].timestamp
+                  )}
+                </NextToDiv>
+                <IsShort side={this.state.data[0].side} />
+                <NextToDiv>${this.state.avgEntryPrice.toFixed(1)}</NextToDiv>
+                <NextToDiv>${this.state.avgExitPrice.toFixed(1)}</NextToDiv>
+                <NextToDiv>{this.state.cumQty}</NextToDiv>
+                <NextToDiv>{this.state.pnl.toFixed(4) + "xbt"}</NextToDiv>
+              </ContainDivClicked>
+            </MoreBoxTall>
 
             <MainChart
               onemin={this.props.onemin}
@@ -599,204 +473,15 @@ class MakeCol extends Component {
               oneday={this.props.oneday}
               trades={this.state.data}
             />
+            <MyTextArea firstTrade={this.state.data[0]} />
           </TotalDetails>
         );
-      }
-    } else {
-      if (this.state.clicked == false) {
-        return (
-          <ContainDiv onClick={this.clicked.bind(this)}>
-            <NextToDiv>
-              {formatDateShort(this.state.data[0].timestamp)}
-            </NextToDiv>
-            <NextToDiv>
-              {formatDateShort(
-                this.state.data[this.state.data.length - 1].timestamp
-              )}
-            </NextToDiv>
-            <IsShort side={this.state.data[0].side} />
-            <NextToDiv>${this.state.avgEntryPrice.toFixed(1)}</NextToDiv>
-            <NextToDiv>${this.state.avgExitPrice.toFixed(1)}</NextToDiv>
-            <NextToDiv>{this.state.cumQty}</NextToDiv>
-            <NextToDiv>{this.state.pnl.toFixed(4) + "xbt"}</NextToDiv>
-          </ContainDiv>
-        );
       } else {
         return (
           <TotalDetails>
-            {this.state.readMoreClicked ? (
-              <MoreBoxTall>
-                <ContainDivClicked onClick={this.clicked.bind(this)}>
-                  <NextToDiv>
-                    {formatDateShort(this.state.data[0].timestamp)}
-                  </NextToDiv>
-                  <NextToDiv>
-                    {formatDateShort(
-                      this.state.data[this.state.data.length - 1].timestamp
-                    )}
-                  </NextToDiv>
-                  <IsShort side={this.state.data[0].side} />
-                  <NextToDiv>${this.state.avgEntryPrice.toFixed(1)}</NextToDiv>
-                  <NextToDiv>${this.state.avgExitPrice.toFixed(1)}</NextToDiv>
-                  <NextToDiv>{this.state.cumQty}</NextToDiv>
-                  <NextToDiv>{this.state.pnl.toFixed(4) + "xbt"}</NextToDiv>
-                </ContainDivClicked>
-                <Notes firstTrade={this.state.data[0]} />
-                <ContainDivBlack>
-                  <NextToDivBlackTitle>
-                    <TitleSpan>Timestamp</TitleSpan>
-                  </NextToDivBlackTitle>
-                  <NextToDivBlackTitle>
-                    <TitleSpan>Side</TitleSpan>
-                  </NextToDivBlackTitle>
-                  <NextToDivBlackTitle>
-                    <TitleSpan>Order Type</TitleSpan>
-                  </NextToDivBlackTitle>
-                  <NextToDivBlackTitle>
-                    <TitleSpan>Price</TitleSpan>
-                  </NextToDivBlackTitle>
-                  <NextToDivBlackTitle>
-                    <TitleSpan>Order Qty</TitleSpan>
-                  </NextToDivBlackTitle>
-                  <NextToDivBlackTitle>
-                    <TitleSpan>Leaves Qty</TitleSpan>
-                  </NextToDivBlackTitle>
-                  <NextToDivBlackTitle>
-                    <TitleSpan>Commission</TitleSpan>
-                  </NextToDivBlackTitle>
-                </ContainDivBlack>
-
-                {this.state.data.map((dat) => {
-                  return (
-                    <ContainDivBlack onClick={this.clicked.bind(this)}>
-                      <NextToDivBlackTime>
-                        {formatDateShortWithHour(dat.timestamp)}
-                      </NextToDivBlackTime>
-                      {dat.execType == "Trade" ? (
-                        <NextToDivBlack>{dat.side}</NextToDivBlack>
-                      ) : (
-                        <NextToDivBlack>{dat.execType}</NextToDivBlack>
-                      )}
-                      <NextToDivBlack>{dat.orderType}</NextToDivBlack>
-                      <NextToDivBlack>${dat.price.toString()}</NextToDivBlack>
-                      <NextToDivBlack>{dat.orderQty}</NextToDivBlack>
-                      <NextToDivBlack>
-                        {dat.leavesQty == "0" ? "" : dat.leavesQty}
-                      </NextToDivBlack>
-                      <NextToDivBlack>
-                        {dat.execType == "Funding"
-                          ? ""
-                          : calcCommission(
-                              dat.price,
-                              dat.side,
-                              dat.orderQty,
-                              dat.leavesQty,
-                              dat.orderType
-                            )}
-                      </NextToDivBlack>
-                    </ContainDivBlack>
-                  );
-                })}
-                <ReadMoreTall>
-                  <ReadMoreInner onClick={this.readMoreClicked}>
-                    <FontAwesomeIcon
-                      icon={faCaretUp}
-                      style={{ transition: "none" }}
-                    />
-                  </ReadMoreInner>
-                </ReadMoreTall>
-              </MoreBoxTall>
-            ) : (
-              <MoreBoxShort>
-                <ContainDivClicked onClick={this.clicked}>
-                  <NextToDiv>
-                    {formatDateShort(this.state.data[0].timestamp)}
-                  </NextToDiv>
-                  <NextToDiv>
-                    {formatDateShort(
-                      this.state.data[this.state.data.length - 1].timestamp
-                    )}
-                  </NextToDiv>
-                  <IsShort side={this.state.data[0].side} />
-                  <NextToDiv>${this.state.avgEntryPrice.toFixed(1)}</NextToDiv>
-                  <NextToDiv>${this.state.avgExitPrice.toFixed(1)}</NextToDiv>
-                  <NextToDiv>{this.state.cumQty}</NextToDiv>
-                  <NextToDiv>{this.state.pnl.toFixed(4) + "xbt"}</NextToDiv>
-                </ContainDivClicked>
-                <Notes firstTrade={this.state.data[0]} />
-                <ContainDivBlack>
-                  <NextToDivBlackTitle>
-                    <TitleSpan>Timestamp</TitleSpan>
-                  </NextToDivBlackTitle>
-                  <NextToDivBlackTitle>
-                    <TitleSpan>Side</TitleSpan>
-                  </NextToDivBlackTitle>
-                  <NextToDivBlackTitle>
-                    <TitleSpan>Order Type</TitleSpan>
-                  </NextToDivBlackTitle>
-                  <NextToDivBlackTitle>
-                    <TitleSpan>Price</TitleSpan>
-                  </NextToDivBlackTitle>
-                  <NextToDivBlackTitle>
-                    <TitleSpan>Order Qty</TitleSpan>
-                  </NextToDivBlackTitle>
-                  <NextToDivBlackTitle>
-                    <TitleSpan>Leaves Qty</TitleSpan>
-                  </NextToDivBlackTitle>
-                  <NextToDivBlackTitle>
-                    <TitleSpan>Commission</TitleSpan>
-                  </NextToDivBlackTitle>
-                </ContainDivBlack>
-
-                {this.state.data.map((dat) => {
-                  return (
-                    <ContainDivBlack onClick={this.clicked.bind(this)}>
-                      <NextToDivBlackTime>
-                        {formatDateShortWithHour(dat.timestamp)}
-                      </NextToDivBlackTime>
-                      {dat.execType == "Trade" ? (
-                        <NextToDivBlack>{dat.side}</NextToDivBlack>
-                      ) : (
-                        <NextToDivBlack>{dat.execType}</NextToDivBlack>
-                      )}
-                      <NextToDivBlack>{dat.orderType}</NextToDivBlack>
-                      <NextToDivBlack>${dat.price.toString()}</NextToDivBlack>
-                      <NextToDivBlack>{dat.orderQty}</NextToDivBlack>
-                      <NextToDivBlack>
-                        {dat.leavesQty == "0" ? "" : dat.leavesQty}
-                      </NextToDivBlack>
-                      <NextToDivBlack>
-                        {dat.execType == "Funding"
-                          ? ""
-                          : calcCommission(
-                              dat.price,
-                              dat.side,
-                              dat.orderQty,
-                              dat.leavesQty,
-                              dat.orderType
-                            )}
-                      </NextToDivBlack>
-                    </ContainDivBlack>
-                  );
-                })}
-                <ReadMore>
-                  <ReadMoreInner onClick={this.readMoreClicked}>
-                    <FontAwesomeIcon
-                      icon={faCaretDown}
-                      style={{ transition: "none" }}
-                    />
-                  </ReadMoreInner>
-                </ReadMore>
-              </MoreBoxShort>
-            )}
-
-            <MainChart
-              onemin={this.props.onemin}
-              fivemin={this.props.fivemin}
-              onehour={this.props.onehour}
-              oneday={this.props.oneday}
-              trades={this.state.data}
-            />
+            <MoreBoxTall>
+              <OrderExecution data={this.state.data} />
+            </MoreBoxTall>
           </TotalDetails>
         );
       }
@@ -814,6 +499,68 @@ class IsShort extends Component {
   }
 }
 
+const OrderExecution = ({ data }) => {
+  return (
+    <MoreBoxTall>
+      <ContainDivBlack>
+        <NextToDivBlackTitle>
+          <TitleSpan>Timestamp</TitleSpan>
+        </NextToDivBlackTitle>
+        <NextToDivBlackTitle>
+          <TitleSpan>Side</TitleSpan>
+        </NextToDivBlackTitle>
+        <NextToDivBlackTitle>
+          <TitleSpan>Order Type</TitleSpan>
+        </NextToDivBlackTitle>
+        <NextToDivBlackTitle>
+          <TitleSpan>Price</TitleSpan>
+        </NextToDivBlackTitle>
+        <NextToDivBlackTitle>
+          <TitleSpan>Order Qty</TitleSpan>
+        </NextToDivBlackTitle>
+        <NextToDivBlackTitle>
+          <TitleSpan>Leaves Qty</TitleSpan>
+        </NextToDivBlackTitle>
+        <NextToDivBlackTitle>
+          <TitleSpan>Commission</TitleSpan>
+        </NextToDivBlackTitle>
+      </ContainDivBlack>
+
+      {data.map((dat) => {
+        return (
+          <ContainDivBlack>
+            <NextToDivBlack>
+              {formatDateMonthOnly(dat.timestamp)}
+            </NextToDivBlack>
+            {dat.execType == "Trade" ? (
+              <NextToDivBlack>{dat.side}</NextToDivBlack>
+            ) : (
+              <NextToDivBlack>{dat.execType}</NextToDivBlack>
+            )}
+            <NextToDivBlack>{dat.orderType}</NextToDivBlack>
+            <NextToDivBlack>${dat.price.toString()}</NextToDivBlack>
+            <NextToDivBlack>{dat.orderQty}</NextToDivBlack>
+            <NextToDivBlack>
+              {dat.leavesQty == "0" ? "" : dat.leavesQty}
+            </NextToDivBlack>
+            <NextToDivBlack>
+              {dat.execType == "Funding"
+                ? ""
+                : calcCommission(
+                    dat.price,
+                    dat.side,
+                    dat.orderQty,
+                    dat.leavesQty,
+                    dat.orderType
+                  )}
+            </NextToDivBlack>
+          </ContainDivBlack>
+        );
+      })}
+    </MoreBoxTall>
+  );
+};
+
 export const ContainDiv = styled.div`
   width: 100%;
   display: flex;
@@ -821,12 +568,11 @@ export const ContainDiv = styled.div`
   height: 52px;
 
   font-weight: 400;
-  border-bottom: 1px solid #f2f2f2;
 
   &:hover {
     border-bottom: none;
     transition: none;
-    border-left: 3px solid #212528;
+    background: #f8f8ff;
     cursor: pointer;
   }
 `;
@@ -840,10 +586,10 @@ export const ContainDivClicked = styled.div`
 
   font-weight: 400;
   border-bottom: 1px solid #f2f2f2;
-  border-left: 5px solid #212528;
   border-radius: none;
   cursor: pointer;
   background: #f8f8ff;
+  background: #ffffff;
 `;
 export const ContainDivBlack = styled.div`
   width: 100%;
@@ -870,7 +616,7 @@ export const NextToDiv = styled.div`
   padding-top: 14px;
   padding-left: 12px;
   font-size: 15px;
-  color: #000000;
+  color: #000;
   border-right: 1px solid #f2f2f2;
 
   font-weight: 300;

@@ -8,7 +8,7 @@ import {
 } from "../Trades";
 import ReChart from "../Trades";
 import Sidebar768 from "../../Menu/768px/Menu";
-import { getNewDat } from "../helpers";
+import { getNewDat } from "../shared/helpers";
 
 import { inject, observer } from "mobx-react";
 import { when } from "mobx";

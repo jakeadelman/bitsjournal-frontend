@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Link from "next/link";
-import { headerItem } from "../shared/helpers";
-import bitcoinLogo from "../../static/bitcoin.svg";
+import { headerItem, wideFont } from "../shared/helpers";
 
 const HeaderLogo = () => (
   <Logo>
@@ -11,27 +10,14 @@ const HeaderLogo = () => (
     </Link>
   </Logo>
 );
-// const HeaderLogo = () => (
-//   <Logo>
-//     <Link prefetch href="/">
-//       <img
-//         src="/static/bitcoin-logo.svg"
-//         style={{ margin: "auto", maxWidth: "28px" }}
-//       />
-//     </Link>
-//     <Link prefetch href="/">
-//       <span style={{ marginLeft: "-2px" }}>its Journal</span>
-//     </Link>
-//   </Logo>
-// );
 
 export default HeaderLogo;
 
 const Logo = styled.div`
   ${headerItem}
 
-  margin-right: auto;
-  font-size: 21px;
+  margin-right: 0;
+  font-size: 26px;
   font-weight: 500;
   color: ${(props) => props.theme.normalText};
   text-decoration: none;

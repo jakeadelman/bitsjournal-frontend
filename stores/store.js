@@ -22,6 +22,10 @@ export class Store {
   @persist @observable tempTags = [];
   @persist @observable hasTempTags = false;
 
+  @persist @observable singleTrade = {};
+  @persist @observable hasSingleTrade = false;
+  @persist @observable isSingleNotes = false;
+
   @action changeDate = (newDate) => {
     let dates = getStateDate(newDate);
     this.date = newDate;
@@ -92,6 +96,10 @@ export class Store {
 
   @action resetPnl = () => {
     this.pnl = 0;
+  };
+
+  @action setSingleTrade = (dat) => {
+    this.singleTrade = dat;
   };
 }
 

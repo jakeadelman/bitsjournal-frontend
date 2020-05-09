@@ -1,12 +1,10 @@
 import React, { useContext, useState } from "react";
-import DashInitialTerms from "../components/Dashboard/DashInitialTerms";
+import DashInitialTerms from "../components/Dashboard/FetchQueryContainer";
 import App from "../components/App";
-import Header from "../components/Header/Header";
+import Header from "../components/Header/DashboardHeader";
 import styled, { ThemeProvider } from "styled-components";
 import theme from "../components/theme";
 import "../styles.css";
-// const Cookie = require("js-cookie");
-// import Router from "next/router";
 
 export default function dashboard({ initialState }) {
   return (
@@ -26,8 +24,8 @@ export default function dashboard({ initialState }) {
 const PageWrap = styled.div`
   height: 100vh;
   margin: 0 10vw;
-  border-right: 2px solid #f2f2f2;
-  border-left: 2px solid #f2f2f2;
+  border-right: 1px solid #f2f2f2;
+  border-left: 1px solid #f2f2f2;
 `;
 
 const Wrapper = styled.div`

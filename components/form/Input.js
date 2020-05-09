@@ -1,14 +1,15 @@
 import styled from "styled-components";
+// import { transition } from '../helpers';
 
+// ${transition};
 const Input = styled.input`
-  ${transition};
-
-  --border: ${props => (props.error ? props.theme.error : props.theme.accent)};
-  --shadow: ${props =>
+  --border: ${(props) =>
+    props.error ? props.theme.error : props.theme.accent};
+  --shadow: ${(props) =>
     props.error ? props.theme.error + "4d" : props.theme.accent + "4d"};
 
   display: block;
-  ${props =>
+  ${(props) =>
     props.error
       ? `
     border: 1px solid var(--border)
@@ -19,9 +20,9 @@ const Input = styled.input`
   border-radius: 3px;
   width: 100%;
   padding: 8px;
-  background-color: ${props => props.theme.inputBackground};
+  background-color: ${(props) => props.theme.inputBackground};
   font-size: 15px;
-  color: ${props => props.theme.normalText};
+  color: ${(props) => props.theme.normalText};
   appearance: none;
   outline: none;
   resize: vertical;
