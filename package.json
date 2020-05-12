@@ -16,6 +16,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
     "@fortawesome/react-fontawesome": "^0.1.9",
     "@now/static-build": "^0.4.18",
+    "@popperjs/core": "^2.4.0",
     "@types/react": "^16.8.4",
     "@vx/axis": "^0.0.184",
     "@vx/curve": "^0.0.182",
