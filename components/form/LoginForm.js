@@ -22,10 +22,9 @@ const LoginForm = () => {
     const formData = new window.FormData(form);
     const email = formData.get("email");
     const password = formData.get("password");
-    console.log(email, password);
     form.reset();
 
-    let res = client.mutate({
+    let r = await client.mutate({
       mutation: gql`
         mutation login($email: String!, $password: String!) {
           login(email: $email, password: $password)
@@ -33,12 +32,9 @@ const LoginForm = () => {
       `,
       variables: { email, password },
     });
-
+    console.log("LOGGING IN");
     //check if login credentials are correct
-    let r = await res;
-    r = r.data.login;
-    console.log(r);
-    let isTrue = r == "true";
+    let isTrue = r.data.login == "true";
     if (isTrue == true) {
       Cookie.set("isAuth", "true");
 

@@ -6,11 +6,27 @@ import { useContext, useState } from "react";
 import HeaderLogo from "./Logo";
 import "./header.scss";
 import DatePicker from "../Menu/Datepicker";
+import { ApolloConsumer } from "react-apollo";
+import gql from "graphql-tag";
 
 import { headerItem, wideFont, link, transition } from "../shared/helpers";
 const Cookie = require("js-cookie");
 
 const Header = ({ router }) => {
+  async function logout(client) {
+    Cookie.remove("isAuth");
+    Cookie.remove("qid");
+    window.localStorage.removeItem("store");
+    await client.mutate({
+      mutation: gql`
+        mutation logout {
+          logout
+        }
+      `,
+    });
+    Router.push("/");
+  }
+
   return (
     <ThemeProvider theme={theme(false)}>
       <Wrapper>
@@ -32,10 +48,11 @@ const Header = ({ router }) => {
               settings
             </StyledLink>
           </Link>
-
-          <Link prefetch href="/logout">
-            <StyledLink>logout</StyledLink>
-          </Link>
+          <ApolloConsumer>
+            {(client) => (
+              <StyledLink onClick={() => logout(client)}>logout</StyledLink>
+            )}
+          </ApolloConsumer>
         </LinksWrap>
       </Wrapper>
     </ThemeProvider>

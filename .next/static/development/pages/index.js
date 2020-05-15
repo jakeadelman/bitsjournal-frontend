@@ -595,7 +595,7 @@ var LoginForm = function LoginForm() {
     _handleSubmit = _asyncToGenerator(
     /*#__PURE__*/
     _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(event, client) {
-      var form, formData, email, password, res, r, isTrue;
+      var form, formData, email, password, r, isTrue;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
@@ -605,41 +605,38 @@ var LoginForm = function LoginForm() {
               formData = new window.FormData(form);
               email = formData.get("email");
               password = formData.get("password");
-              console.log(email, password);
               form.reset();
-              res = client.mutate({
+              _context.next = 8;
+              return client.mutate({
                 mutation: graphql_tag__WEBPACK_IMPORTED_MODULE_3___default()(_templateObject()),
                 variables: {
                   email: email,
                   password: password
                 }
-              }); //check if login credentials are correct
+              });
 
-              _context.next = 10;
-              return res;
-
-            case 10:
+            case 8:
               r = _context.sent;
-              r = r.data.login;
-              console.log(r);
-              isTrue = r == "true";
+              console.log("LOGGING IN"); //check if login credentials are correct
+
+              isTrue = r.data.login == "true";
 
               if (!(isTrue == true)) {
-                _context.next = 19;
+                _context.next = 16;
                 break;
               }
 
               Cookie.set("isAuth", "true"); // userStore.isAuth = true;
 
               next_router__WEBPACK_IMPORTED_MODULE_4___default.a.push("/dashboard");
-              _context.next = 21;
+              _context.next = 18;
               break;
 
-            case 19:
+            case 16:
               setWrongCredentials(true);
               return _context.abrupt("return");
 
-            case 21:
+            case 18:
             case "end":
               return _context.stop();
           }
