@@ -8,6 +8,7 @@ import "./header.scss";
 import DatePicker from "../Menu/Datepicker";
 import { ApolloConsumer } from "react-apollo";
 import gql from "graphql-tag";
+import Router from "next/router";
 
 import { headerItem, wideFont, link, transition } from "../shared/helpers";
 const Cookie = require("js-cookie");

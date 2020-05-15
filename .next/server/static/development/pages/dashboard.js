@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -5202,6 +5202,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
+
 var Cookie = __webpack_require__(/*! js-cookie */ "js-cookie");
 
 var Header = function Header(_ref) {
@@ -5228,7 +5229,7 @@ var Header = function Header(_ref) {
               });
 
             case 5:
-              Router.push("/");
+              next_router__WEBPACK_IMPORTED_MODULE_3___default.a.push("/");
 
             case 6:
             case "end":
@@ -7043,7 +7044,7 @@ function initializeStore(initialData) {
 
 /***/ }),
 
-/***/ 3:
+/***/ 4:
 /*!**********************************!*\
   !*** multi ./pages/dashboard.js ***!
   \**********************************/
