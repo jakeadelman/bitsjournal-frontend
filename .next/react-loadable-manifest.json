@@ -1,8 +1,8 @@
 {
-  "bootstrap/dist/css/bootstrap.min.css": [
+  "react-datepicker/dist/react-datepicker.css": [
     {
-      "id": "./node_modules/bootstrap/dist/css/bootstrap.min.css",
-      "name": "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+      "id": "./node_modules/react-datepicker/dist/react-datepicker.css",
+      "name": "./node_modules/react-datepicker/dist/react-datepicker.css",
       "file": "static/chunks/styles.js",
       "publicPath": "static/chunks/styles.js"
     }
@@ -33,30 +33,14 @@
       "publicPath": "static/chunks/styles.js"
     },
     {
-      "id": 9,
+      "id": 8,
       "name": null,
       "file": "static/chunks/styles.js",
       "publicPath": "static/chunks/styles.js"
     },
     {
-      "id": 10,
+      "id": 9,
       "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    }
-  ],
-  "./header.scss": [
-    {
-      "id": "./components/Header/header.scss",
-      "name": "./components/Header/header.scss",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    }
-  ],
-  "react-datepicker/dist/react-datepicker.css": [
-    {
-      "id": "./node_modules/react-datepicker/dist/react-datepicker.css",
-      "name": "./node_modules/react-datepicker/dist/react-datepicker.css",
       "file": "static/chunks/styles.js",
       "publicPath": "static/chunks/styles.js"
     }
@@ -65,6 +49,22 @@
     {
       "id": "./components/Menu/datepicker-additional.css",
       "name": "./components/Menu/datepicker-additional.css",
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    }
+  ],
+  "bootstrap/dist/css/bootstrap.min.css": [
+    {
+      "id": "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+      "name": "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    }
+  ],
+  "./header.scss": [
+    {
+      "id": "./components/Header/header.scss",
+      "name": "./components/Header/header.scss",
       "file": "static/chunks/styles.js",
       "publicPath": "static/chunks/styles.js"
     }
