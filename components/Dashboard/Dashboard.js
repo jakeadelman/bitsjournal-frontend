@@ -5,8 +5,8 @@ import {
   NextToDivHeader,
   RowContainer,
   ContainDivHeader,
-} from "./Trades";
-import ReChart from "./Trades";
+} from "./Tades/Trades";
+import ReChart from "./Tades/Trades";
 import Sidebar, { SymbolChooser, Pnl } from "../Menu/Menu";
 import { getNewDat } from "./shared/helpers";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -39,6 +39,7 @@ export default class extends React.Component {
       data: null,
       filteredData: null,
       isSingle: false,
+      isSingleNotes: false,
     };
     this.getGlobalHashtags = this.getGlobalHashtags.bind(this);
     this.hashtagClicked = this.hashtagClicked.bind(this);
@@ -65,6 +66,18 @@ export default class extends React.Component {
           });
           console.log(this.state, "STATEE");
           console.log("setting back");
+        }
+      }
+    );
+    this.singleNotesReaction = reaction(
+      () => this.props.store.isSingleNotes,
+      (notifications, reaction) => {
+        if (this.props.store.isSingleNotes == false) {
+          this.setState({ isSingleNotes: false });
+        } else {
+          this.setState({
+            isSingleNotes: true,
+          });
         }
       }
     );
@@ -242,11 +255,12 @@ export default class extends React.Component {
   render() {
     if (this.state.data != null) {
       if (this.state.isSingle == false) {
+        console.log("IS SINGLE IS FALSE");
         return (
           <Wrapper>
             <ChartWrapper>
               <TopBarParent>
-                <TopBarChildBig>
+                <TopBarChildBigLeft>
                   {this.state.globalHashActive.map((hash) => {
                     return (
                       <TopHashtagIndividualActive
@@ -265,30 +279,20 @@ export default class extends React.Component {
                       </TopHashtagIndividual>
                     );
                   })}
-                </TopBarChildBig>
+                </TopBarChildBigLeft>
                 <TopBarChildSmall>
                   <TopHashtagIndividualActivePnl>
                     <Pnl />
                   </TopHashtagIndividualActivePnl>
                 </TopBarChildSmall>
-                <TopBarChildBig>
+                <TopBarChildBigRight>
                   <TopHashtagIndividualActiveRight>
                     <SymbolChooser />
                   </TopHashtagIndividualActiveRight>
-                </TopBarChildBig>
+                </TopBarChildBigRight>
               </TopBarParent>
               <WholeGrid>
-                {this.state.width > 1380 ? (
-                  <ContainDivHeader>
-                    <NextToDivHeader>Start</NextToDivHeader>
-                    <NextToDivHeader>End</NextToDivHeader>
-                    <NextToDivHeader>L/S</NextToDivHeader>
-                    <NextToDivHeader>Avg Entry</NextToDivHeader>
-                    <NextToDivHeader>Avg Exit</NextToDivHeader>
-                    <NextToDivHeader>Qty</NextToDivHeader>
-                    <NextToDivHeader>Realized Pnl</NextToDivHeader>
-                  </ContainDivHeader>
-                ) : (
+                {this.state.isSingleNotes == false ? (
                   <ContainDivHeader>
                     <NextToDivHeader>Start</NextToDivHeader>
                     <NextToDivHeader>End</NextToDivHeader>
@@ -298,7 +302,7 @@ export default class extends React.Component {
                     <NextToDivHeader>Qty</NextToDivHeader>
                     <NextToDivHeader>RPNL</NextToDivHeader>
                   </ContainDivHeader>
-                )}
+                ) : null}
                 <ReChart
                   data={this.state.data}
                   filteredData={this.state.filteredData}
@@ -309,36 +313,27 @@ export default class extends React.Component {
           </Wrapper>
         );
       } else {
+        console.log("IS SINGLE IS TRUE");
         return (
           <Wrapper>
             <ChartWrapper>
               <TopBarParent>
-                <TopBarChildBig>
+                <TopBarChildBigLeft>
                   <Tabs />
-                </TopBarChildBig>
+                </TopBarChildBigLeft>
                 <TopBarChildSmall>
                   <TopHashtagIndividualActivePnl>
                     <Pnl />
                   </TopHashtagIndividualActivePnl>
                 </TopBarChildSmall>
-                <TopBarChildBig>
+                <TopBarChildBigRight>
                   <RightTabs>
                     <Notes firstTrade={this.state.singleTrade} />
                   </RightTabs>
-                </TopBarChildBig>
+                </TopBarChildBigRight>
               </TopBarParent>
               <WholeGrid>
-                {this.state.width > 1380 ? (
-                  <ContainDivHeader>
-                    <NextToDivHeader>Start</NextToDivHeader>
-                    <NextToDivHeader>End</NextToDivHeader>
-                    <NextToDivHeader>L/S</NextToDivHeader>
-                    <NextToDivHeader>Avg Entry</NextToDivHeader>
-                    <NextToDivHeader>Avg Exit</NextToDivHeader>
-                    <NextToDivHeader>Qty</NextToDivHeader>
-                    <NextToDivHeader>Realized Pnl</NextToDivHeader>
-                  </ContainDivHeader>
-                ) : (
+                {this.state.isSingleNotes == false ? (
                   <ContainDivHeader>
                     <NextToDivHeader>Start</NextToDivHeader>
                     <NextToDivHeader>End</NextToDivHeader>
@@ -348,7 +343,7 @@ export default class extends React.Component {
                     <NextToDivHeader>Qty</NextToDivHeader>
                     <NextToDivHeader>RPNL</NextToDivHeader>
                   </ContainDivHeader>
-                )}
+                ) : null}
                 <ReChart
                   data={this.state.data}
                   filteredData={this.state.filteredData}
@@ -384,9 +379,8 @@ const WrapTabs = styled.div`
   flex-direction: row;
   font-size: 15px;
 `;
-const WholeGrid = styled.div`
-  border: 1px solid #f2f2f2;
-`;
+const WholeGrid = styled.div``;
+// border: 1px solid #f2f2f2;
 
 const TopBarParent = styled.div`
   display: flex;
@@ -395,15 +389,24 @@ const TopBarParent = styled.div`
   margin-bottom: 14px;
 `;
 
-const TopBarChildBig = styled.div`
-  flex: 1 1 45%; /*grow | shrink | basis */
+// flex: 1 1 45%; /*grow | shrink | basis */
+const TopBarChildBigLeft = styled.div`
+  width: 45%;
   display: flex;
   flex-direction: row;
+  overflow: auto;
 `;
-const TopBarChildSmall = styled.div`
-  flex: 1 1 10%; /*grow | shrink | basis */
+const TopBarChildBigRight = styled.div`
+  width: 45%;
   display: flex;
   flex-direction: row;
+  overflow: auto;
+`;
+
+const TopBarChildSmall = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 10%;
 `;
 
 const TopHashtagIndividual = styled.div`
@@ -418,6 +421,7 @@ const TopHashtagIndividual = styled.div`
     cursor: pointer;
   }
   margin-left: 0;
+  white-space: nowrap;
 `;
 
 const TopHashtagIndividualActive = styled.div`
@@ -427,11 +431,11 @@ const TopHashtagIndividualActive = styled.div`
   margin: 0 10px;
   border-radius: 2px;
   ${wideFont}
-  margin:0 auto;
   :hover {
     cursor: pointer;
   }
   margin-left: 0;
+  white-space: nowrap;
 `;
 const TopHashtagIndividualActiveRight = styled.div`
   background: #212528;

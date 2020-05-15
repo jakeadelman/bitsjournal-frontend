@@ -2,7 +2,11 @@ import { action, observable } from "mobx";
 import { useStaticRendering, observer } from "mobx-react";
 import { create, persist } from "mobx-persist";
 import { createContext } from "react";
-import { getStateDate } from "../components/Helpers/Functions";
+import {
+  getStateDate,
+  makeDateHrs,
+  makeDateDays,
+} from "../components/Helpers/Functions";
 
 const isServer = !process.browser;
 useStaticRendering(isServer);
@@ -11,8 +15,8 @@ export class Store {
   @observable lastUpdate = 0;
   @persist @observable light = true;
   @persist @observable isAuth = false;
-  @persist @observable startDate = "2020-02-24T12:43:56.702Z";
-  @persist @observable endDate = "2020-02-28T12:43:56.702Z";
+  @persist @observable startDate = null;
+  @persist @observable endDate = null;
   @persist @observable symbol = "XBTUSD";
 
   @persist @observable date = "Today";

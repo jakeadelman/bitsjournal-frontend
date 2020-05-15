@@ -24,10 +24,16 @@ const Tabs = inject("store")(
       }
     }
 
+    function backwards() {
+      console.log("BACK CLICKED");
+      store.hasSingleTrade = false;
+      store.isSingleNotes = false;
+    }
+
     if (activeTab == "notes") {
       return (
         <WrapTabs>
-          <SingleTab isActive={false}>
+          <SingleTab isActive={false} onClick={() => backwards()}>
             <SingleTabInner>
               <FontAwesomeIcon
                 icon={faCaretLeft}
@@ -53,7 +59,7 @@ const Tabs = inject("store")(
     } else {
       return (
         <WrapTabs>
-          <SingleTab isActive={false}>
+          <SingleTab isActive={false} onClick={() => backwards()}>
             <SingleTabInner>
               <FontAwesomeIcon
                 icon={faCaretLeft}
@@ -88,7 +94,7 @@ const SingleTabInner = styled.div`
 
 const SingleTab = styled.div`
   color: ${(props) => (props.isActive ? "#fff" : "#000")};
-  background-color: ${(props) => (props.isActive ? "#000" : "#fff")};
+  background-color: ${(props) => (props.isActive ? "#212527" : "#fff")};
 
   margin: auto 10px;
   border-radius: 2px;

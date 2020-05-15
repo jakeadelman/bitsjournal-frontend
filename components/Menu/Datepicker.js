@@ -4,9 +4,7 @@ import { inject, observer } from "mobx-react";
 
 import "react-datepicker/dist/react-datepicker.css";
 import "./datepicker-additional.css";
-
-// CSS Modules, react-datepicker-cssmodules.css
-// import 'react-datepicker/dist/react-datepicker-cssmodules.css';
+import { reaction } from "mobx";
 
 @inject(["store"])
 @observer
@@ -18,8 +16,26 @@ export default class Example extends React.Component {
     };
   }
 
+  componentWillMount() {}
+
+  componentDidMount() {
+    this.dateReaction = reaction(
+      () => this.props.store.startDate,
+      (notifications, reaction) => {
+        if (this.props.store.startDate !== null) {
+          if (this.props.start == true) {
+            this.setState({ date: new Date(this.props.store.startDate) });
+          } else {
+            this.setState({ date: new Date(this.props.store.endDate) });
+          }
+        }
+      }
+    );
+  }
+
   handleChange = (date) => {
     this.setState({ date: date });
+    console.log(date, "THIS IS DATE");
   };
 
   componentDidUpdate(prevProps) {

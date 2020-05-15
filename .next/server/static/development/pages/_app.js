@@ -97,7 +97,7 @@ module.exports =
 /*!*****************************************!*\
   !*** ./components/Helpers/Functions.js ***!
   \*****************************************/
-/*! exports provided: formatDateMonthOnly, formatDateShort, formatDateShortWithHour, getStateDate, calcCommission */
+/*! exports provided: formatDateMonthOnly, formatDateShort, formatDateShortWithHour, getStateDate, makeDateHrs, makeDateDays, calcCommission */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -106,7 +106,35 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "formatDateShort", function() { return formatDateShort; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "formatDateShortWithHour", function() { return formatDateShortWithHour; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getStateDate", function() { return getStateDate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "makeDateHrs", function() { return makeDateHrs; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "makeDateDays", function() { return makeDateDays; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "calcCommission", function() { return calcCommission; });
+// export function formatDateMonthOnly(date) {
+//   var monthNames = [
+//     "Jan",
+//     "Feb",
+//     "Mar",
+//     "Apr",
+//     "May",
+//     "Jun",
+//     "Jul",
+//     "Aug",
+//     "Sept",
+//     "Oct",
+//     "Nov",
+//     "Dec",
+//   ];
+//   let utcDate = date;
+//   let theDate = new Date(utcDate);
+//   var day = theDate.getDate();
+//   var hours = addZeroBefore(theDate.getHours());
+//   var mins = addZeroBefore(theDate.getMinutes());
+//   var monthIndex = addZeroBefore(theDate.getMonth());
+//   var year = addZeroBefore(theDate.getFullYear());
+//   return (
+//     day + "-" + monthIndex.toString() + "-" + year + " " + hours + ":" + mins
+//   );
+// }
 function formatDateMonthOnly(date) {
   var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
   var utcDate = date;
@@ -177,7 +205,6 @@ function getStateDate(input) {
     return _dates3;
   }
 }
-
 function makeDateHrs(hrsBack) {
   if (hrsBack == 0) {
     var dt = new Date(new Date().toUTCString());
@@ -192,7 +219,6 @@ function makeDateHrs(hrsBack) {
     return _dt;
   }
 }
-
 function makeDateDays(num) {
   var dt = new Date(new Date().toUTCString());
   dt.setDate(dt.getDate() - num);
@@ -200,7 +226,6 @@ function makeDateDays(num) {
   console.log("getting days back");
   return dt;
 }
-
 function calcCommission(price, side, qty, leavesQty, orderType) {
   var realQty = qty - leavesQty;
   var commission;
@@ -703,14 +728,14 @@ var Store = (_class = (_temp = function Store() {
   enumerable: true,
   writable: true,
   initializer: function initializer() {
-    return "2020-02-24T12:43:56.702Z";
+    return null;
   }
 }), _descriptor5 = _applyDecoratedDescriptor(_class.prototype, "endDate", [mobx_persist__WEBPACK_IMPORTED_MODULE_2__["persist"], mobx__WEBPACK_IMPORTED_MODULE_0__["observable"]], {
   configurable: true,
   enumerable: true,
   writable: true,
   initializer: function initializer() {
-    return "2020-02-28T12:43:56.702Z";
+    return null;
   }
 }), _descriptor6 = _applyDecoratedDescriptor(_class.prototype, "symbol", [mobx_persist__WEBPACK_IMPORTED_MODULE_2__["persist"], mobx__WEBPACK_IMPORTED_MODULE_0__["observable"]], {
   configurable: true,

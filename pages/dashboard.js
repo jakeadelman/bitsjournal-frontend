@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import DashInitialTerms from "../components/Dashboard/FetchQueryContainer";
 import App from "../components/App";
 import Header from "../components/Header/DashboardHeader";
@@ -7,6 +7,24 @@ import theme from "../components/theme";
 import "../styles.css";
 
 export default function dashboard({ initialState }) {
+  // const [width, setWidth] = useState();
+
+  // function updateWindowDimensions() {
+  //   let newWidth = window.innerWidth;
+  //   setWidth(newWidth);
+  //   console.log(window.innerWidth);
+  //   console.log(width);
+  //   console.log(newWidth);
+  // }
+
+  // useEffect(() => {
+  //   window.addEventListener("resize", updateWindowDimensions);
+
+  //   return () => {
+  //     window.removeEventListener("resize", updateWindowDimensions);
+  //   };
+  // }, []);
+
   return (
     <App>
       <Header />
@@ -26,6 +44,10 @@ const PageWrap = styled.div`
   margin: 0 10vw;
   border-right: 1px solid #f2f2f2;
   border-left: 1px solid #f2f2f2;
+  @media only screen and (max-width: 768px) {
+    border: none;
+    margin: 0;
+  }
 `;
 
 const Wrapper = styled.div`

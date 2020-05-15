@@ -1,5 +1,5 @@
 import { Query } from "react-apollo";
-import ReChart from "./Trades";
+import ReChart from "./Tades/Trades";
 import Sidebar from "../Menu/Menu";
 import gql from "graphql-tag";
 import styled from "styled-components";
@@ -10,13 +10,13 @@ import {
   NextToDivHeader,
   RowContainer,
   ContainDivHeader,
-} from "./Trades";
-import { getStateDate } from "../Helpers/Functions";
+} from "./Tades/Trades";
 import { equal } from "fast-deep-equal";
 import ApiKeyForm from "./AddApiForm";
 import TotalDat from "./Dashboard";
-import TotalDat768 from "./768px/Dashboard";
+import TotalDat768 from "./768px/DashboardTest";
 import { when, reaction } from "mobx";
+import { getStateDate, makeDateDays, makeDateHrs } from "../Helpers/Functions";
 
 @inject(["store"])
 @observer
@@ -41,6 +41,7 @@ class FetchQuery extends React.Component {
       end: this.props.store.endDate,
       symbol: this.props.store.symbol,
     };
+
     return (
       <div>
         <Comp
@@ -98,6 +99,7 @@ class Comp extends React.Component {
             this.props.store.clearTempNotes();
             this.props.store.clearTempTags();
             this.props.store.resetPnl();
+            this.props.store.hasSingleTrade = false;
 
             if (this.state.width > 768) {
               return <TotalDat data={data} />;

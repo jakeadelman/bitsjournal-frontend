@@ -11,23 +11,25 @@ import {
   Legend,
 } from "recharts";
 import styled, { ThemeProvider } from "styled-components";
-import { wideFont, smallFont } from "../shared/helpers";
-import theme from "../theme";
+import { wideFont, smallFont } from "../../shared/helpers";
+import theme from "../../theme";
 import {
   formatDateMonthOnly,
   calcCommission,
   formatDateShort,
   formatDateShortWithHour,
-} from "../Helpers/Functions.js";
+} from "../../Helpers/Functions.js";
 import { inject, observer } from "mobx-react";
-import MainChart from "./Chart/index";
-import Notes from "./Notes/Notes";
+import MainChart from "../Chart/index";
+import Notes from "../Notes/Notes";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons";
 import equal from "fast-deep-equal";
 import TextareaAutosize from "react-autosize-textarea";
-import MyTextArea from "./Notes/TextArea";
+import MyTextArea from "../Notes/TextArea";
 import { when, reaction } from "mobx";
+import { calcTrades } from "./calcTrades";
+import { ApolloConsumer } from "react-apollo";
 
 @inject(["store"])
 @observer
@@ -39,6 +41,7 @@ export default class Example extends PureComponent {
       height: 0,
       data: [],
       fullTrades: [],
+      hasSingleTrade: false,
     };
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
     this.createFullTrades = this.createFullTrades.bind(this);
@@ -80,25 +83,20 @@ export default class Example extends PureComponent {
 
   componentDidUpdate(prevProps) {
     if (!equal(this.props.filteredData, prevProps.filteredData)) {
-      console.log("WAS NOT EQUAL");
       // this.updateTrades(this.props.data);
       let newFullTrades = [];
       let firstFullTrades = this.createFullTrades(this.props.data);
       firstFullTrades = firstFullTrades.fullTrades;
-      console.log(this.props.data);
       if (this.props.filteredData == null) {
-        console.log("was null", firstFullTrades);
         this.setState({ fullTrades: firstFullTrades });
       } else {
         for (let i = 0; i < firstFullTrades.length; i++) {
           for (let j = 0; j < this.props.filteredData.length; j++) {
             if (firstFullTrades[i][0].id == this.props.filteredData[j].id) {
-              console.log("ADDING", firstFullTrades[i]);
               newFullTrades.unshift(firstFullTrades[i]);
             }
           }
           if (i == firstFullTrades.length - 1) {
-            console.log(newFullTrades, "NEW FULL");
             this.setState({ fullTrades: newFullTrades });
           }
         }
@@ -107,7 +105,6 @@ export default class Example extends PureComponent {
   }
 
   componentDidMount() {
-    console.log("MOUNTING");
     let returned = this.createFullTrades(this.props.data);
     if (returned != undefined) {
       this.setState({
@@ -127,11 +124,22 @@ export default class Example extends PureComponent {
     this.singleNotesReaction = reaction(
       () => this.props.store.isSingleNotes,
       (notifications, reaction) => {
-        console.log(this.props.store.isSingleNotes);
         if (this.props.store.isSingleNotes == false) {
           this.setState({ isSingleNotes: false });
         } else {
           this.setState({ isSingleNotes: true });
+        }
+      }
+    );
+
+    this.singleTradeReaction = reaction(
+      () => this.props.store.hasSingleTrade,
+      (notifications, reaction) => {
+        this.props.store.pnl = 0;
+        if (this.props.store.hasSingleTrade == false) {
+          this.setState({ hasSingleTrade: false });
+        } else {
+          this.setState({ hasSingleTrade: true });
         }
       }
     );
@@ -164,25 +172,42 @@ export default class Example extends PureComponent {
   }
 
   render() {
-    return (
-      <ThemeProvider theme={theme(false)}>
-        <div style={{ minWidth: this.state.chartWidth }}>
-          {this.state.fullTrades.map((slic, i) => {
-            console.log(slic);
-            return (
-              <MakeCol
-                slic={slic}
-                onemin={this.props.data.fetchOneMinuteCandleHistory}
-                fivemin={this.props.data.fetchFiveMinuteCandleHistory}
-                onehour={this.props.data.fetchOneHourCandleHistory}
-                oneday={this.props.data.fetchOneDayCandleHistory}
-                key={i}
-              />
-            );
-          })}
-        </div>
-      </ThemeProvider>
-    );
+    if (this.state.hasSingleTrade == false) {
+      return (
+        <ThemeProvider theme={theme(false)}>
+          <div style={{ minWidth: this.state.chartWidth }}>
+            {this.state.fullTrades.map((slic, i) => {
+              return (
+                <MakeCol
+                  clicked={false}
+                  slic={slic}
+                  onemin={this.props.data.fetchOneMinuteCandleHistory}
+                  fivemin={this.props.data.fetchFiveMinuteCandleHistory}
+                  onehour={this.props.data.fetchOneHourCandleHistory}
+                  oneday={this.props.data.fetchOneDayCandleHistory}
+                  key={i}
+                />
+              );
+            })}
+          </div>
+        </ThemeProvider>
+      );
+    } else {
+      return (
+        <ThemeProvider theme={theme(false)}>
+          <div style={{ minWidth: this.state.chartWidth }}>
+            <MakeCol
+              clicked={true}
+              slic={this.props.store.singleTrade}
+              onemin={this.props.data.fetchOneMinuteCandleHistory}
+              fivemin={this.props.data.fetchFiveMinuteCandleHistory}
+              onehour={this.props.data.fetchOneHourCandleHistory}
+              oneday={this.props.data.fetchOneDayCandleHistory}
+            />
+          </div>
+        </ThemeProvider>
+      );
+    }
   }
 }
 
@@ -207,7 +232,6 @@ class MakeCol extends Component {
   }
 
   updateWindowDimensions() {
-    console.log(this.state.width);
     this.setState({
       width: window.innerWidth,
     });
@@ -216,12 +240,11 @@ class MakeCol extends Component {
     window.removeEventListener("resize", this.updateWindowDimensions);
   }
   componentDidMount() {
-    console.log("MOUNTED", this.props.slic);
     window.addEventListener("resize", this.updateWindowDimensions);
+    this.setState({ clicked: this.props.clicked });
   }
   componentDidUpdate(prevProps) {
     if (!equal(this.props.slic, prevProps.slic)) {
-      console.log("UPDATED");
       this.getSlicData();
     }
   }
@@ -231,193 +254,37 @@ class MakeCol extends Component {
     this.updateWindowDimensions();
   }
 
-  getSlicData() {
+  async getSlicData() {
     this.state.data = this.props.slic;
-    if (
-      this.state.data[0].side == "Buy" &&
-      this.state.data[0].execType == "Trade"
-    ) {
-      let avgBuyPrice = 0;
-      let avgSellPrice = 0;
-      let totBuyContracts = 0;
-      let totSellContracts = 0;
-      let buyNum = 0;
-      let sellNum = 0;
-      let totBuyContractsMult = 0;
-      let totSellContractsMult = 0;
-      let realQty = 0;
-      let totCommission = 0;
-      for (let i = 0; i < this.state.data.length; i++) {
-        realQty = this.state.data[i].orderQty - this.state.data[i].leavesQty;
-        if (this.state.data[i].side == "Buy") {
-          buyNum += 1;
-          totBuyContracts += realQty;
-          totBuyContractsMult += realQty * parseFloat(this.state.data[i].price);
-        }
-        if (this.state.data[i].side == "Sell") {
-          sellNum += 1;
-          totSellContracts += realQty;
-          totSellContractsMult +=
-            realQty * parseFloat(this.state.data[i].price);
-        }
-        // console.log("REAL QTY", realQty);
-        if (
-          this.state.data[i].orderType == "Limit" &&
-          this.state.data[i].execType !== "Funding"
-        ) {
-          totCommission += (realQty * 0.0025) / this.state.data[i].price;
-        }
-        if (this.state.data[i].orderType == "Market") {
-          totCommission -= (realQty * 0.0075) / this.state.data[i].price;
-        }
-        if (this.state.data[i].orderType.includes("Stop")) {
-          totCommission -= (realQty * 0.0075) / this.state.data[i].price;
-        }
-        if (i == this.state.data.length - 1) {
-          avgBuyPrice = totBuyContractsMult / totBuyContracts;
-          avgSellPrice = totSellContractsMult / totSellContracts;
-          let avgExit;
-          let avgEntry;
-          if (avgBuyPrice != null) {
-            // this.state.avgEntryPrice = avgBuyPrice;
-            avgEntry = avgBuyPrice;
-          } else {
-            avgEntry = 0;
-            // this.state.avgEntryPrice = 0;
-          }
-          if (avgSellPrice != null) {
-            // this.state.avgExitPrice = avgSellPrice;
-            avgExit = avgSellPrice;
-          } else {
-            // this.state.avgExitPrice = 0;
-            avgExit = 0;
-          }
-          this.state.cumQty = totBuyContracts;
-          let thePnl = (1 / avgBuyPrice - 1 / avgSellPrice) * totSellContracts;
-          if (thePnl != null) {
-            let myPnl = thePnl + totCommission;
-            this.setState(
-              {
-                pnl: myPnl,
-                avgEntryPrice: avgEntry,
-                avgExitPrice: avgExit,
-              },
-              () => console.log("STATE IS SET")
-            );
-            this.props.store.addPnl(myPnl);
-          } else {
-            // this.state.pnl = 0;
-            this.setState(
-              {
-                pnl: 0,
-                avgEntryPrice: avgEntry,
-                avgExitPrice: avgExit,
-              },
-              () => console.log("STATE IS SET")
-            );
-          }
-        }
-      }
-    }
-    if (
-      this.state.data[0].side == "Sell" &&
-      this.state.data[0].execType == "Trade"
-    ) {
-      let totBuyContracts = 0;
-      let totSellContracts = 0;
-      let buyNum = 0;
-      let sellNum = 0;
-      let totBuyContractsMult = 0;
-      let totSellContractsMult = 0;
-      let realQty = 0;
-      let totCommission = 0;
-      for (let i = 0; i < this.state.data.length; i++) {
-        realQty = this.state.data[i].orderQty - this.state.data[i].leavesQty;
-        if (this.state.data[i].side == "Buy") {
-          // totBuyPrice += parseFloat(this.state.data[i].price);
-          buyNum += 1;
-          totBuyContracts += realQty;
-          totBuyContractsMult += realQty * parseFloat(this.state.data[i].price);
-        }
-        if (this.state.data[i].side == "Sell") {
-          sellNum += 1;
-          totSellContracts += realQty;
-          totSellContractsMult +=
-            realQty * parseFloat(this.state.data[i].price);
-        }
-        // console.log("REAL QTY", realQty);
-        if (
-          this.state.data[i].orderType == "Limit" &&
-          this.state.data[i].execType !== "Funding"
-        ) {
-          totCommission += (realQty * 0.0025) / this.state.data[i].price;
-        }
-        if (this.state.data[i].orderType == "Market") {
-          totCommission -= (realQty * 0.0075) / this.state.data[i].price;
-        }
-        if (this.state.data[i].orderType.includes("Stop")) {
-          totCommission -= (realQty * 0.0075) / this.state.data[i].price;
-        }
-        if (i == this.state.data.length - 1) {
-          let avgBuyPrice = totBuyContractsMult / totBuyContracts;
-          let avgSellPrice = totSellContractsMult / totSellContracts;
-          let pnl = (1 / avgBuyPrice - 1 / avgSellPrice) * totBuyContracts;
-          let avgEntry;
-          let avgExit;
-          if (avgBuyPrice != null) {
-            avgExit = avgBuyPrice;
-          } else {
-            avgExit = 0;
-          }
-          if (avgSellPrice != null) {
-            avgEntry = avgSellPrice;
-          } else {
-            avgEntry = 0;
-          }
-          this.state.cumQty = totSellContracts;
-          if (pnl != null) {
-            let myPnl = pnl + totCommission;
-            this.setState(
-              {
-                pnl: myPnl,
-                avgEntryPrice: avgEntry,
-                avgExitPrice: avgExit,
-              },
-              () => console.log("STATE IS SET")
-            );
-            this.props.store.addPnl(myPnl);
-          } else {
-            // this.state.pnl = 0;
-            this.setState(
-              {
-                pnl: 0,
-                avgEntryPrice: avgEntry,
-                avgExitPrice: avgExit,
-              },
-              () => console.log("STATE IS SET")
-            );
-          }
-        }
+    let calced = await calcTrades(this.props.slic);
+
+    if (calced !== undefined) {
+      this.setState({
+        pnl: calced["pnl"],
+        avgEntryPrice: calced["avgEntryPrice"],
+        avgExitPrice: calced["avgExitPrice"],
+        cumQty: calced["cumQty"],
+      });
+      if (this.props.clicked == true) {
+        this.props.store.pnl = calced["pnl"];
+      } else {
+        this.props.store.addPnl(calced["pnl"]);
       }
     }
   }
 
   clicked(dat) {
-    console.log("CLICKEEEE", dat);
     if (this.state.clicked == false) {
       this.props.store.setSingleTrade(dat);
       this.props.store.hasSingleTrade = true;
-      console.log(this.props.store.singleTrade, "SINGLEEE");
       this.setState({ clicked: true });
     } else {
       this.props.store.hasSingleTrade = false;
       this.setState({ clicked: false });
-      console.log(this.props.store.singleTrade, "SINGLEEE");
     }
   }
 
   readMoreClicked() {
-    console.log("READ MORE CLICKED");
     if (this.state.readMoreClicked == false) {
       this.setState({ readMoreClicked: true });
     } else {
@@ -437,7 +304,10 @@ class MakeCol extends Component {
               this.state.data[this.state.data.length - 1].timestamp
             )}
           </NextToDiv>
-          <IsShort side={this.state.data[0].side} />
+          <IsShort
+            side={this.state.data[0].side}
+            last={this.state.data[this.state.data.length - 1].orderType}
+          />
           <NextToDiv>${this.state.avgEntryPrice.toFixed(1)}</NextToDiv>
           <NextToDiv>${this.state.avgExitPrice.toFixed(1)}</NextToDiv>
           <NextToDiv>{this.state.cumQty}</NextToDiv>
@@ -458,7 +328,10 @@ class MakeCol extends Component {
                     this.state.data[this.state.data.length - 1].timestamp
                   )}
                 </NextToDiv>
-                <IsShort side={this.state.data[0].side} />
+                <IsShort
+                  side={this.state.data[0].side}
+                  last={this.state.data[this.state.data.length - 1].orderType}
+                />
                 <NextToDiv>${this.state.avgEntryPrice.toFixed(1)}</NextToDiv>
                 <NextToDiv>${this.state.avgExitPrice.toFixed(1)}</NextToDiv>
                 <NextToDiv>{this.state.cumQty}</NextToDiv>
@@ -473,7 +346,11 @@ class MakeCol extends Component {
               oneday={this.props.oneday}
               trades={this.state.data}
             />
-            <MyTextArea firstTrade={this.state.data[0]} />
+            <ApolloConsumer>
+              {(client) => (
+                <MyTextArea firstTrade={this.state.data[0]} client={client} />
+              )}
+            </ApolloConsumer>
           </TotalDetails>
         );
       } else {
@@ -490,18 +367,29 @@ class MakeCol extends Component {
 }
 
 class IsShort extends Component {
+  componentDidMount() {
+    console.log(this.props.last);
+  }
   render() {
     if (this.props.side == "Sell") {
-      return <NextToDiv>Short</NextToDiv>;
+      if (this.props.last.includes("Stop")) {
+        return <NextToDiv>Short</NextToDiv>;
+      } else {
+        return <NextToDiv>Short</NextToDiv>;
+      }
     } else {
-      return <NextToDiv>Long</NextToDiv>;
+      if (this.props.last.includes("Stop")) {
+        return <NextToDiv>Long</NextToDiv>;
+      } else {
+        return <NextToDiv>Long</NextToDiv>;
+      }
     }
   }
 }
 
 const OrderExecution = ({ data }) => {
   return (
-    <MoreBoxTall>
+    <ExecContainer>
       <ContainDivBlack>
         <NextToDivBlackTitle>
           <TitleSpan>Timestamp</TitleSpan>
@@ -557,7 +445,7 @@ const OrderExecution = ({ data }) => {
           </ContainDivBlack>
         );
       })}
-    </MoreBoxTall>
+    </ExecContainer>
   );
 };
 
@@ -565,12 +453,11 @@ export const ContainDiv = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
-  height: 52px;
-
+  height: 47px;
+  border-bottom: 1px solid #f2f2f2;
   font-weight: 400;
 
   &:hover {
-    border-bottom: none;
     transition: none;
     background: #f8f8ff;
     cursor: pointer;
@@ -580,7 +467,7 @@ export const ContainDivClicked = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
-  height: 52px;
+  height: 47px;
 
   transition: none;
 
@@ -595,7 +482,7 @@ export const ContainDivBlack = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
-  height: 42px;
+  height: 40px;
   background: #f8f8ff;
 
   border-bottom: 1px solid #f2f2f2;
@@ -604,23 +491,22 @@ export const ContainDivHeader = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
-  height: 42px;
+  height: 38px;
   border-bottom: 1px solid #d3d3d3;
 `;
 // f2f2f2
-
+// border-right: 1px solid #f2f2f2;
 export const NextToDiv = styled.div`
   display: inline-block;
   width: 30%;
   padding: 8px;
-  padding-top: 14px;
+  padding-top: 12px;
   padding-left: 12px;
-  font-size: 15px;
+
   color: #000;
-  border-right: 1px solid #f2f2f2;
 
   font-weight: 300;
-  font-size: 15px;
+  font-size: 14px;
 
   @media (max-width: 550px) {
     font-size: 13px;
@@ -634,8 +520,8 @@ export const NextToDivBlack = styled.div`
   padding-left: 12px;
   font-size: 14px;
   padding-top: 9px;
-  border-right: 1px solid #f2f2f2;
 `;
+// border-right: 1px solid #f2f2f2;
 export const NextToDivBlackTitle = styled.div`
   display: inline-block;
   width: 30%;
@@ -680,6 +566,24 @@ export const NextToDivHeader = styled.div`
   font-size:13px;
 `;
 
+const InnerPnlWin = styled.div`
+  background: black;
+  margin-right: auto;
+  padding: 0 3px;
+  max-width: 80px;
+  color: white;
+  font-weight: 600;
+`;
+const InnerPnlLoss = styled.div`
+  background: red;
+  margin-right: auto;
+  padding: 0 3px;
+  border-radius: 2px;
+  max-width: 80px;
+  color: white;
+  font-weight: 600;
+`;
+
 const ReadMore = styled.div`
   position: absolute;
   bottom: 0;
@@ -718,6 +622,12 @@ const MoreBoxTall = styled.div`
   max-height: none;
   position: relative;
   overflow: hidden;
+`;
+const ExecContainer = styled.div`
+  max-height: none;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #f2f2f2;
 `;
 
 const TotalDetails = styled.div``;

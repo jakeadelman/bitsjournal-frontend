@@ -1,3 +1,31 @@
+// export function formatDateMonthOnly(date) {
+//   var monthNames = [
+//     "Jan",
+//     "Feb",
+//     "Mar",
+//     "Apr",
+//     "May",
+//     "Jun",
+//     "Jul",
+//     "Aug",
+//     "Sept",
+//     "Oct",
+//     "Nov",
+//     "Dec",
+//   ];
+//   let utcDate = date;
+//   let theDate = new Date(utcDate);
+
+//   var day = theDate.getDate();
+//   var hours = addZeroBefore(theDate.getHours());
+//   var mins = addZeroBefore(theDate.getMinutes());
+//   var monthIndex = addZeroBefore(theDate.getMonth());
+//   var year = addZeroBefore(theDate.getFullYear());
+
+//   return (
+//     day + "-" + monthIndex.toString() + "-" + year + " " + hours + ":" + mins
+//   );
+// }
 export function formatDateMonthOnly(date) {
   var monthNames = [
     "Jan",
@@ -93,7 +121,7 @@ export function getStateDate(input) {
     return dates;
   }
 }
-function makeDateHrs(hrsBack) {
+export function makeDateHrs(hrsBack) {
   if (hrsBack == 0) {
     let dt = new Date(new Date().toUTCString());
     dt = dt.toISOString();
@@ -105,7 +133,7 @@ function makeDateHrs(hrsBack) {
     return dt;
   }
 }
-function makeDateDays(num) {
+export function makeDateDays(num) {
   let dt = new Date(new Date().toUTCString());
   dt.setDate(dt.getDate() - num);
   dt = dt.toISOString();

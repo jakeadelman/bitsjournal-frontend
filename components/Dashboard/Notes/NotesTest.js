@@ -132,12 +132,6 @@ export default class extends Component {
         {(client) => (
           <div>
             <FullRow onSubmit={this.handleSubmit(client)}>
-              <HashtagDiv>
-                <AddHashtag
-                  firstTrade={this.props.firstTrade}
-                  client={client}
-                />
-              </HashtagDiv>
               {this.state.initHashtags.map((tag) => {
                 if (tag != "undefined") {
                   return (
@@ -158,6 +152,12 @@ export default class extends Component {
                   );
                 }
               })}
+              <HashtagDiv>
+                <AddHashtag
+                  firstTrade={this.props.firstTrade}
+                  client={client}
+                />
+              </HashtagDiv>
             </FullRow>
           </div>
         )}
@@ -234,8 +234,15 @@ class AddHashtag extends Component {
   render() {
     return (
       <div>
-        <Popup onClick={this.clicked}>
-          <FontAwesomeIcon icon={faPlus} style={{ transition: "none" }} />
+        <Popup
+          onClick={this.clicked}
+          style={{ display: "flex", flexDirection: "row" }}
+        >
+          <div>Add Hashtag</div>
+          <FontAwesomeIcon
+            icon={faPlus}
+            style={{ transition: "none", margin: "auto 4px" }}
+          />
         </Popup>
         {this.state.clicked ? (
           <PopupTop>
@@ -245,7 +252,7 @@ class AddHashtag extends Component {
                 value={this.state.value}
                 onChange={this.handleChange}
               />
-              <AddHashSubmit type="submit" value="Add Hashtag" />
+              <AddHashSubmit type="submit" value="Add" />
             </form>
           </PopupTop>
         ) : null}
@@ -281,7 +288,7 @@ const PopupTop = styled.div`
 // background: #b9bdc1;
 const SingleHashtagDiv = styled.div`
   background: #f8f8ff;
-  margin: 20px 8px;
+  margin: 0 8px;
   color: black;
   padding: 5px 7px;
 

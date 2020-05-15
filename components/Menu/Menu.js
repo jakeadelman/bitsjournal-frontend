@@ -6,12 +6,10 @@ import Header from "./Header";
 import { inject } from "mobx-react";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
-import { ContainDivClicked } from "../Dashboard/Trades";
+import { ContainDivClicked } from "../Dashboard/Tades/Trades";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons";
 import { wideFont } from "../shared/helpers";
-
-// border: 1px solid ${props => props.theme.border};
 
 export const SymbolChooser = inject("store")(
   observer(({ store }) => {
@@ -24,19 +22,27 @@ export const SymbolChooser = inject("store")(
         setDropdown(false);
       }
     };
+
+    const clicked = (value) => {
+      store.setSymbol(value);
+      store.changeHasTempTags();
+      setDropdown(false);
+    };
+
     return (
-      <Lapper2>
-        <SetSymbol
-          onClick={() => {
-            showDropdown();
-          }}
-        >
+      <Lapper2
+        onClick={() => {
+          showDropdown();
+        }}
+      >
+        <SetSymbol>
+          {store.symbol}
           {dropdown == true ? (
             <FontAwesomeIcon
               icon={faCaretUp}
               style={{
                 transition: "none",
-                marginRight: "4px",
+                marginRight: "3px",
                 marginLeft: "3px",
               }}
             />
@@ -45,12 +51,11 @@ export const SymbolChooser = inject("store")(
               icon={faCaretDown}
               style={{
                 transition: "none",
-                marginRight: "4px",
+                marginRight: "3px",
                 marginLeft: "3px",
               }}
             />
           )}
-          {store.symbol}
         </SetSymbol>
         {dropdown == true ? (
           <DropdownListContainer>
@@ -75,13 +80,17 @@ export const Pnl = inject("store")(
     if (store.pnl >= 0) {
       return (
         <Lapper2>
-          <InnerLapper>{store.pnl.toFixed(4) + "xbt"}</InnerLapper>
+          <InnerLapper style={{ padding: "4px" }}>
+            {store.pnl.toFixed(4) + "xbt"}
+          </InnerLapper>
         </Lapper2>
       );
     } else {
       return (
         <Lapper3>
-          <InnerLapper>{store.pnl.toFixed(4) + "xbt"}</InnerLapper>
+          <InnerLapper style={{ padding: "4px" }}>
+            {store.pnl.toFixed(4) + "xbt"}
+          </InnerLapper>
         </Lapper3>
       );
     }
@@ -109,12 +118,13 @@ const Sidebar = inject("store")(
     return (
       <ThemeProvider theme={theme(false)}>
         <LapperContainer>
-          <Lapper4>
-            <SetSymbol
-              onClick={() => {
-                showDropdown();
-              }}
-            >
+          <Lapper4
+            onClick={() => {
+              showDropdown();
+            }}
+          >
+            <SetSymbol>
+              {store.symbol}
               {dropdown == true ? (
                 <FontAwesomeIcon
                   icon={faCaretUp}
@@ -134,7 +144,6 @@ const Sidebar = inject("store")(
                   }}
                 />
               )}
-              {store.symbol}
             </SetSymbol>
             {dropdown == true ? (
               <DropdownListContainer>
@@ -192,7 +201,6 @@ const InnerLapper = styled.div`
   color: white;
   text-align: center;
   margin: auto;
-  padding: 3px;
 `;
 
 const Lapper2 = styled.aside`
@@ -239,13 +247,20 @@ const DropdownContainer = styled.div`
 `;
 const DropdownListContainer = styled.ul`
   list-style-type: none;
+  position: absolute;
+  margin-left: -8px;
+  border-radius: 2px;
+  background-color: #212527;
 `;
 const DropdownListItem = styled.li`
   text-align: center;
-  ${wideFont}
-  font-weight:500;
+  font-weight: 500;
   font-size: 14px;
   color: #fff;
+  background-color: #212529;
+  padding: 2px 15px;
+  margin: 4px 0;
+  ${wideFont}
   :hover {
     cursor: pointer;
     color: #000;
