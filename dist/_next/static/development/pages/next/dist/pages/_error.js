@@ -270,7 +270,7 @@ eval("module.exports = function(module) {\n\tif (!module.webpackPolyfill) {\n\t\
 
 /***/ }),
 
-/***/ 6:
+/***/ 9:
 /*!**************************************************************************************************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2Fnext%2Fdist%2Fpages%2F_error&absolutePagePath=%2FUsers%2Fmanx%2Fprojects-2%2Fbitsjournal%2Ffrontend%2Fnode_modules%2Fnext%2Fdist%2Fpages%2F_error.js&hotRouterUpdates=false ***!
   \**************************************************************************************************************************************************************************************************************************/
@@ -293,4 +293,4 @@ eval("module.exports = dll_ef0ff7c60362f24a921f;//# sourceURL=[module]\n//# sour
 
 /***/ })
 
-},[[6,"static/runtime/webpack.js"]]]);
+},[[9,"static/runtime/webpack.js"]]]);

@@ -35,7 +35,6 @@ const LoginForm = () => {
     console.log("LOGGING IN");
 
     let r = await res;
-    console.log(res);
     r = r.data.login;
     //check if login credentials are correct
     let isTrue = r == "true";
