@@ -24,7 +24,7 @@ const LoginForm = () => {
     const password = formData.get("password");
     form.reset();
 
-    let r = await client.mutate({
+    let res = client.mutate({
       mutation: gql`
         mutation login($email: String!, $password: String!) {
           login(email: $email, password: $password)
@@ -33,8 +33,12 @@ const LoginForm = () => {
       variables: { email, password },
     });
     console.log("LOGGING IN");
+
+    let r = await res;
+    console.log(res);
+    r = r.data.login;
     //check if login credentials are correct
-    let isTrue = r.data.login == "true";
+    let isTrue = r == "true";
     if (isTrue == true) {
       Cookie.set("isAuth", "true");
 
