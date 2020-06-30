@@ -11,6 +11,14 @@ const HeaderLogo = () => (
   </Logo>
 );
 
+export const HeaderLogoDark = () => (
+  <LogoDark>
+    <Link prefetch href="/">
+      <span>₿itsjournal</span>
+    </Link>
+  </LogoDark>
+);
+
 export default HeaderLogo;
 
 const Logo = styled.div`
@@ -22,6 +30,22 @@ const Logo = styled.div`
   color: ${(props) => props.theme.normalText};
   text-decoration: none;
   color: #fff;
+
+  @media (max-width: 425px) {
+    padding: 0 8px 0 16px;
+    font-size: 19px;
+  }
+`;
+
+const LogoDark = styled.div`
+  ${headerItem}
+
+  margin-right: 0;
+  font-size: 26px;
+  font-weight: 500;
+  color: ${(props) => props.theme.normalText};
+  text-decoration: none;
+  color: ${(props) => props.theme.mutedText};
 
   @media (max-width: 425px) {
     padding: 0 8px 0 16px;

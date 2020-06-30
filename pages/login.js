@@ -1,6 +1,6 @@
 import App from "../components/App";
 import Header from "../components/Header/Header";
-import HeaderLogo from "../components/Header/Logo";
+import HeaderLogoDark from "../components/Header/LogoDark";
 import styled, { ThemeProvider } from "styled-components";
 import theme from "../components/theme";
 import LoginForm from "../components/form/LoginForm";
@@ -21,7 +21,7 @@ export default function LoginPage() {
         <ThemeProvider theme={theme(false)}>
           <Wrapper>
             <HeaderLogoDiv>
-              <HeaderLogo />
+              <HeaderLogoDark />
             </HeaderLogoDiv>
             <LoginForm />
             <Annotation1>

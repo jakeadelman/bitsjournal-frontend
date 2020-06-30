@@ -4,7 +4,7 @@ import RegisterSubmit from "../components/form/RegisterForm";
 import styled, { ThemeProvider } from "styled-components";
 import theme from "../components/theme";
 import Router from "next/router";
-import HeaderLogo from "../components/Header/Logo";
+import HeaderLogoDark from "../components/Header/LogoDark";
 import Link from "next/link";
 import { HeaderLogoDiv, Annotation1 } from "./login";
 const Cookie = require("js-cookie");
@@ -20,7 +20,7 @@ export default function RegisterPage() {
         <ThemeProvider theme={theme(false)}>
           <Wrapper>
             <HeaderLogoDiv>
-              <HeaderLogo />
+              <HeaderLogoDark />
             </HeaderLogoDiv>
             <RegisterSubmit />
             <Annotation1>
