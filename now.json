@@ -2,5 +2,9 @@
   "version": 2,
   "name": "bitsjournal",
   "builds": [{ "src": "package.json", "use": "@now/static-build" }],
-  "routes": [{ "src": "/dashboard", "dest": "/dashboard/index.html" }]
+  "routes": [
+    { "src": "/dashboard", "dest": "/dashboard/index.html" },
+    { "src": "/login", "dest": "/login/index.html" },
+    { "src": "/register", "dest": "/register/index.html" }
+  ]
 }
