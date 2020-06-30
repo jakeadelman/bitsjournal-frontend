@@ -7,7 +7,6 @@
     "dev-next": "NODE_ENV=development node server.js",
     "build": "NODE_ENV=production next build",
     "start": "NODE_ENV=production next start",
-    "deploy": "next build && sls deploy",
     "now-build": "NODE_ENV=production next build && next export -o dist"
   },
   "dependencies": {

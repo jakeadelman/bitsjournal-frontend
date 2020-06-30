@@ -7,24 +7,6 @@ import theme from "../components/theme";
 import "../styles.css";
 
 export default function dashboard({ initialState }) {
-  // const [width, setWidth] = useState();
-
-  // function updateWindowDimensions() {
-  //   let newWidth = window.innerWidth;
-  //   setWidth(newWidth);
-  //   console.log(window.innerWidth);
-  //   console.log(width);
-  //   console.log(newWidth);
-  // }
-
-  // useEffect(() => {
-  //   window.addEventListener("resize", updateWindowDimensions);
-
-  //   return () => {
-  //     window.removeEventListener("resize", updateWindowDimensions);
-  //   };
-  // }, []);
-
   return (
     <App>
       <Header />
