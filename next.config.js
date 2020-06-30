@@ -11,5 +11,9 @@ module.exports = compose([
   [withCss],
   [withTypescript],
   [withSass],
-  [withImages]
+  [withImages],
 ]);
+
+module.exports = {
+  exportTrailingSlash: true,
+};
