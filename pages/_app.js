@@ -4,6 +4,11 @@ import withApolloClient from "../lib/with-apollo-client";
 import { ApolloProvider } from "react-apollo";
 import { Provider } from "mobx-react";
 import { initializeStore, hydrate } from "../stores/store";
+import "../components/Header/header.scss";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../styles.css";
+import "react-datepicker/dist/react-datepicker.css";
+import "../components/Menu/datepicker-additional.css";
 
 class MyApp extends App {
   static async getInitialProps(appContext) {
@@ -17,7 +22,7 @@ class MyApp extends App {
 
     return {
       ...appProps,
-      initialMobxState: mobxStore
+      initialMobxState: mobxStore,
     };
   }
 

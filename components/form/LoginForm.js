@@ -3,7 +3,6 @@ import { ApolloConsumer } from "react-apollo";
 import gql from "graphql-tag";
 import Router from "next/router";
 import { Alert } from "reactstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
 // import { observer } from "mobx-react-lite";
 // import { UserStoreContext } from "../stores/UserStore.ts";
 import styled from "styled-components";

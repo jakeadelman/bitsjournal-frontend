@@ -3,7 +3,6 @@ import { ApolloConsumer } from "react-apollo";
 import gql from "graphql-tag";
 import Router from "next/router";
 import { Alert } from "reactstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
 import styled from "styled-components";
 import FormWrapper from "../form/FormWrapper";
 import Input from "../form/Input";

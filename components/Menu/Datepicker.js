@@ -2,8 +2,6 @@ import React from "react";
 import DatePicker from "react-datepicker";
 import { inject, observer } from "mobx-react";
 
-import "react-datepicker/dist/react-datepicker.css";
-import "./datepicker-additional.css";
 import { reaction } from "mobx";
 
 @inject(["store"])

@@ -4,7 +4,6 @@ import styled, { ThemeProvider } from "styled-components";
 import theme from "../theme";
 import { useContext, useState } from "react";
 import HeaderLogo from "./Logo";
-import "./header.scss";
 import DatePicker from "../Menu/Datepicker";
 
 import { headerItem, wideFont, link, transition } from "../shared/helpers";

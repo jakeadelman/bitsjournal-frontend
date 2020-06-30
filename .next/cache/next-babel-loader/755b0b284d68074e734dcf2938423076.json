@@ -1,0 +1,1 @@
+{"ast":null,"code":"import React from \"react\";\nvar __jsx = React.createElement;\nimport styled from \"styled-components\";\nexport default (({\n  children\n}) => __jsx(\"main\", null, children));","map":null,"metadata":{},"sourceType":"module"}

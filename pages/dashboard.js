@@ -4,7 +4,6 @@ import App from "../components/App";
 import Header from "../components/Header/DashboardHeader";
 import styled, { ThemeProvider } from "styled-components";
 import theme from "../components/theme";
-import "../styles.css";
 
 export default function dashboard({ initialState }) {
   return (
